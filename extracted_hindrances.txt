@@ -1,0 +1,2063 @@
+
+--- PAGE 20 (PDF index) ---
+19
+19
+CAP
+1
+CRIANDO RAÇAS
+Mestres de Jogo e jogadores que desejem criar suas próprias raças (ou arquétipos culturais) 
+podem usar o sistema abaixo. Nossas raças são criadas com as seguintes regras:
+• Raças e culturas começam com 2 pontos de Habilidades Raciais Positivas. Habilidades 
+positivas adicionais devem ser balanceadas com um valor igual de habilidades negativas. 
+Por exemplo, uma habilidade +2 pode ser balanceada por uma única habilidade -2 ou 
+duas −1.
+• Se você desejar incluir uma habilidade que nós não incluímos aqui, simplesmente atribua 
+um valor baseado nos exemplos abaixo.
+Nomes:  Não tenha medo em renomear as habilidades para dar ao seu cenário algum 
+tempero. Se você quiser que os cavaleiros nômades tenham Cavalgar em d6, por exemplo, 
+pode chamar de Nascido na Sela. Trata-se de criar um bo m clima em vez de listas de 
+habilidades que seus jogadores devem se manter a par.
+VALOR HABILIDADE
+O número em parênteses após o nome de cada entrada representa o número de vezes que 
+essa habilidade em especial pode ser assumida. “S” significa sem limite.
+3Ação Adicional (1): O ser tem apêndices adicionais, reflexos melhorados ou uma 
+coordenação óculo-manual excepcional. Ele pode ignorar 2 pontos de penalidades 
+por Ações Múltiplas a cada turno.
+2Adaptável (1):  A raça é bem variada entre seu povo e cultura. Personagens começam 
+com uma Vantagem de nível Novato de sua escolha (e devem preencher todos os 
+requisitos).
+1Alcance (3): Tentáculos ou outros tipos de membros alongados. concedem Alcance 
++1 à criatura (adicione +1 cada vez que for escolhida depois da primeira).
+1Andar Pelas Paredes (1):  A espécie pode andar em superfícies verticais 
+normalmente, ou em superfícies invertidas com metade do deslocamento.
+1Aparar (3): O Aparar natural da criatura é aumentado em +1. Isso pode ser devido a 
+uma cauda preênsil, membros extras, reflexos aprimorados ou mesmo um sentido 
+psiônico latente.
+1/2Aquático/Semi-Aquático (1): Por um ponto o personagem é semi-aquático e pode 
+prender a respiração por 15 minutos antes de testes de afogamento. Por dois, ele é 
+um nativo da água. Ele não pode se afogar em líquido oxigenado e se move com sua 
+Movimentação completa quando nada (veja Movimento, pág. 107).
+1Armadura (3): A espécie tem uma pele grossa ou é incrustada por materiais 
+sólidos como placas ou até mesmo rocha. Isso garante Armadura +2 cada vez que 
+é comprada.
+2Aumento de Atributo (S): Durante a criação de personagem, a espécie aumenta 
+um atributo específico (Agilidade, Astúcia, Espírito, Força ou Vigor) em um tipo 
+de dado. Isso também aumenta o máximo da Característica em um.
+2Bônus de Perícia (1/Perícia): Por 2 pontos, o personagem tem um bônus de +2 
+quando usa uma perícia específica (isso só pode ser comprado uma vez por perícia).HABILIDADES RACIAIS POSITIVAS
+--- PAGE 21 (PDF index) ---
+SAVAGE WORLDS
+20
+20
+VALOR HABILIDADE
+1Cavar (1): A espécie pode se enterrar e se mover sob a terra comum com a metade 
+de sua Movimentação (não pode correr). Ele normalmente não pode ser atacado 
+enquanto está cavando. E pode tentar surpreender oponentes que não o vejam 
+chegando através de uma rolagem resistida de Furtividade contra Perceber. Se bem-
+sucedido, o cavador adiciona +2 no ataque e no dano naquela rodada, ou +4 com 
+uma ampliação (ele obtém A Finalização, pág. 122).
+1/2Chifres (1): O ser tem um chifre, ou chifres, que causam For+d4 de dano (ou For+d6 
+por 2 pontos). Veja Armas Naturais, pág. 115, para mais informações.
+8Construto (1): Construtos são seres artificiais feitos de material inorgânico. Eles 
+adicionam +2 para se recuperar do Estado de Abalado, ignoram um nível de 
+modificadores de Ferimento, não respiram e são imunes a doenças e venenos. 
+Ferimentos devem ser reparados com a perícia Consertar. Cada tentativa leva uma 
+hora por nível atual de Ferimento e ignora a "Hora de Ouro". Muitos construtos 
+possuem a Habilidade Racial Negativa Dependência (refletindo sua necessidade 
+de uma fonte de energia).
+2/3/4Garras (1): Ao custo de 2 pontos a raça tem garras que causam Força +d4 de dano. 
+Mais um ponto pode ser gasto para aumentar seu dano para Força +d6, e/ou outro 
+para adicionar PA 2. Veja Armas Naturais,pág. 115 para mais informações.
+1Imune a Doenças e Venenos (2):  A espécie é imune a doenças ou venenos (você 
+escolhe). Pode ser comprado duas vezes para ambos os efeitos.
+1Infravisão (1): A criatura “vê” calor, seja através dos olhos ou outro órgão sensorial. 
+Isso diminui à metade penalidades por Iluminação quando se ataca alvos quentes 
+(incluindo seres invisíveis).
+1Mordida (1): A raça tem presas que causam Força +d4 de dano. Veja Armas 
+Naturais, pág. 115 para mais informações.
+2Movimentação (2):  A Movimentação do personagem aumenta em +2 e seu dado 
+de corrida aumenta em um tipo.
+2Não Respira (1): A espécie não respira. Os indivíduos não são afetados por toxinas 
+inaladas, não se afogam e não sufocam no vácuo (Entretanto, eles ainda podem 
+congelar).
+1/2Perícia (1/Perícia): O personagem começa com um d4 em uma perícia inerente a sua 
+raça. Por 2 pontos (ou 1 se já é uma perícia básica), ela começa em d6 e o máximo 
+da perícia aumenta para d12+1.
+2/1Poder (S): A raça tem uma habilidade inata que funciona como um poder (veja pág. 
+177). Por 2 pontos, ela tem o Antecedente Arcano (Dom) e um poder que reflete sua 
+habilidade incomum. Cada vez que é escolhida depois da primeira custa 1 ponto 
+e concede outro poder. Ela não aumenta os Pontos de Poder—use a vantagem 
+Pontos de Poder para isso.
+1Redução de Sono (2): O ser precisa de metade do tempo de sono normal. Se 
+comprado uma segunda vez,ele nunca dorme.
+2/3Regeneração (1): O ser cura dano rapidamente. Ele pode fazer uma rolagem de 
+Cura natural uma vez por dia (em vez de uma vez por semana). Por 3 pontos, 
+lesões permanentes podem ser recuperadas quando todos os Ferimentos forem 
+regenerados. Trate a lesão como um Ferimento adicional para propósitos de 
+recuperação (pode-se tentar recuperá-la uma vez por semana).
+1Resistência (3): O personagem possui pele endurecida, escamas ou tecido 
+extremamente denso que aumenta sua Resistência em +1 .
+--- PAGE 22 (PDF index) ---
+21
+21
+CAP
+1
+VALOR HABILIDADE
+1Resistência Ambiental (S): A espécie recebe um bônus de +4 para resistir a um 
+único efeito ambiental negativo como calor, frio, falta de ar, radiação etc. Dano 
+dessa fonte é reduzido em 4.
+2 Robusto (1): Um segundo Resultado Abalado não causa Ferimento.
+2Saltador (1): O personagem pode pular o dobro da distância listada em 
+Movimento, pág. 107. Além disso, ele adiciona +4 ao dano quando salta como 
+parte de um Ataque Selvagem em vez do +2 habitual (a menos que esteja em 
+um ambiente fechado ou confinado onde ele não possa saltar verticalmente ou 
+horizontalmente—critério do Mestre).
+1Sem Órgãos Vitais (1): Essas espécies possuem órgãos vitais escondidos, 
+extremamente resistentes ou redundantes. Ataques Localizados não provocam 
+dano extra contra eles.
+2+XSuper Poderes (1): A raça tem habilidades realmente extraordinárias tiradas do 
+Compêndio de Super Poderes do Savage Worlds. O custo é 2—pelo Antecedente 
+Arcano (Super Poderes)—mais o custo do poder selecionado (X). Tenha certeza de 
+ter a permissão do Mestre antes de escolher esta habilidade poderosa.
+1Tamanho +1 (3): A criatura é maior do que o normal. Cada ponto de Tamanho 
+soma diretamente na Resistência e aumenta a Força máxima em um nível. Espécies 
+grandes podem ter dificuldade em usar equipamentos desenvolvidos para 
+humanoides de tamanho comum. Veja pág. 127 para mais sobre Tamanho.
+1/3Toque Venenoso (1): Com um Ataque de Toque (pág. 115), mordida ou garra, bem-
+sucedido, a vítima deve rolar Vigor ou sofre os efeitos de um Veneno Moderado. 
+Por 3 pontos o veneno pode ser aprimorado para Nocauteador, Letal ou Paralisante, 
+mas cada uso provoca Fadiga no herói. O personagem sempre pode escolher usar 
+ou não seu toque venenoso. Veja pág. 147 para Veneno e seus efeitos.
+2+XVantagem (S): Todos os membros desta raça têm a mesma Vantagem inata, escolha 
+dentre aquelas disponíveis no cenário. Diferente de Adaptável, esta habilidade 
+ignora os Requisitos, exceto outras Vantagens. Cada Estágio além do Novato custa 
+um ponto adicional até um máximo do Estágio Heróico (5).
+1Visão No Escuro (1): O ser ignora penalidades por Penumbra e Escuridão (mas não 
+por Escuro Como um Breu).
+2/4/6Voo (1): A espécie pode voar com Movimentação 6 (ou 12 por 4 pontos) e "correr" 
+para ter movimento extra como de costume. Por 6 pontos a criatura pode voar com 
+Movimentação 24 e "correr" por mais 2d6 de movimento adicional. Manobrar usa 
+a perícia Atletismo. Voo racial pressupõe algum tipo de asa que pode ser mirada ou 
+danificada (um personagem que está Preso ou Enredado não pode voar).
+--- PAGE 23 (PDF index) ---
+SAVAGE WORLDS
+22
+22VALOR HABILIDADE
+−1Aparar Baixo (3): Estes seres são péssimos se defendendo em combate corpo a corpo; 
+Aparar -1.
+−1/–2Complicação (S): A raça tem uma complicação inerente, ela é Menor por 1 ponto ou 
+Maior por 2. Isso não afeta a habilidade de escolher outras Complicações durante a 
+criação de personagem.
+–2Dependência (1): A criatura deve consumir ou ter contato com algum tipo 
+de substância relativamente comum por uma hora a cada 24 horas. Criaturas 
+de mundos aquáticos, por exemplo, podem precisar ser imersos em água; 
+povo planta pode precisar de luz do sol. Se não tiver o contato necessário, 
+um personagem recebe automaticamente um nível de Fadiga por dia até 
+ficar Incapacitado. No dia seguinte à Incapacitação, eles morrem. Cada hora 
+gasta se recuperando na substância apropriada restaura um nível de Fadiga .
+−1 Frágil (2):  A criatura é menos resistente do que a maioria. Reduza sua Resistência em 1.
+−1Fraqueza Ambiental (S):  A raça sofre uma penalidade de -4 para resistir a um efeito 
+ambiental específico, tais como calor, frio etc. Se o ser sofre um ataque baseado nessa 
+forma, a penalidade age como um bônus de dano.
+−1Inimigo Racial (S):  A espécie não gosta de outra espécie relativamente comum 
+no cenário. Eles sofrem uma penalidade de -2 em rolagens de Persuadir quando 
+lidam com seus rivais e podem ficar hostis com pouca provocação. Isso só pode ser 
+comprado uma vez por raça.
+−1/–2Movimentação Reduzida (1): Para cada -1 ponto, reduza 1 quadro da sua 
+Movimentação andando e seu dado de corrida em um tipo. Caso seu dado de corrida 
+já seja um d4, ele é reduzido para d4 -1. Por -2 pontos, reduza a Movimentação em 
+outros 2 pontos e subtraia 2 de rolagens de Atletismo onde movimento e mobilidade 
+são parte do desafio (Critério do Mestre).
+−1Não Fala (1): A raça não tem cordas vocais ou por qualquer outro motivo não pode 
+formar os sons comuns feitos pela maioria das raças. Ele pode se comunicar com 
+membros de sua própria raça normalmente (talvez através de música, feromônios, 
+linguagem corporal etc). Outras raças não podem falar seu "idioma" mas podem 
+compreendê-lo se adquirirem a perícia de Idioma apropriada. Entretanto, a espécie 
+pode escutar e entender outros idiomas comuns e se comunicar através de dispositivos.
+–2/–3Penalidade em Atributo (Uma vez por Atributo): Um Atributo (mas não suas 
+perícias associadas) sofre uma penalidade de -1. Por 3 pontos, ele sofre uma 
+penalidade de -2.
+−1/–2Penalidade em Perícia (Uma vez por Perícia): A raça sofre uma penalidade de -1 para 
+uma perícia muito comum como Lutar, Persuadir, ou até mesmo Pilotar em um jogo 
+focado em aviação (o Mestre decide baseado em sua cam panha). Caso a perícia seja 
+incomum ou apenas seja utilizada em determinadas ocasiões, a penalidade é de -2. Por 
+2 pontos, a penalidade é de -2 em perícias comuns ou -4 para perícias pouco usadas.
+−1Perícias Básicas Reduzidas (5): A raça começa com uma perícia básica a menos. A 
+perícia pode ser adquirida normalmente, mas não começa o jogo com um d4. Isso 
+pode ser escolhido uma vez por perícia básica afetada.
+−1Tamanho -1 (1): A entidade é menor que o normal, reduzindo seu Tamanho e 
+Resistência em 1 (veja a Tabela de Tamanho, pág. 216).
+–2Volumoso (1): A raça é particularmente grande em um mundo onde a maioria das 
+outras raças não é. Ele subtrai 2 de rolagens de Característica quando  usa equipamento 
+que não foi especificamente projetado para sua raça e não pode usar armaduras ou 
+roupas. Equipamento, comida e roupas custam o dobro do preço listado.HABILIDADES RACIAIS NEGATIVAS
+--- PAGE 24 (PDF index) ---
+23
+23
+CAP
+1
+"Ainda não tô pronta 
+pra ser um anjo, mas eu 
+quero jogar isso!"
+— RedCELESTIAIS E GUARDIÕES
+Emília está criando uma campanha de "Fim dos Dias" — anjos e seus campeões lutam contra forças 
+demoníacas em um planeta Terra devastado. Ela decide que todos os personagens são celestiais 
+(anjos) ou guardiões (humanos), e terão +4 pontos em habilidades raciais em vez do +2 habitual.
+Ela quer que seus anjos sejam bastante icônicos. Eles são fortes, têm asas e podem invocar milagres. 
+Elá dá a eles Voo por 4 pontos, Antecedente Arcano (Milagres) por 2 pontos e Fé em d6 por 2 pontos. 
+São 8 pontos e ela precisa reduzir para +4, então ela precisa de 4 pontos de habilidades raciais 
+negativas. Celestiais são responsáveis pelos oprimidos e devem combater as legiões do inferno, então 
+ela dá a eles Voto (Maior: Proteger a humanidade) por -2 pontos e Inimigo Racial (Demônios e Diabos) 
+por -1 ponto. Ela encerra com Desastrado por -1, Emília acha que anjos não devem entender bem de 
+tecnologia.
+Os guardiões de Emília são campeões humanos que combatem os "Infernais". Eles são humanos, 
+então começam com Adaptável por 2 pontos. Eles também são sobreviventes calejados do Fim do s 
+Tempos, então recebem o Aumento de Atributo (Vigor) por outros dois pontos. Emília então atribui a 
+Vantagem Campeão por 2 pontos já que eles servem aos celestiais e o mesmo Voto (Maior: Proteger a 
+humanidade) por -2 pontos para equilibrar tudo em +4. Note que Emilia optou por não usar o +2 habitual.
+CELESTIAIS
+Anjos são uma espécie bastante variada, mas todos têm essas características em comum.
+ DESASTRADO:  Celestiais não estão acostumados com tecnologia ou máquinas.
+ ANTECEDENTE ARCANO ( Milagres):  Celestiais podem invocar uma grande variedade de 
+milagres.
+ FÉ: Todos os celestiais começam com um d6 em Fé. Isso aumenta seu máximo para d12 + 1.
+ VOO:  Anjos voam com Movimentação 12.
+ INIMIGO RACIAL (Demônios e Diabos ): Aqueles que vêm de cima não toleram facilmente 
+os saídos do abismo.
+ VOTO ( Maior:  Proteger a humanidade) : Os abençoados devem 
+proteger o rebanho que resta na Terra devastada.
+GUARDIÕES
+Humanos que servem ao Coro Celestial são chamados de 
+guardiões.
+ ADAPTÁVEL:  Guardiões começam o jogo com uma 
+Vantagem Novato de sua escolha (os Requisitos da 
+Vantagem devem ser atendidos normalmente).
+ CAMPEÕES:  Guardiões possuem a Vantagem 
+Campeão dando a eles um bônus de +2 em dano 
+contra forças malignas sobrenaturais como 
+demônios e diabos.
+ VIGOROSO:  Humanos que herdaram esta Terra 
+devastada começam o jogo com um D6 em Vigor em 
+vez de um d4. Isso aumenta seu Vigor máximo para 
+d12 + 1.
+ VOTO ( Maior:  Proteger a humanidade) : Os 
+abençoados devem proteger o rebanho que resta 
+na Terra devastada.
+--- PAGE 25 (PDF index) ---
+SAVAGE WORLDS
+24
+24
+Gabe
+Natan sempre joga com 
+"Gabe" , um cara durão 
+e pragmático com 
+uma aparência bruta 
+mas com um coração 
+que é ouro puro.
+Em cenários com 
+tecnologia avançada ele 
+é um técnico. Em jogos de 
+fantasia, ele geralmente 
+é um cavaleiro ou um 
+guerreiro do mesmo tipo.
+COMPLICAÇÕES
+Complicações são falhas e/ou deficiências 
+físicas do personagem, tornando 
+ocasionalmente a vida do seu herói um 
+pouco mais dura.
+Algumas complicações têm efeito direto 
+em jogo. Outras são Complicações de 
+interpretação mais subjetivas que te ajudam 
+a compreender e a interpretar melhor seu 
+personagem. Elas ocasionalmente devem 
+fazer com que ele aja de maneiras que não são 
+necessariamente inteligentes, ou apropriadas aos interesses do grupo ou o objetivo geral. 
+É disso que se tratam os RPGs! E quando as 
+Complicações de um personagem causarem 
+problemas significativos o Mestre deve 
+recompensá-lo com Benes.
+ALMOFADINHA (MENOR)
+Seu personagem é um frangote que não 
+parece nada ameaçador. Talvez ele soe 
+meio molenga, tenha feições gentis ou uma 
+voz suave. Seja qual for a razão, ele tem 
+dificuldade em parecer durão. Ele subtrai 2 
+quando faz rolagens de Intimidar.
+ANALFABETO (MENOR)
+Seu herói não sabe ler. Ele provavelmente 
+pode assinar seu nome e sabe o significado 
+de um sinal de PARE, mas não pode fazer 
+muito mais que isso. Também não sabe 
+muito sobre matemática. Provavelmente 
+ele consegue efetuar 2 + 2 = 4, mas 
+multiplicações e similares estão além da sua 
+capacidade.
+A propósito, analfabetos não podem ler ou 
+escrever em nenhum idioma, não importa 
+quantos eles realmente falem.
+ANÊMICO (MENOR)
+Um personagem anêmico é particularmente 
+suscetível a infecções, doenças, efeitos 
+ambientais e fadiga. Ele subtrai 2 de todos 
+os testes de Vigor feitos para resistir a Fadiga 
+(veja Perigos , começando na pág. 142).
+ARROGANTE (MAIOR)
+Seu herói não acha que é o melhor, ele 
+sabe que é. Seja no que for – esgrima, kung 
+fu, pintura – poucos se comparam às 
+suas habilidades e ele ostenta isso a cada 
+oportunidade que tem.
+Só vencer não é o bastante para o seu 
+herói. Ele precisa dominar completamente o 
+seu oponente e provar que não há ninguém 
+melhor do que ele. É o tipo de homem que 
+desarma um oponente em um duelo só para 
+poder pegar a sua espada e devolvê-la com 
+um sorriso desdenhoso. Heróis arrogantes 
+sempre procuram pela maior ameaçam em 
+batalha, atacando lacaios menores apenas se 
+ficarem em seu caminho.
+--- PAGE 26 (PDF index) ---
+25
+25
+CAP
+1ATRAPALHADO (MAIOR)
+Seu personagem é um trapalhão sem 
+coordenação que tropeça sozinho e é sempre 
+o último a ser escolhido nos esportes. Ele 
+subtrai 2 em rolagens de Atletismo e 
+Furtividade.
+BOCA GRANDE (MENOR)
+Como diz o ditado, quem fala demais 
+dá bom dia a cavalo. Esse herói poderia 
+cumprimentar uma cavalaria inteira.
+O falastrão não consegue guardar 
+um segredo muito bem. Ele revela os 
+planos e deixa escapar os segredos mais 
+bem guardados entre os amigos. E isso 
+geralmente ocorre nos piores momentos 
+possíveis.
+CAUTELOSO (MENOR)
+Este personagem personifica a moderação 
+e a precaução. Ele nunca toma decisões 
+precipitadas e gosta de planejar tudo em 
+mínimos detalhes antes que qualquer ação 
+seja tomada.
+CEGO (MAIOR)
+O indivíduo é completamente cego. Ele sofre 
+−6 em todas as tarefas físicas dependentes da 
+visão (a critério do Mestre). Por outro lado, 
+personagens Cegos ganham uma Vantagem 
+gratuita a sua escolha para compensar esta 
+Complicação particularmente difícil.
+CÓDIGO DE HONRA (MAIOR)
+Honra é muito importante para o seu 
+personagem. Ele mantém sua palavra, não 
+abusa ou mata prisioneiros e geralmente tenta 
+operar dentro do comportamento adequado 
+para um cavalheiro ou dama segundo as 
+noções particulares de seu mundo.
+COVARDE (MAIOR)
+Nem todos têm sangue frio. Seu herói fica 
+enjoado quando vê sangue ou vísceras e fica 
+apavorado de se ferir. Ele subtrai 2 de testes 
+de Medo e quando resiste à Intimidação.
+CURIOSO (MAIOR)
+A curiosidade matou o gato e também pode 
+matar seu herói. Personagens curiosos têm 
+de checar tudo e sempre querem saber o que há por trás de um mistério ou segredo em 
+potencial.
+DEFICIENTE AUDITIVO 
+(MENOR OU MAIOR)
+Personagens que perderam parte ou toda a 
+sua audição têm esta desvantagem. Como 
+uma Complicação Menor, ela subtrai 4 de 
+todas as rolagens de Perceber feitas para 
+ouvir, incluindo acordar devido a ruídos 
+altos. Uma Complicação maior significa que 
+o personagem é surdo. Ele não pode ouvir e 
+falha automaticamente em todas as rolagens 
+de Perceber dependentes da audição.
+Aparelhos auditivos reduzem a 
+penalidade para 2, mas precisam de baterias 
+e têm 50% de chance de caírem quando ele 
+for Ferido, sofrer uma queda ou algum outro 
+tipo de trauma.
+DELIRANTE (MENOR OU MAIOR)
+Seu herói acredita em algo considerado 
+muito estranho por todos os outros. Delírios 
+Menores são inofensivos ou o personagem 
+normalmente os guarda para si mesmo (o 
+governo colocou sedativos em refrigerantes, 
+cães podem falar, todos nós somos apenas 
+personagens de algum jogo bizarro etc.).
+Com Delírios Maiores, ele frequentemente 
+expressa seu ponto de vista sobre a situação 
+e isso pode eventualmente levá-lo ao perigo 
+(o governo é comandado por alienígenas, 
+os hospitais são mortais, eu sou alérgico a 
+armaduras, zumbis são meus amigos).
+DESAGRADÁVEL (MENOR)
+Este camarada é mal-humorado e 
+desagradável. Ele tem problemas para 
+fazer qualquer tipo de ato caridoso a 
+qualquer pessoa e acredita que deve ser 
+pago pelos seus esforços, mas não aceita 
+favores ou premiações graciosamente. 
+Além das questões óbvias de interpretação, 
+personagens Desagradáveis subtraem 1 das 
+rolagens de Persuadir.
+DESASTRADO (MENOR)
+Devido a criação, falta de exposição ou 
+puramente má sorte, alguns indivíduos são 
+“desastrados” quando se trata de lidar com 
+dispositivos mecânicos ou tecnológicos.
+--- PAGE 27 (PDF index) ---
+SAVAGE WORLDS
+26
+26Desastrado inflige uma penalidade de 
+−2 quando se usa dispositivos elétricos ou 
+mecânicos. Se a rolagem for uma Falha 
+Crítica ao usar um dispositivo (caso o 
+dispositivo não preveja uma consequência 
+contra isso), ele quebra. Se o Mestre 
+considerar apropriado, pode ser consertado 
+com uma rolagem de Consertar e 1d6 horas.
+DESCONFIADO (MENOR OU MAIOR)
+Seu personagem desconfia de todo mundo. 
+Como uma Complicação Menor sua 
+paranoia cria frequentemente problemas 
+de confiança. Ele pode exigir o pagamento 
+integral antes de realizar uma tarefa, exigir 
+que todos os acordos estejam por escrito ou 
+mesmo acreditar que seus amigos o estão 
+perseguindo.
+Como uma Complicação Maior, rolagens 
+de Suporte para ajudar o indivíduo 
+desconfiado são feitas com −2.
+DESEJO DE MORRER (MENOR)
+Ter um desejo de morrer não significa que 
+seu herói seja um suicida – mas ele pode 
+achar que sua vida vale menos do que um 
+objetivo nobre, mas claramente mortífero.
+Quem tem Desejo de Morrer não jogará a 
+vida fora por qualquer razão, mas quando 
+houver uma chance de completar o seu 
+objetivo, fará qualquer coisa – e aceitará 
+qualquer risco – para alcançá-lo.
+EXCESSO DE CONFIANÇA (MAIOR)
+Não existe nada que seu herói não possa 
+derrotar. Pelo menos é isso que ele pensa. 
+Ele acredita poder fazer quase tudo e nunca 
+quer fugir de um desafio. O herói não é um 
+suicida, mas certamente faz mais do que dita 
+o bom senso.
+FEIO (MENOR OU MAIOR)
+Pessoas atraentes conseguem todo tipo de 
+vantagem. Este infeliz não tem a mesma sorte. 
+Ele subtrai 1 de suas rolagens de Persuadir 
+ou 2 se escolheu a Complicação Maior.
+FOBIA (MENOR OU MAIOR)
+Fobias são medos esmagadores e irracionais 
+que afetam a psique de um herói.Sempre que um personagem estiver na 
+presença de sua fobia (critério do Mestre, mas 
+geralmente quando avistá-la) subtraia 1 de 
+todos os testes de Característica no caso de 
+uma Complicação Menor e 2 se for uma Maior.
+Fobias não devem ser muito óbvias – 
+vampiros, por exemplo, devem ser temidos 
+por todos, portanto isso não é uma fobia, 
+é bom senso. Em invés disso, a fobia 
+geralmente se concentra em algum elemento 
+aleatório que a mente associa ao evento. 
+Lembre, fobias são medos irracionais .
+FORASTEIRO (MENOR OU MAIOR)
+Em uma sociedade formada por apenas 
+alguns tipos de pessoa, o seu herói não é uma 
+delas. Um nativo americano em uma cidade 
+do Velho Oeste, um alienígena em um jogo 
+de ficção científica de fuzileiros humanos ou 
+um meio-orc em um grupo de elfos, anões e 
+humanos são todos exemplos de Forasteiros. 
+Habitantes locais são suscetíveis a aumentar 
+os preços para o Forasteiro, ignorar seus 
+pedidos de socorro e geralmente tratam-no 
+como se fosse de uma classe mais baixa.
+Forasteiros subtraem 2 de rolagens de 
+Persuadir feitas para influenciar quem não 
+é do seu próprio povo. A versão Maior 
+também significa que o personagem tem 
+poucos, até mesmo nenhum, direitos legais 
+na região da campanha. Ele pode ser de 
+uma espécie diferente entre xenófobos, a 
+civilização pode ser cruel e pouco esclarecida 
+em relação a estranhos ou pode ser uma 
+inteligência artificial cuja consciência não é 
+reconhecida por lei.
+GANANCIOSO (MENOR OU MAIOR)
+Um avarento mede valor em bens materiais 
+ou riqueza. Se for uma Complicação Menor, 
+ele argumenta amargamente querendo 
+mais do que sua parte em qualquer despojo 
+adquirido durante o jogo. Se for uma 
+Complicação Maior, luta por qualquer coisa 
+que considerar injusta e pode até mesmo 
+matar ao se sentir menosprezado ou cobiçar 
+algo que não possa ter.
+GUIADO (MENOR OU MAIOR)
+Voto e Guiado são complicações diferentes. 
+Personagens com Voto tem um compromisso 
+--- PAGE 28 (PDF index) ---
+27
+27
+CAP
+1com outros, enquanto Guiados buscam 
+algo para si. Pode ser proteger o reino, se 
+tornar um oficial condecorado, provar 
+que é o melhor gladiador de Roma 
+ou o melhor piloto na frota galática.
+A versão Menor define o personagem 
+e dirige as suas decisões, mas acontece 
+raramente ou é relativamente inofensivo. 
+Como uma Complicação Maior o 
+personagem tem um desejo que lhe é 
+impreterível e aparece frequentemente 
+ou causa perigo para o herói e àqueles 
+próximos a ele.
+HÁBITO (MENOR OU MAIOR)
+Seu guerreiro possui um hábito irritante 
+e constante de algum tipo. Um Hábito 
+menor irrita aqueles a seu redor, mas não é 
+perigoso. Talvez ele cutuque seu nariz, não 
+consiga parar de mexer no seu telefone, diga 
+“cê sabe” no meio de cada frase ou masque 
+chiclete frequentemente fazendo um 
+barulho alto. Aliados o evitam se possível.
+Um Hábito maior é uma dependência 
+física ou mental de alguma espécie, 
+debilitante ou mesmo possivelmente mortal. 
+Isso inclui o uso de drogas, alcoolismo ou até 
+mesmo um vício em realidade virtual num 
+cenário de alta tecnologia.
+Um viciado que não receba sua dose 
+precisa fazer um teste de Vigor a cada 24 
+horas ou recebe um nível de Fadiga  (veja 
+pág. 122). 
+A cada 24 horas, uma rolagem de Curar 
+com algum tipo de medicamento apropriado 
+remove um nível de Fadiga por quatro horas. 
+Depois disso, a Fadiga retorna e só pode ser 
+recuperada com a substância viciante.
+HEROICO (MAIOR)
+Esta nobre alma nunca diz não a uma pessoa 
+necessitada. Ele não precisa ficar feliz com 
+isso, mas sempre virá em socorro daqueles 
+que não podem ajudar a si mesmos. É a 
+primeira pessoa a correr para dentro de um 
+prédio em chamas, geralmente aceita caçar 
+monstros por pouco ou nenhum pagamento 
+e normalmente é um alvo fácil para uma 
+história triste.HESITANTE (MENOR)
+Seu herói hesita em situações estressantes. 
+Saque duas Cartas de Ação em combate 
+e aja na menor. Se você sacar um Curinga, 
+use-o normalmente e ignore a Complicação 
+na rodada (sendo esta uma Complicação 
+Menor, na verdade ela aumenta suas 
+chances de sacar um Curinga!)
+Personagens Hesitantes não podem 
+escolher as Vantagens Rápido ou Focado.
+IDOSO (MAIOR)
+Seu herói está ficando velho, mas não 
+está totalmente pronto para o asilo. Sua 
+Movimentação é reduzida em 1 quadro e ele 
+subtrai 1 de rolagens de corrida (mínimo 1). 
+Ele também sofre uma penalidade de −1 em 
+rolagens de Agilidade, Força e Vigor, mas 
+não em suas perícias associadas.
+Por outro lado, a sabedoria dos seus 
+anos concede ao herói 5 pontos de perícia 
+adicionais que podem ser usados em 
+quaisquer perícias associadas à Astúcia.
+IMPULSIVO (MAIOR)
+O aventureiro mergulha de cabeça nas 
+situações. Ele raramente pensa antes de agir.
+INCRÉDULO (MENOR)
+Algumas pessoas não acreditam no 
+sobrenatural até já estarem a meio caminho 
+da garganta de alguma criatura. São pessoas 
+céticas que se esforçam para racionalizar 
+eventos sobrenaturais. Eles encaram 
+perigos que não acreditam e buscam por 
+explicações alternativas para todos os 
+eventos sobrenaturais.
+Mesmo que um incrédulo seja confrontado 
+com uma verdade inegável, a mente dele 
+eventualmente começa a duvidar do que 
+viu, racionalizando ou atribuindo ao evento 
+um caráter “único” enquanto continua a 
+duvidar do próximo mistério.
+INIMIGO (MENOR OU MAIOR)
+Alguém odeia o personagem e quer vê-lo 
+arruinado, preso ou morto. O valor da 
+Complicação depende do quão poderoso 
+é o Inimigo e de quantas vezes ele poderá 
+aparecer. Um Inimigo Menor pode ser um 
+pistoleiro solitário buscando vingança ou 
+--- PAGE 29 (PDF index) ---
+SAVAGE WORLDS
+28
+28uma irmandade traída que é mortal, mas 
+só aparece raramente. Um Inimigo Maior 
+pode representar autoridades poderosas, 
+um bando de foras da lei ou único rival 
+poderoso e incansável.
+Se o Inimigo um dia for vencido, o 
+Mestre deve trabalhar gradualmente em 
+um substituto ou o herói pode pagar pela 
+Complicação sacrificando um Progresso.
+INVEJOSO (MENOR OU MAIOR)
+A insegurança o leva a invejar as conquistas 
+alheias ou a ser extremamente possessivo 
+com o aquilo que esta alma descontente 
+considera que lhe pertence. Ele geralmente 
+reclama, choraminga, cobiça as posses ou 
+feitos dos outros, reivindica crédito pelo 
+trabalho alheio, desobedece comandos e 
+causa problemas no geral.
+Como uma Complicação Menor, a inveja 
+do personagem se foca em um assunto em 
+particular (como a sua perícia “inigualável” 
+em pilotagem ou um interesse amoroso).
+Como uma Complicação Maior, o 
+personagem sente inveja de todos que 
+ele considera que o ofuscam. Ele sempre 
+fala mal de seus rivais, tenta ofuscá-los ou 
+conspira ativamente para desacreditar quem 
+ameaça seu ego.
+JOVEM (MENOR OU MAIOR)
+O herói tem entre 12-15 anos de idade (em 
+idade humana—ajuste para outras raças). 
+Ele tem apenas 4 pontos para ajustar seus 
+atributos em vez de 5 e 10 pontos de perícia 
+em vez de 12. Ele também pode ter restrições 
+legais dependendo do cenário (não pode 
+dirigir, possuir uma arma de fogo e assim 
+por diante).
+Pelo lado positivo, jovens têm um bocado 
+de sorte. Eles sacam um Bene extra no início 
+de cada sessão de jogo (isso se acumula 
+com outras Vantagens como Sorte ou 
+Sorte Grande).
+A maioria dos personagens Jovens 
+também devem adotar a Complicação 
+Pequeno, mas não é obrigatório.
+Como uma Complicação Maior o 
+personagem é Muito Jovem (8 a 11 anos 
+de idade). Ele tem apenas 3 pontos para 
+atributos e 10 para perícias, além da Complicação Pequeno. Heróis Muito 
+Jovens sacam dois Benes extras no começo 
+de cada sessão.
+LEAL  (MENOR)
+Este defensor corajoso arrisca sua vida pelos 
+seus amigos sem qualquer hesitação. Alguns 
+heróis Leais podem não agir dessa maneira, 
+mas eles são os primeiros a ajudar seus 
+amigos quando eles são ameaçados.
+LENTO (MENOR OU MAIOR)
+Uma deficiência ou ferimento antigo 
+dificulta a mobilidade do herói. Como uma 
+Complicação Menor, reduza 1 quadro da 
+sua Movimentação andando e seu dado 
+de corrida em um tipo. Caso seu dado de 
+corrida já seja um d4, ele é reduzido para 
+d4-1. Como uma Complicação Maior, 
+reduza o dado de corrida em um tipo, 
+Movimentação em 2 quadros e subtraia 
+2 de rolagens de Atletismo e rolagens de 
+resistência a Atletismo (como Desafios 
+ou Agarrar).
+Personagens Lentos não podem ter a 
+Vantagem Ligeiro.
+Próteses:  Um personagem com a versão 
+Menor desta Complicação pode ter uma 
+prótese. Se a prótese se perder, ele sofre os 
+efeitos da versão Maior. 
+Cadeiras de rodas:  Da era vitoriana em 
+diante, personagens Lentos podem começar 
+com uma cadeira de rodas manual sem 
+custos. Na era moderna (1980 em diante) 
+o personagem também pode escolher uma 
+cadeira super leve ou uma motorizada.
+Todas as cadeiras de rodas requerem um 
+solo razoavelmente plano para funcionarem 
+(critério do Mestre).
+ MANUAL:  Movimentação é metade do 
+dado de Atletismo (máximo de 3) e não 
+pode correr.
+ SUPER LEVE:  Movimentação é metade 
+do dado de Atletismo e pode correr a d4 
+(Menor) ou d4 − 1 (Maior).
+ MOTORIZADA:  Movimentação 6 em 
+solo plano, 3 em solo acidentado, não 
+pode correr. A maioria das cadeiras 
+motorizadas pode andar cerca de 15 
+quilômetros antes de precisar de uma 
+recarga.
+--- PAGE 30 (PDF index) ---
+29
+29
+CAP
+1
+LÍNGUA PRESA (MAIOR)
+Seu personagem erra frases de efeito (ou 
+pensa nelas só depois!), vai pela tangente 
+quando está tentando convencer alguém a 
+fazer alguma coisa e no geral se expressa 
+mal na maior parte do que tenta dizer.
+Ele sofre uma penalidade de −1 em 
+Intimidar, Performance e rolagens de 
+Persuadir e Provocar que envolvam falar.
+MÁ SORTE (MAIOR)
+Seu herói é um pouco mais azarado do que a 
+maioria. Ele recebe um Bene a menos que o 
+normal por sessão de jogo. Um personagem 
+não pode ter Má Sorte e a Vantagem Sorte 
+simultaneamente.
+MUDO (MAIOR)
+Em virtude de um trauma ou de nascença, 
+seu personagem perdeu a capacidade de 
+falar. Ele pode escrever mensagens quando 
+necessário, usar linguagem de sinais ou 
+alguma combinação de comunicação visual.
+Comunicação baseada em visão pode 
+requerer um teste de Perceber para ser 
+corretamente compreendida (penalidades 
+por iluminação e similares se aplicam).
+NÃO SABE NADAR (MENOR)
+A maioria das pessoas no século XXI 
+consegue nadar graças à piscinas, 
+a facilidade de se viajar até lagos e 
+praias ou por esforços educacionais. 
+Contudo, historicamente, aqueles que 
+não foram criados perto de uma grande 
+massa de água não conseguiam.
+Personagens com esta Complicação 
+sofrem uma penalidade de −2 na 
+perícia Atletismo quando estão 
+nadando e cada quadro que se 
+movem na água custa 3 quadros 
+de Movimentação. Veja Movimento 
+(pág. 107) e Afogamento (pág. 142) 
+para mais detalhes. 
+OBESO (MENOR)
+Aqueles que suportam bem o seu 
+próprio peso têm a Vantagem 
+Musculoso. Aqueles que não, 
+são Obesos. Um personagem 
+não pode ser Musculoso e Obeso simultaneamente e esta Complicação 
+não pode aumentar seu Tamanho além de +3.
+O Tamanho (e por consequência a 
+Resistência) de um herói Obeso aumenta 
+em +1. Sua Movimentação é reduzida em 1 
+quadro e seu dado de corrida em um tipo 
+(mínimo d4). Força é considerada um tipo 
+de dado menor (mínimo d4) para armaduras 
+e equipamentos usados (mas não armas). 
+Eles também têm dificuldades em encontrar 
+armaduras ou roupas em que caibam ou em 
+entrar em espaços pequenos.
+OBRIGAÇÃO (MENOR OU MAIOR)
+Seu herói tem uma responsabilidade que 
+deve cumprir regularmente ou mesmo 
+diariamente. Pode ser um emprego, 
+trabalho voluntário, cuidar da família ou 
+dos amigos etc.
+A Obrigação consome cerca 20 horas na 
+semana ou 40 ou mais na versão Maior. 
+Exatamente o que isso acarreta deve ser 
+discutido entre o Mestre e o jogador.
+PACIFISTA (MENOR 
+OU MAIOR)
+Seu herói absolutamente despreza a 
+violência. Pacifismo Menor significa 
+que ele luta apenas se não for dada 
+nenhuma outra opção e jamais 
+permite a matança de prisioneiros 
+e outras vítimas indefesas.
+Pacifistas Maiores não irão 
+combater criaturas vivas sob 
+quaisquer  circunstâncias. Eles 
+podem se defender, mas 
+não farão nada para ferir 
+permanentemente criaturas vivas 
+sencientes. Um Pacifista Maior 
+também pode lutar com métodos 
+não letais (veja pág. 119), mas apenas 
+para autodefesa ou para defesa de 
+terceiros.
+Criaturas inegavelmente malignas, 
+mortos vivos, demônios e similares 
+podem ser atacadas até mesmo pelos 
+Pacifistas com a versão Maior desta 
+complicação!
+--- PAGE 31 (PDF index) ---
+SAVAGE WORLDS
+30
+30PECULIARIDADE (MENOR)
+Seu herói tem alguma fraqueza menor, 
+normalmente engraçada, mas que 
+ocasionalmente lhe causa problemas. Um 
+espadachim pode sempre tentar primeiro 
+cortar suas iniciais em seus inimigos, um 
+anão pode se vangloriar constantemente 
+a respeito da sua cultura ou uma 
+debutante esnobe pode não comer, beber 
+ou socializar com as classes mais baixas, 
+por exemplo.
+PEQUENO (MENOR)
+Seu personagem é muito magro, muito 
+baixo ou ambos. O Tamanho  dele (veja pág. 
+127) é reduzido em 1, o que também reduz 
+sua Resistência.
+Tamanho não pode ser reduzido abaixo de 
+−1, mas a penalidade na Resistência permanece. 
+Um pequenino com esta complicação, por 
+exemplo, continua com Tamanho −1 e perde 
+um ponto em sua Resistência.
+POBREZA (MENOR)
+É dito que um tolo e seu dinheiro logo 
+se separam. Seu herói é esse tolo. Ele 
+começa com metade do dinheiro normal 
+para o seu cenário e parece não conseguir 
+poupar os recursos adquiridos depois que 
+o jogo começa. No geral, o jogador reduz 
+à metade os seus recursos totais a cada 
+semana de jogo.
+PROCURADO (MENOR OU MAIOR)
+Seu herói cometeu algum crime e se 
+for descoberto pelas autoridades, ele 
+será preso. Isso pressupõe que o cenário 
+possui leis e policiais para garantir o 
+cumprimento delas.
+O nível da Complicação depende da 
+gravidade do crime e o quão ativos são os 
+perseguidores. Um herói com inúmeras 
+multas de estacionamento não pagas 
+(em um jogo onde ele tem que dirigir 
+ocasionalmente) tem uma Complicação 
+Menor, assim como alguém procurado por 
+um crime mais grave longe da área principal 
+da campanha. Ser acusado de assassinato é 
+uma Complicação Maior em praticamente 
+qualquer cenário se houver alguém em 
+busca de justiça (ou vingança).SANGUINÁRIO (MAIOR)
+Seu herói nunca faz prisioneiros, exceto 
+sob a supervisão direta de um superior. 
+Sua brutalidade à sangue frio faz com que 
+os rivais respondam à altura, geralmente 
+arruína a obtenção de informações 
+importantes, cria inimigos constantemente 
+e pode colocá-lo em maus lençóis com seus 
+superiores ou as autoridades, dependendo 
+do cenário.
+SEGREDO (MENOR OU MAIOR)
+Seu herói tem um segredo que mantém 
+para se proteger ou proteger os outros. 
+Como uma Complicação Menor, o segredo 
+é problemático, mas não representa 
+risco de vida. 
+A versão Maior pode causar um problema 
+grave se descoberto. Caso se torne de 
+conhecimento público, ele deve trocar 
+por Inimigo, Vergonha, Procurado ou 
+outra Complicação apropriada aprovada 
+pelo Mestre. 
+SEM ESCRÚPULOS 
+(MENOR OU MAIOR)
+Um fanático fará quase de tudo para 
+conquistar seus objetivos. Como uma 
+Complicação Maior, ele causa danos a 
+todos que ficam em seu caminho. Enquanto 
+Complicação Menor, ele para pouco antes 
+de causar danos reais a qualquer um, exceto 
+àqueles que se opõem diretamente a ele.
+SEM NOÇÃO (MAIOR)
+O herói não presta muita atenção no 
+mundo ao seu redor e não consegue 
+achar um palheiro em uma pequena pilha 
+da agulhas.
+Ele sofre uma penalidade de −1 em 
+rolagens de Conhecimentos Gerais 
+e Perceber.
+SENSÍVEL (MENOR OU MAIOR)
+Ataques pessoais deixam este indivíduo 
+especialmente irritado. Como uma 
+Complicação Menor ele subtrai 2 quando 
+resiste a Provocar. Como uma Maior, ele 
+subtrai 4.
+--- PAGE 32 (PDF index) ---
+31
+31
+CAP
+1VINGATIVO (MENOR OU MAIOR)
+Vingança é... bem... má notícia para alguém 
+e este aventureiro irá obtê-la.
+Como uma Complicação Menor ele 
+geralmente busca a vingança legalmente. 
+O método vária de acordo com a situação. 
+Alguma trama ou esquema conduzidos por 
+meses enquanto outros exigem resultados 
+imediatos.
+Aqueles com a versão Maior desta 
+Complicação não deixam que nada os 
+impeça de ajustar as contas. Isso não significa 
+que eles recorrem imediatamente à violência, 
+mas suas ações sempre se intensificam até 
+que uma satisfação total e completa seja 
+alcançada.
+VISÃO RUIM (MENOR OU MAIOR)
+Os olhos do seu herói já não são mais o que 
+costumavam ser. Ele sofre uma penalidade 
+de −1 em qualquer rolagem de Característica 
+dependente de visão (como ataques a 
+distância e rolagens de Perceber) ou −2 como 
+uma Complicação Maior.
+Em cenários onde óculos estão 
+disponíveis eles negam a penalidade 
+quando são usados. Se perdidos 
+ou quebrados durante um combate 
+(geralmente há uma chance de 50% quando 
+ele está Ferido, cai ou sofre algum outro 
+trauma), o personagem fica Distraído (e 
+Vulnerável se for uma Complicação Maior) 
+até o fim do seu próximo turno.
+VOTO (MENOR OU MAIOR)
+O personagem fez um voto para alguém ou 
+algo em que ele acredita.
+O risco em cumprir o Voto e sua 
+frequência determina o nível da 
+Complicação. Um Voto Menor pode ser 
+servir a uma ordem com mandamentos 
+que raramente entram em conflito com os 
+objetivos do grupo.
+Um Voto Maior faz com que as demandas 
+sejam de longo prazo, frequentes e resultem 
+em um grande risco a sua vida.TEIMOSO (MENOR)
+Indivíduos Teimosos sempre querem as 
+coisas do seu jeito e nunca admitem estar 
+errados. Mesmo quando é dolorosamente 
+óbvio que cometeram um erro, eles 
+tentam justificá-lo com meias-verdades e 
+racionalizações.
+UM BRAÇO SÓ (MAIOR)
+Seja de nascença ou marca de uma batalha, 
+seu herói perdeu um braço. Por sorte, o 
+seu outro é (agora) o braço “bom”. Tarefas 
+que requerem duas mãos, como rolagens 
+de Atletismo (critério do Mestre) ou usar 
+uma arma de duas mãos, sofrem um 
+modificador de −4.
+UM OLHO SÓ (MAIOR)
+Este veterano perdeu um olho e tem 
+problemas com percepção em profundidade. 
+Ele subtrai 2 de qualquer rolagem de 
+Característica dependente da visão de algo 
+a mais de 5 quadros (10 metros) de distância.
+VERGONHA (MENOR OU MAIOR)
+Algo assombra seu aventureiro. Talvez 
+ele tenha feito um voto que não manteve. 
+Talvez ele tenha sido derrotado em uma 
+luta justa e ordenou a morte do seu 
+adversário por algum princípio superior. 
+Ele pode não ser um covarde de fato, mas 
+certa vez fugiu de uma batalha e deixou os 
+outros para morrer.
+Como uma Complicação Menor, as 
+circunstâncias da vergonha não são 
+de conhecimento geral, elas apenas 
+assombram o herói. Ele será capaz de um 
+esforço absurdo, mesmo que irracional, 
+para não repetir o seu erro. Ou pode 
+ceder sob as mesmas circunstâncias e se 
+odiar por isso.
+Como uma Complicação Maior, seu feito 
+é de conhecimento público, ou, ao menos, de 
+conhecimento entre seus entes queridos. Os 
+outros jogadores devem conhecer a história 
+assim que possível (preferencialmente na 
+criação de personagens). De outro modo, 
+deve ser revelado por um personagem 
+do mestre em algum momento e usado 
+ocasionalmente contra o herói.
+--- PAGE 33 (PDF index) ---
+SAVAGE WORLDS
+32
+32USANDO ATRIBUTOS
+Atributos são usados para:
+• Determinar o quão rapidamente as 
+perícias aumentam durante o Progresso  
+(pág. 61).
+• Limitar o acesso a Vantagens  (pág. 41).
+• Calcular estatísticas secundárias como 
+Resistência ou dano corpo a corpo.
+• Resistir a feitos como ser agarrado ou 
+contra-feitiços, poderes ou ataques sociais 
+como Provocar ou Intimidar.
+PERÍCIAS
+Heróis têm 12 pontos para comprar perícias 
+durante a criação de personagem. Uma 
+perícia cujo nível encontra-se abaixo do 
+atributo associado (descrito entre parênteses 
+ao lado do nome da perícia) custa menos 
+para aumentar do que uma que está igual 
+ou acima. Veja pág. 62 para Criação de 
+Personagem  e pág. 61 para Progresso .
+Perícias Básicas estão marcadas com 
+uma estrela vermelha  e começam com 
+um d4 para os personagens dos jogadores 
+(veja pág. 32).
+Personagens podem tentar usar perícias 
+que não possuem, mas será mais difícil obter 
+êxito. Veja Testes Sem Perícias  na pág. 103.
+ATIRAR (AGILIDADE)
+Atirar abrange todas as tentativas de acertar 
+um alvo com uma arma de combate a 
+distância como arco, pistola ou lança mísseis 
+(armas arremessadas usam Atletismo ). Veja 
+o Capítulo Três para mais detalhes sobre 
+combate a distância. 
+ ATLETISMO (AGILIDADE)
+Atletismo combina a coordenação de um 
+indivíduo com perícias treinadas como 
+escalar, saltar, equilíbrio, ciclismo, luta livre, 
+esquiar, nadar, arremessar ou pegar algo. 
+Personagens que se baseiam mais em força 
+física do que coordenação podem escolher 
+a Vantagem Brutamontes  (pág. 42) para 
+associar esta perícia a sua Força no lugar da 
+Agilidade.CARACTERÍSTICAS
+Personagens são definidos por suas 
+“Características”, atributos e perícias que são 
+todos classificados por tipos de dados. Um 
+d6 é a média, enquanto que tipos maiores de 
+dados refletem uma habilidade muito maior.
+Atributos  são habilidades primárias ou 
+inatas usadas para resistir a efeitos como 
+medo ou ataques sobrenaturais. Perícias  
+são usadas  ativamente  para fazer as coisas 
+ou afetar os outros. 
+Podem ocorrer exceções, mas estas são 
+as diferenças fundamentais entre os dois 
+conceitos.
+ATRIBUTOS
+Atributos não afetam diretamente 
+rolagens de perícias. Savage Worlds  trata 
+o conhecimento aprendido e treinamento 
+como os fatores mais relevantes e diretos. 
+Um atributo alto permite que se aumente 
+uma perícia mais rápido e abre opções para 
+Vantagens que distinguem bastante dois 
+personagens com a mesma perícia.
+Todo personagem começa com um d4 em 
+cada um dos cinco atributos:
+Agilidade  é uma medida da flexibilidade, 
+destreza e coordenação de um personagem.
+Astúcia  mede sua inteligência bruta, 
+acuidade mental e o quão rápido um herói 
+pensa. É usada para resistir a certos tipos de 
+ataques mentais e sociais.
+Espírito  é autoconfiança, resiliência e força 
+de vontade. É usado para resistir a ataques 
+sociais e sobrenaturais, bem como ao medo.
+Força  é poder físico e boa forma. Também 
+é usada como a base para o dano causado 
+por um guerreiro em combate corpo a corpo 
+e para determinar o quanto ele pode vestir 
+ou carregar.
+Vigor  representa a tolerância, resistência a 
+doenças, veneno ou toxinas de um indivíduo 
+e quanto dano físico ele pode suportar antes 
+de tombar. É usado com mais frequência 
+para resistir aos efeitos de Fadiga e como 
+base para a estatística derivada Resistência.
+--- PAGE 34 (PDF index) ---
+33
+33
+CAP
+1 CONHECIMENTO 
+GERAL (ASTÚCIA)
+Personagens rolam Conhecimento Geral 
+para conhecer pessoas, lugares e coisas do 
+seu mundo, incluindo etiqueta, geografia, 
+cultura, tecnologia popular, contatos 
+e costumes.
+CONJURAR (ASTÚCIA)
+Magos, feiticeiros, bruxos e bruxas usam 
+Conjurar para lançar feitiços. Veja a 
+Vantagem Antecedente Arcano (Magia)  
+na pág. 178.
+CONSERTAR (ASTÚCIA)
+Consertar é a habilidade de desmontar e/
+ou reparar aparelhos mecânicos, veículos, 
+armas e dispositivos eletrônicos simples. 
+Também cobre o uso de demolições e 
+explosivos.
+O tempo que uma rolagem de Consertar 
+leva depende do Mestre e da complexidade 
+do feito. Consertar um “Ferimento” de 
+um carro compacto em um mundo pós-
+apocalíptico pode levar uma hora. Consertar 
+um “Ferimento” no mesmo carro nos dias 
+atuais poderia levar quatro horas se o 
+personagem quiser que ele seja pintado, 
+polido etc. Um sucesso significa que o 
+item volta a funcionar. Uma ampliação na 
+rolagem de Reparar diminui à metade o 
+tempo necessário.
+Ferramentas:  Os personagens sofrem 
+uma penalidade menor (-1 a -2) em suas 
+rolagens se não tiverem acesso à ferramentas 
+básicas, ou uma penalidade maior (-3 a -4) 
+se o dispositivo demandar equipamento 
+especializado. 
+Eletrônica:  Consertar pode ser usado 
+para reparar dispositivos eletrônicos, mas 
+é limitada pela perícia Eletrônica do herói. 
+Use a menor entre as perícias.
+CURAR (ASTÚCIA)
+Curar tem vários usos, desde tratar 
+Ferimentos a diagnosticar doenças e analisar 
+certos tipos de evidência forense. 
+Veja a pág. 112 para regras sobre tratar e 
+remendar Ferimentos e as págs. 143 e 147 
+para tratamento de doenças ou veneno.CAVALGAR (AGILIDADE)
+Cavalgar permite que um herói monte, 
+controle e cavalgue qualquer criatura ou 
+dirija qualquer veículo movido à tração 
+animal comum em seu cenário. Isso 
+inclui cavalos, camelos, dragões, carroças, 
+carruagens e afins. Veja as regras para 
+Combate Montado  na pág. 118.
+CIÊNCIA (ASTÚCIA)
+Aqueles que possuem esta perícia estudaram 
+várias ciências complexas como biologia, 
+xenobiologia, química, geologia, engenharia 
+ou qualquer outra ciência “complexa”.
+Uma rolagem bem-sucedida de Ciência 
+revela informações básicas sobre o tópico e 
+uma ampliação dá mais detalhes.
+CIÊNCIA ESTRANHA (ASTÚCIA)
+Cientistas “loucos”, inventores em 
+mundos com magia (ou tecnologia muito 
+além da nossa) alquimistas ou artífices 
+podem ser encontrados em muitos 
+Mundos Selvagens.
+Embora suas técnicas possam variar, 
+todos usam Ciência Estranha como perícia 
+arcana. Veja a Vantagem Antecedente 
+Arcano (Ciência Estranha)  na pág. 178 para 
+saber mais sobre suas maravilhas.
+CONHECIMENTO 
+ACADÊMICO (ASTÚCIA)
+Conhecimento Acadêmico reflete o 
+conhecimento das artes, ciências sociais, 
+literatura, história, arqueologia e campos 
+similares. Se um explorador quiser se 
+lembrar quando acaba o calendário Maia 
+ou citar uma fala de Macbeth , esta é a perícia 
+a se usar.
+CONHECIMENTO 
+BATALHA (ASTÚCIA)
+Conhecimento Batalha é o comando da 
+estratégia e as táticas de um indivíduo. Pode 
+ser usada como conhecimento militar no 
+geral e é crítica quando se comanda tropas 
+em Batalhas em Massa  (veja pág. 133).
+--- PAGE 35 (PDF index) ---
+SAVAGE WORLDS
+34
+34Ciência Forense:  Curar também pode 
+ser usada para analisar evidência que se 
+relaciona a traumas anatômicos, incluindo 
+a causa e hora da morte, ângulo do ataque 
+e questões similares. Um sucesso fornece 
+informações básicas e uma ampliação 
+aumenta os detalhes desvendados.
+DIRIGIR (AGILIDADE)
+Dirigir permite que um herói controle 
+qualquer veículo terrestre motorizado 
+comum em seu cenário. Isso inclui carros, 
+motocicletas, tanques e afins. (Bicicletas e 
+outras formas de transporte automotrizes 
+usam Atletismo, transportes movidos à 
+tração animal usam Cavalgar).
+Personagens em cenários modernos onde 
+veículos são disseminados não precisam 
+de Dirigir para viagens corriqueiras. 
+Geralmente só são necessárias rolagens 
+de Dirigir em condições estressantes ou 
+perigosas, como nas Perseguições  (pág. 148).
+ELETRÔNICA (ASTÚCIA)
+Eletrônica permite que um herói use 
+dispositivos complexos ou especializados 
+como os painéis de controle em uma 
+máquina industrial ou os sistemas de 
+sensores encontrados nas espaçonaves dos 
+cenários futuristas.
+Eletrodomésticos ou dispositivos 
+eletrônicos comuns no cenário não requerem 
+Eletrônica— Conhecimento Geral basta 
+caso uma rolagem seja necessária. Em um 
+mundo moderno isso se aplica a aparelhos 
+de vídeo, celulares etc.
+Para reparar qualquer tipo de eletrônico 
+quebrado usa-se a perícia Consertar  
+(veja pág. 33).
+FÉ (ESPÍRITO)
+Fé é a perícia arcana requerida para o 
+Antecedente Arcano (Milagres) , descrito 
+na pág. 178.
+FOCO (ESPÍRITO)
+Foco é a perícia arcana para o Antecedente 
+Arcano (Dom), veja pág. 177.MUDANÇAS  DE 
+PERÍCIAS NESTA 
+EDIÇÃO DE SAVAGE 
+WORLDS
+Aqui está um sumário das principais 
+mudanças nas perícias nesta edição de 
+Savage Worlds .
+PERÍCIAS BÁSICAS
+Todo herói começa com um d4 em 
+cinco habilidades básicas: Atletismo, 
+Conhecimento Geral, Furtividade, 
+Perceber e Persuadir. Um d4 não significa 
+que eles são bons nessa perícias, mas eles 
+têm alguma experiência básica com elas.
+MUDANÇAS IMPORTANTES:
+• Carisma  saiu do jogo.
+• Escalar  foi incluída em Atletismo .
+• Conhecimento Geral  agora é uma 
+perícia em vez de uma rolagem de 
+Astúcia.
+• Investigar  agora é Pesquisar  para 
+tornar seu significado e uso mais 
+claros.
+• Foco  é a nova perícia para o 
+Antecedente Arcano Dom.
+• Conhecimento  foi dividida em 
+perícias separadas usadas na maioria 
+das campanhas. Especificamente: 
+Conhecimento Acadêmico , 
+Conhecimento Batalha , Ciência , 
+Eletrônica , Hackear , Idiomas , 
+Ocultismo .
+• Arrombar  agora faz parte de 
+Ladinagem , que também inclui bater 
+carteiras, prestidigitação, arrombar 
+cofres e outros truques sujos.
+• Performance  é uma perícia nova.
+• Consertar  e seu uso foram melhor 
+definidos.
+• Manha  agora é uma Vantagem.
+• Nadar  é resolvido com Atletismo .
+• Arremessar  é abrangida por 
+Atletismo .
+• Rastrear  agora é parte de 
+Sobrevivência .
+--- PAGE 36 (PDF index) ---
+35
+35
+CAP
+1 FURTIVIDADE (AGILIDADE)
+Furtividade é a habilidade de se esconder e se 
+mover silenciosamente. Um sucesso simples 
+em uma rolagem de Furtividade significa 
+que o personagem evita ser detectado se os 
+inimigos não estão particularmente alertas. 
+Se o personagem falhar nesta rolagem, o 
+inimigo se dá conta de que algo está errado 
+e começa ativamente a procurar por aquilo 
+que os alertou.
+Uma vez que os inimigos estejam alertas e 
+ativos, Furtividade é resistida por Perceber 
+(uma rolagem em grupo se houver muitos 
+adversários, veja pág. 103). 
+O Mestre deve aplicar quaisquer 
+penalidades circunstanciais em rolagens de 
+Perceber por conta da escuridão, cobertura, 
+barulho, distrações e quaisquer diferenças na 
+Escala (como no ataque, veja Escala  em pág. 
+127). Para esgueirar-se em cima de folhas secas 
+deve-se subtrair 2 da rolagem de Furtividade, 
+por exemplo, enquanto que notar alguém 
+no escuro usa a penalidade por Iluminação 
+listada na pág. 124 (−4). Contudo, não aplique 
+o mesmo modificador a ambas as rolagens. Se 
+Furtividade está com −2 pela folhas, não dê 
+também Perceber +2 para eles.
+Ataque Furtivo:  Esgueirar-se perto o 
+suficiente para realizar um ataque corpo a 
+corpo sempre  requer um teste resistido de 
+Furtividade contra o Perceber do alvo, quer 
+ele esteja ativamente atento ou não. Se o teste 
+de Furtividade for bem-sucedido, a vítima 
+fica Vulnerável  (pág. 120) ao atacante, mas 
+somente até que o turno do atacante acabe. 
+Com uma ampliação o atacante consegue A 
+Finalização  (pág. 122).
+Movimento:  Em combate, os personagens 
+rolam sua Furtividade como ação livre a 
+cada turno no fim do seu movimento ou em 
+qualquer ação que o Mestre ache que possa 
+chamar atenção.
+Fora de combate, a distância movida 
+depende inteiramente da situação. O Mestre 
+pode desejar uma rolagem por minuto se o 
+grupo estiver esgueirando-se no perímetro 
+de uma posição defensiva ou a cada certa 
+distância em quilômetros, se eles tentarem 
+caminhar silenciosamente através de uma 
+floresta escura sem alertar as criaturas que 
+ali vivem.HACKEAR (ASTÚCIA)
+Hackear é a perícia usada para criar 
+programas e “invadir” sistemas seguros. 
+O uso dessa perícia sempre requer um 
+computador ou algum tipo de interface.
+A maioria das tarefas são uma simples 
+rolagem de Hackear. O tempo que leva 
+é determinado pelo Mestre, vai de uma 
+simples ação a horas, dias ou mesmo 
+meses, dependendo da complexidade do 
+projeto. Um sucesso significa que a tentativa 
+funciona como desejado e uma ampliação 
+reduz à metade o tempo necessário. Uma 
+falha geralmente significa que o hacker deve 
+tentar novamente, enquanto que uma Falha 
+Crítica pode significar que o sistema expulsa 
+o usuário, aciona um alarme ou aplica algum 
+outro tipo de contramedida.
+IDIOMAS (ASTÚCIA)
+Em alguns cenários, como aqueles 
+focados em ação pulp ou “romance 
+planetário” (onde os personagens viajam 
+entre diversas civilizações estranhas com 
+frequência), falar vários idiomas pode ser 
+simplesmente interpretado travando um 
+diálogo com sotaques exagerados que 
+começam com um pouco de dificuldade e 
+logo são rapidamente esquecidos. O Mestre 
+pode ignorar esta perícia nesses cenários ou 
+usar a Regra de Ambientação Múltiplos 
+Idiomas  na pág. 167.
+Em cenários mais realistas a comunicação 
+pode ser uma grande barreira que requer que 
+os personagens aloquem pontos de perícia em 
+VALOR HABILIDADE
+d4O personagem pode ler, escrever 
+e falar palavras e frases comuns.
+d6O falante pode manter uma 
+conversa prolongada, mas 
+pausada ocasionalmente.
+d8 O personagem fala fluentemente.
+d10O herói pode imitar outros 
+dialetos do idioma.
+d12O falante pode recitar trabalhos 
+literários ou orais com maestria.PROFICIÊNCIA EM IDIOMA
+--- PAGE 37 (PDF index) ---
+SAVAGE WORLDS
+36
+36
+CRIANDO OUTRAS PERÍCIAS
+Mestres podem criar quaisquer perícias 
+que eles quiserem ou precisarem para seus 
+cenários. Se a perícia tem uso definido, ele 
+deve pensar como ela funciona exatamente. 
+Se navegar pelas estrelas é uma parte 
+importante da sua campanha de romance 
+planetário e você acha que a perícia 
+Eletrônica não cobre o uso dos sistemas 
+de navegação, por exemplo, você pode 
+adicionar Astronavegação.
+Os jogadores também podem elaborar 
+suas próprias perícias e especializações 
+(com a aprovação do Mestre). Entretanto, 
+é improvável que elas sejam usadas na 
+maioria dos cenários, a menos que o jogador  
+busque proativamente maneiras de usá-las.
+Exemplo: Em Deadlands: Inferno na 
+Terra , os heróis devem mobilizar a cidade 
+contra a horda de mutantes que se aproxima. 
+Emília tem uma perícia de sua criação, 
+Jornalismo. Ela decide usá-la para escrever 
+um artigo comovente e imprimí-lo para que 
+todos no assentamento o leiam. Ela consegue 
+uma ampliação e o Mestre decide que toda 
+a cidade se mobiliza ao lado dos defensores.
+FILOSOFIA DE PERÍCIAS
+Novos jogadores às vezes se focam na 
+abrangência das perícias—como Lutar ou Atirar—e tentam fazer o mesmo com 
+todas as outras perícias. Mas o objetivo 
+principal do sistema de perícias é criar e 
+dar suporte aos arquétipos de personagem . 
+Atiradores, sejam eles snipers ou 
+arqueiros, estão presente na maioria 
+dos cenários e todos detém uma única 
+habilidade: são capazes de utilizar armas 
+de ataque a distância com alta precisão. 
+Você não precisa de uma perícia para 
+armas de fogo e outra para arcos para 
+reforçar esses arquétipos.
+Entretanto, investigadores precisam  de 
+muitas perícias diferentes, porque eles 
+fazem as coisas de modo diferente. Um 
+detetive teimoso precisa de Intimidar 
+para lidar com as ruas, socialites se 
+misturam com a alta sociedade, ratos de 
+biblioteca vão Pesquisar em biblioteca e 
+geeks usam Hackear para conseguir o 
+que querem.
+Além disso, algumas perícias não 
+fazem sentido  quando combinadas. Você 
+poderia combinar Navegar, Dirigir e 
+Pilotar em "Veículos", por exemplo, mas 
+então toda pessoa do mundo moderno 
+que pode dirigir um carro também 
+poderia pilotar um avião. Considere 
+isso quando alterar as perícias para a sua 
+campanha.idiomas adicionais. Em um jogo na Terceira 
+Guerra Mundial nos anos 80, por exemplo, um 
+grupo de paraquedistas da ONU podem não 
+conseguir falar com seus inimigos a menos 
+que eles tenham Russo, Polonês ou outras 
+65ínguas comuns no Pacto de Varsóvia.
+Se a perícia Idiomas estiver em uso ela 
+deve ser listada como Idiomas (Espanhol), 
+Idioma (Linguagem de Sinais) etc. O tipo de 
+dado de um personagem também denota o 
+quão fluente ele é. (Personagens começam 
+com um d8 no seu próprio Idioma).
+Limitado:  Use a menor perícia quando 
+realizar uma ação que requer o conhecimento 
+de uma língua estrangeira. Intimidar (se for verbal), Persuadir, Pesquisar, Provocar 
+e quaisquer outras perícias que envolvam 
+ações verbais serão limitadas pela perícia 
+Idiomas do personagem.
+Esta limitação nunca se aplica à língua 
+nativa de um personagem.
+INTIMIDAR (ESPÍRITO)
+Intimidar é a arte de amedrontar um 
+oponente para que ele desista, revele 
+informação ou fuja.
+Intimidar é uma rolagem resistida pelo 
+Espírito do oponente. Em combate, isto é 
+um Desafio  (veja pág. 119). Fora de combate, 
+uma rolagem bem-sucedida significa que 
+--- PAGE 38 (PDF index) ---
+37
+37
+CAP
+1
+LADINAGEM (AGILIDADE)
+Abrir fechaduras, arrombar cofres, bater 
+carteiras, prestidigitação, armar e desarmar 
+armadilhas e atos similares de distração, 
+sabotagem, subterfúgio e manipulação são 
+chamados de Ladinagem.
+Se usada para abrir uma fechadura, 
+arrombar um cofre ou desarmar uma 
+armadilha, faça um teste simples sem ser 
+resistido, um sucesso abre ou desabilita o 
+dispositivo e uma ampliação o faz em menos 
+tempo, ou sem acionar alarmes ou aquilo 
+que parecer mais apropriado ao Mestre.
+Prestidigitação, esconder ou plantar um 
+item e bater carteiras exigem um sucesso 
+simples. Se os adversários estiverem 
+procurando o personagem ativamente, 
+Ladinagem é resistida por Perceber.
+O Mestre deve atribuir penalidades por 
+conta de circunstâncias particularmente 
+difíceis. Abrir uma fechadura bastante pesada 
+pode ter uma penalidade de −4, enquanto 
+esconder um revólver sob roupas pesadas de o adversário recua, revela algum tipo de 
+informação ou escapa quando aparece uma 
+oportunidade. Uma ampliação significa que 
+ele recua pelo resto da cena, fala tudo ou 
+corre o mais rápido possível.
+Dentro ou fora de combate, uma Falha 
+Crítica significa que o alvo é imune à 
+tentativas de intimidação desse personagem 
+pelo resto desse encontro!
+Rede de Contatos:  Intimidar também 
+pode ser usada como uma perícia “macro” 
+para simular várias horas de investigação 
+nas ruas. Veja Rede de Contatos  na pág. 160 
+para ver como arrebentar algumas cabeças 
+atrás de favores ou informação.
+JOGAR (ASTÚCIA)
+Jogar é comum nos saloons do Velho Oeste, 
+nos fundos de uma organização criminosa, 
+nos alojamentos da maioria dos exércitos ou 
+no convés das naves de ficção científica.
+Para simular uma hora de jogo sem ter 
+que rolar para cada jogada de dados ou mão 
+nas cartas, faça com que todos concordem 
+com as apostas como, por exemplo, $10 
+na moeda corrente do cenário. Todos os 
+envolvidos fazem então uma rolagem de 
+Jogar. Aquele que obtiver a menor rolagem 
+paga ao maior total a diferença dos valores 
+das rolagens obtidas multiplicada pelo 
+valor da aposta. O segundo menor rolagem 
+paga, ao que obteve a maior, a diferença de 
+suas rolagens multiplicada pelo valor da 
+aposta e por aí vai. Se restar um apostador 
+no meio dessa distribuição, ele não ganha 
+nem perde.
+Exemplo: Red rola mais alto com um 10 e 
+Gabe rola o mais baixo com um 4. A diferença 
+é 6, então Gabe paga a Red 6 x a aposta de $10, 
+isto é $60.
+Trapaceando:  Um personagem que 
+trapaceia adiciona +2 em sua rolagem. 
+O Mestre pode aumentar ou diminuir 
+este modificador dependendo das 
+particularidades do jogo ou do método 
+de trapaça. Contudo, se o trapaceiro 
+rolar uma Falha Crítica, ele é pego. As 
+consequências dependem das circunstâncias 
+e de quem percebeu, mas geralmente são 
+desagradáveis!MODIFICADORES 
+ABRANGENTES
+Edições anteriores de Savage Worlds  
+listavam uma porção de modificadores 
+para coisas como Furtividade e Rastrear 
+(agora fazendo parte de Sobrevivência). 
+Nós abandonamos essas tabelas nesta 
+edição para uma ideia mais subjetiva que 
+permite que o Mestre olhe para a situação 
+como um todo—algo que não pode ser 
+sintetizado em uma tabela—e atribua um 
+bônus ou penalidade por conta própria, 
+geralmente de +4 a -4.
+Isso permite que ele considere todos 
+os fatores de modo geral, especialmente 
+aqueles que se sobrepõem (como 
+penalidades duplas por chuva ou 
+escuridão que limitam a visibilidade e 
+não deveriam se acumular) e os sintetiza 
+rápida e facilmente sem ter que consultar 
+uma tabela no meio de uma cena tensa.
+--- PAGE 39 (PDF index) ---
+SAVAGE WORLDS
+38
+38
+ PERCEBER (ASTÚCIA)
+Perceber é a percepção e a prontidão geral 
+de um herói. É usada para perceber locais, 
+sons, sabores e odores, achar pistas, detectar 
+emboscadas, encontrar armas escondidas 
+em um inimigo ou dizer se um rival está 
+mentindo, assustado, feliz etc.
+Sucesso garante informações básicas — o 
+personagem ouve movimento na floresta, 
+sente o odor de uma fumaça vindo de 
+longe ou sente que alguém não está sendo 
+completamente sincero.
+Uma ampliação dá mais detalhes como 
+a direção do som ou odor, ou ainda que 
+tópico a pessoa está evitando ou mentindo 
+a respeito.
+PERFORMANCE (ESPÍRITO)
+Um bom artista pode elevar o moral, levar 
+uma multidão à ação ou simplesmente 
+ganhar um dinheiro extra dos habitantes 
+locais. Os detalhes específicos dependem da 
+situação, cenário e o quanto o personagem é 
+conhecido na área.
+Performance engloba cantar, atuar, 
+tocar um instrumento ou tarefas similares 
+que requerem uma audiência para serem 
+apreciadas.
+Levantando Fundos:  A quantia de 
+dinheiro que um personagem pode 
+levantar entretendo é extremamente 
+subjetiva, mas como regra geral uma 
+performance bem-sucedida aumenta 
+em 20% os Recursos Iniciais do 
+cenário com um sucesso simples e 
+30% com uma ampliação. O Mestre 
+pode multiplicar esta quantia 
+pelo Estágio do artista se 
+achar apropriado. Esses 
+números funcionam para 
+artistas normais que podem 
+ser conhecidos em uma área 
+ou estabelecimento pequenos. 
+Grandes performances podem 
+aumentar significativamente o 
+cachê de um artista, mas também 
+exigem mais tempo, energia e 
+preparação.
+Enganação:  Performance pode 
+ser usada no lugar de Persuadir 
+se o personagem está tentando inverno pode garantir um bônus de +1. Uma 
+falha geralmente significa que o personagem 
+é notado ou leva tempo demais (depois disso 
+o personagem pode tentar novamente). Uma 
+Falha Crítica geralmente aciona a armadilha, 
+alerta a vítima ou emperra o dispositivo de 
+modo que ele deva ser aberto ou manipulado 
+de modo diferente.
+Limitado:  Usar Ladinagem em um 
+dispositivo eletrônico é limitado pela perícia 
+Eletrônica do ladino. Use a menor dentre as 
+duas perícias.
+LUTAR (AGILIDADE)
+Lutar cobre todos os ataques corpo a corpo, 
+seja com as mãos, machados, espadas laser 
+ou artes marciais. Veja no Capítulo Três as 
+regras de combate e as várias manobras que 
+um guerreiro pode tentar.
+NAVEGAR (AGILIDADE)
+Personagens com esta perícia podem lidar 
+com a maioria dos barcos ou navios mais 
+comuns em seus cenários. Eles também 
+sabem como lidar com tarefas corriqueiras 
+associadas a sua embarcação como amarrar 
+nós, estiar velas ou seguir as correntes.
+OCULTISMO (ASTÚCIA)
+Ocultismo reflete o conhecimento 
+e experiência com o paranormal 
+que a maioria das pessoas 
+sequer acredita que exista. 
+Pode ser usada para decifrar 
+pictogramas estranhos, 
+lembrar de informações 
+a respeito de criaturas 
+sobrenaturais, lembrar 
+de curas para doenças 
+monstruosas como  
+licantropia ou vampirismo, 
+ou ainda, para realizar rituais.
+Encontrar informações 
+em uma biblioteca, jornal, 
+necrotério, tomo antigo, na 
+internet etc., usa a perícia 
+Pesquisar. Como descrito 
+aqui, contudo, se o Ocultismo 
+do investigador for mais alto, ele 
+pode usá-lo em vez disso. Veja 
+Pesquisar  na pág. 40.
+--- PAGE 40 (PDF index) ---
+39
+39
+CAP
+1enganar, blefar ou se disfarçar e se o Mestre 
+concordar que faz sentido dentro do 
+contexto da situação.
+ PERSUADIR (ESPÍRITO)
+Persuadir é a habilidade de convencer os 
+outros do que você quer através de explicações, 
+bajulação, enganação, recompensas ou 
+outros meios amigáveis. Persuadir não é 
+controle da mente. Pode mudar as atitudes 
+de uma pessoa, mas não seus objetivos. Com 
+uma boa rolagem de persuadir, um bandido 
+pode permitir que você fique com uma joia 
+de grande valor sentimental, mas ele ainda 
+levará o resto dos seus pertences.
+Quando usada para dar Suporte  a aliados 
+(pág. 126) é um teste não resistido. Se o alvo 
+resistir, é uma rolagem resistida contra o 
+Espírito do alvo. O Mestre deve modificar a 
+rolagem de acordo com seu critério baseado 
+na interpretação, quaisquer Vantagens ou 
+Complicações que afetem a conversa e nas 
+circunstâncias. 
+Nível de Reação:  O quanto uma pessoa 
+está disposta a cooperar depende da sua 
+atitude em relação a quem está falando com 
+ela. O Mestre pode decidir como personagens 
+não jogadores se sentem baseado no cenário 
+ou rolando na Tabela de Reação  (veja a barra 
+lateral) se ele não tiver nada planejado.
+Sucesso melhora a atitude do alvo em um 
+nível, ou dois níveis com uma ampliação. 
+Melhoras adicionais geralmente não são 
+possíveis no mesmo encontro — leva um 
+certo tempo para que as pessoas mudem 
+suas opiniões.
+Uma falha significa que o alvo manterá sua 
+opinião nesta cena ou até que a situação mude 
+de algum modo. Uma Falha Crítica também 
+reduz  a atitude do alvo em dois níveis.
+No geral, apenas uma rolagem deve 
+ser permitida por interação a menos que 
+informações novas sejam reveladas, uma 
+recompensa substancial seja oferecida etc. 
+Rede de Contatos:  Os personagens 
+também podem usar Persuadir como uma 
+perícia "macro", simulando algumas horas 
+de fraternização e socialização para ganhar 
+favores ou informação. Veja Rede de 
+Contatos  na pág. 160.REAÇÕES
+O Mestre pode rolar na tabela abaixo 
+ou escolher a atitude inicial de um 
+personagem ou grupo.
+2D6 REAÇÃO INICIAL
+2Hostil : O alvo é abertamente 
+hostil. Ele pode atacar, se possível, 
+trair, denunciar ou prejudicar o 
+grupo na primeira oportunidade. 
+Não ajudará sem algum tipo 
+de ameaça ou recompensa 
+exorbitante.
+3Antipático : O personagem não 
+está interessado em ajudar a 
+menos que não tenha escolha 
+e/ou lhe oferecem algum tipo 
+de pagamento ou recompensa 
+substancial.
+4-5Não Cooperativo : O alvo não 
+está interessado em se envolver a 
+menos que haja alguma vantagem 
+significativa para ele.
+6-8Neutro : O alvo não tem nenhuma 
+atitude em particular em relação ao 
+grupo. Ele espera um pagamento 
+justo por qualquer tipo de favor ou 
+informação.
+9-10Cooperativo : O personagem é 
+simpático no geral. Ele ajuda por 
+um pagamento módico, favor ou 
+gentileza.
+11Amigável : O indivíduo se 
+esforçará para ajudar o herói. Ele 
+provavelmente irá realizar tarefas 
+simples por muito pouco e está 
+disposto a se arriscar em tarefas 
+mais perigosas por um pagamento 
+justo ou outros favores.
+12Prestativo : O alvo está ansioso para 
+ajudar o herói e provavelmente 
+o fará por pouco ou nenhum 
+pagamento.TABELA DE REAÇÃO
+--- PAGE 41 (PDF index) ---
+SAVAGE WORLDS
+40
+40
+PESQUISAR (ASTÚCIA)
+Um personagem hábil na perícia Pesquisar 
+sabe como fazer um bom uso de bibliotecas, 
+arquivos de necrotérios, a internet ou outras 
+fontes de informação escritas.
+O tempo que isso leva depende do 
+Mestre e da situação. Encontrar algo na 
+internet ou uma passagem específica 
+em um livro pode ser possível em uma 
+rodada de combate. Procurar em livros de 
+uma biblioteca, procurar sobre um tópico 
+complexo na internet ou desenterrar 
+informações de antecedente a respeito de 
+indivíduo geralmente leva uma hora.
+Um sucesso garante informações básicas e 
+uma ampliação dá mais detalhes. Uma falha 
+significa que o pesquisador não encontra o 
+que está procurando. 
+Uma Falha Crítica pode significar que 
+o pesquisador encontra uma informação 
+plausível, mas incorreta; atrai a atenção de 
+uma entidade ou facção rival; encontra algo 
+que “ A Humanidade Não Deveria Conhecer” 
+e sofre com algum tipo de doença mental 
+(Fobia Menor, Peculiaridade 
+etc.); ou que acidentalmente 
+ele destrói  a fonte. O Mestre 
+é encorajado a ser criativo 
+se tal infortúnio acontecer, 
+talvez forçando o grupo 
+a abordar a situação de 
+modo diferente.
+Perícias Relacionadas:  
+Se um personagem tem 
+uma perícia que se relaciona 
+diretamente ao que ele está 
+pesquisando ele pode usá-la 
+em vez de Pesquisar. Um 
+explorador com Ocultismo 
+d10 e Pesquisar d6, por exemplo, 
+rola um d10 quando investiga 
+conhecimento vampírico em uma 
+biblioteca proibida. Se mais tarde ele 
+for procurar pela escritura da casa 
+onde dizem ser o covil dos vampi -
+ros, ele rola Pesquisar normalmente.
+Nota:  Pesquisar pode apenas dar 
+as pistas, especialmente em um 
+jogo repleto de mistérios. Juntar  
+as peças da informação coletada 
+fica a cargo dos  jogadores.PILOTAR (AGILIDADE)
+Pilotar permite que um personagem 
+manobre aviões, helicópteros, jet packs ou 
+espaçonaves. Regras para Perseguições e 
+combate veicular podem ser encontradas 
+no Capítulo Quatro.
+Uma criatura com a habilidade inata para 
+voar (tem asas, por exemplo) usa Atletismo 
+em vez disso.
+PROVOCAR (ASTÚCIA)
+Provocar ataca o orgulho com ridicularização, 
+tiradas cruéis ou demonstrações de 
+superioridade.
+Provocar é uma rolagem resistida pela 
+Astúcia do oponente. Em combate, isto é um 
+Desafio  (veja pág. 119). 
+Fora de combate, sucesso significa que 
+o defensor recua, escapa ou começa uma 
+briga. Uma ampliação deixa a vítima 
+acovardada pelo resto de cena, faz com 
+que ela saia da área espumando ou até 
+chorando ou ainda faz com que ela ataque 
+seu algoz de modo inconsequente (talvez 
+com um Ataque Selvagem na primeira 
+rodada de combate).
+Uma Falha Crítica significa que o alvo é 
+imune às provocações desse personagem 
+pelo resto do encontro.
+PSIÔNICOS (ASTÚCIA)
+É a perícia que "psions" ou "psis" 
+usam para ativar e controlar 
+suas habilidades psiônicas. Veja 
+a Vantagem Antecedente 
+Arcano (Psiônicos)  
+na pág. 178.
+SOBREVIVÊNCIA 
+(ASTÚCIA)
+Sobrevivência  
+permite que  
+um personagem encontre 
+comida, água ou abrigo em 
+ambientes hostis. Também 
+pode ser usada pra navegar 
+em ambientes selvagens, 
+descobrir quais plantas são 
+comestíveis e quais não o são e 
+assim por diante.
+--- PAGE 42 (PDF index) ---
+41
+41
+CAP
+1
+VANTAGENS
+Abaixo está uma lista de todas as Vantagens 
+comuns na maioria dos cenários. Você 
+também encontrará Vantagens elaboradas 
+especificamente para o seu cenário em livros 
+oficiais de Savage Worlds .
+As Vantagens estão agrupadas por tipo 
+para ajudar durante a criação de personagem. 
+Você encontrará um sumário na pág. 67. 
+A menos que uma Vantagem diga 
+especificamente o contrário, ela só pode ser 
+escolhida uma vez.
+REQUISITOS:  Embaixo de cada Vantagem 
+está o Estágio (veja pág. 61) mínimo reque -
+rido para escolhê-la com quaisquer outros 
+pré-requisitos como atributos, perícias ou 
+outras Vantagens.
+DE ANTECEDENTE
+Geralmente estas são Vantagens inatas 
+ao personagem, aprendidas através de 
+FAMILIARIDADE
+Se for dramaticamente apropriado mostrar que um personagem está fora da sua 
+zona de conforto com o uso em particular de uma perícia — como pegar uma arma 
+alienígena e tentar Atirar com ela — o Mestre pode simplesmente aplicar uma 
+penalidade (geralmente de -2 a -4) ao total.
+Quando fazer isso e qual é o valor da penalidade, depende inteiramente da situação. 
+Um pistoleiro pode sofrer uma penalidade quando usa um arco, por exemplo, ao 
+menos até que tenha um dia ou dois de prática. Um professor pode sofrer uma 
+penalidade de -4 em uma rolagem de Ciência se o jogador disser especificamente que 
+ele é um químico  mundialmente famoso quando o teste que o Mestre pediu trata de 
+geologia do paleozoico. (Embora seja um bom momento para conceder um Bene, se 
+o jogador interpretar esta falta de conhecimento!).
+Quanto tempo dura a penalidade com o uso repetido depende da perícia em questão. 
+Penalidades físicas provavelmente somem depois de pouco mais do que um dia de 
+prática. Penalidades baseadas em conhecimento são removidas se o personagem 
+tem acesso à materiais adequados e passa algum tempo pesquisando o assunto em 
+questão. Um estudante de literatura francesa que tem tempo de estudar Shakespeare, 
+por exemplo, não deve sofrer uma penalidade em Conhecimento Acadêmico.
+Em suma, use as penalidades de familiarização em situações dramáti cas ou para 
+ilustrar as diferenças em culturas ou níveis tecnológicos. Mesmo assim, mantenha a 
+história em movimento e não fique preso às minúcias.
+Um teste bem-sucedido de Sobrevivência 
+garante comida e água suficientes para uma 
+pessoa por um dia; ou para cinco com uma 
+ampliação.
+Informações mais detalhadas sobre Fome 
+e Sede podem ser encontradas em Perigos 
+na pág. 142.
+Rastrear:  Sobrevivência também pode ser 
+usada para detectar e seguir rastros. Cada 
+rolagem geralmente abrange seguir rastros 
+por um quilômetro, mas o Mestre deve 
+ajustar isso conforme o necessário para 
+circunstâncias específicas.
+O Mestre pode aplicar um bônus ou 
+penalidade baseado no alvo, ambiente 
+e no tempo. Rastrear um grupo grande 
+que passou recentemente por uma área 
+coberta de neve pode garantir um bônus 
+de +4, enquanto seguir uma única pessoa 
+que caminhou sobre rochas e riachos 
+há mais de um dia incorre em uma 
+penalidade de −4.
+--- PAGE 43 (PDF index) ---
+SAVAGE WORLDS
+42
+42ramos familiares e heráldica ou ainda 
+rumores envolvendo outros de sua posição.
+ATRAENTE
+REQUISITOS:  Novato, Vigor d6+
+Não é segredo que as pessoas ficam 
+mais dispostas a ajudar aqueles que eles 
+consideram fisicamente atraentes. Seu 
+personagem adiciona +1 em rolagens de 
+Performance e Persuadir se o alvo estiver 
+atraído pelo seu tipo em geral (gênero, sexo, 
+espécie etc.).
+MUITO ATRAENTE
+REQUISITOS:  Novato, Atraente
+Seu herói é lindo de morrer. Ele 
+aumenta seu bônus em Performance e 
+Persuadir para +2.
+BRUTAMONTES
+REQUISITOS:  Novato, Força d6+, 
+Vigor d6+
+Brutamontes se focam em força e 
+capacidade física no lugar de coordenação 
+e flexibilidade. Eles tratam Atletismo como 
+se ela estivesse ligada a Força no lugar de 
+Agilidade para propósitos de Progresso. O 
+personagem também pode resistir a Desafios 
+de Atletismo com força, se ele desejar.
+Por fim, Brutamontes aumentam em 
++1 a Curta Distância de qualquer item 
+arremessado. Dobre isso para a Média 
+Distância ajustada e dobre novamente para 
+a Longa Distância. Se a Distância de um 
+item arremessado for 3/6/12, por exemplo, a 
+Distância para o Brutamontes é 4/8/16.
+CARISMÁTICO
+REQUISITOS:  Novato, Espírito d8+
+Seu herói é simpático por alguma razão. Ele 
+pode ser confiável, bondoso ou apenas pode 
+transparecer confiança e boa vontade. Você 
+tem uma rerrolagem gratuita em rolagens 
+de Persuadir.
+CORAJOSO
+REQUISITOS:  Novato, Espírito d6+
+Aqueles com esta Vantagem aprenderam a 
+dominar seus medos ou lidaram com tantos 
+horrores que acabaram se habituando. Estes 
+valentes exploradores adicionam +2 em um treinamento extenso e prolongado ou 
+adquiridas após a exposição a certos eventos.
+Desde que tenham uma boa explicação, os 
+jogadores podem escolher essas Vantagens 
+depois da criação de personagem. Um 
+personagem pode escolher a Vantagem 
+Atraente, por exemplo, se limpando, com 
+uma boa maquiagem ou cuidando melhor 
+da sua aparência. Personagens podem 
+adquirir a Vantagem Antecedente Arcano 
+encontrando um livro com conhecimento 
+proibido ou treinando com outro arcanista 
+em seu grupo durante os períodos ociosos 
+entre aventuras. 
+AMBIDESTRO
+REQUISITOS:  Novato, Agilidade d8+
+Seu guerreiro é tão hábil com a mão 
+esquerda quanto é com a direita. Ele ignora 
+a penalidade da Mão Inábil  (veja pág. 115).
+Se estiver empunhando uma arma em 
+cada mão, um personagem Ambidestro 
+pode acumular os bônus de Aparar de 
+ambas as armas (se houverem bônus).
+ANTECEDENTE ARCANO
+REQUISITOS:  Novato
+Exposição à energias estranhas, estudos em 
+uma escola mágica ou dons de entidades 
+divinas ou espirituais às vezes concedem 
+aos campeões seus próprios poderes e 
+habilidades. Tais eventos levam à Vantagem 
+Antecedente Arcano e ao desenvolvimento 
+de habilidades sobrenaturais. Veja o 
+Capítulo Cinco para ter uma descrição 
+completa dos Antecedentes Arcanos, 
+poderes e como usá-los
+ARISTOCRATA
+REQUISITOS:  Novato
+Este indivíduo nasceu com privilégios ou 
+eles vieram posteriormente. Ele pode ter 
+dinheiro ou não (Vantagem Rico ou Podre 
+de Rico), mas ele ainda anda no círculo social 
+da elite dentro do cenário.
+Aristocratas adicionam +2 em Persuadir 
+quando em uma Rede de Contatos  (veja pág. 
+160) com a elite local, industriais, nobres ou 
+outros aristocratas. Eles também adicionam 
++2 em rolagens de Conhecimento Geral feitas 
+para conhecer a etiqueta da elite, reconhecer 
+--- PAGE 44 (PDF index) ---
+43
+43
+CAP
+1
+Testes de Medo e subtraem 2 dos resultados 
+da Tabela de Medo  (veja pág. 140).
+CURA RÁPIDA
+REQUISITOS:  Novato, Vigor d8+
+Aqueles com esta bênção adicionam +2 ao 
+Vigor em rolagens de cura natural e testam 
+a cada três dias em vez de cinco (veja Cura , 
+pág. 112).
+FAMOSO
+REQUISITOS:  Novato
+Seu personagem é uma espécie de 
+celebridade menor. Ele pode ser um bardo 
+popular conhecido em um feudo em 
+particular, uma estrela de rock menor ou um 
+amado ator de um filme B.
+Ele ganha o dobro do cachê normal 
+quando está realizando uma performance 
+(veja Performance , pág. 38). Ele também 
+pode usar sua fama para adicionar +1 
+em rolagens de Persuadir se o alvo for 
+amigável e souber quem ele é (uma rolagem 
+de Conhecimento Geral modificada pela 
+probabilidade do indivíduo conhecer a 
+celebridade).A parte ruim de ser Famoso é que o 
+indivíduo é geralmente reconhecido, 
+os outros querem algo dele com certa 
+frequência, ele pode ser perseguido por 
+fãs ou admiradores, ou ainda ele pode 
+não conseguir se livrar de suas obrigações, 
+apresentações ou outras atividades sem se 
+complicar.
+MUITO FAMOSO
+REQUISITOS:  Experiente, Famoso
+Seu herói é realmente famoso. Ele é 
+bastante conhecido em um círculo grande 
+como um país, uma grande indústria ou 
+uma mídia popular(cinema, televisão, 
+indústria da música etc). Ele faz 5x o cachê 
+normal quando se apresenta e adiciona +2 
+em Persuadir quando está influenciando 
+indivíduos amigáveis que o conhecem.
+O preço também é mais alto para 
+os verdadeiramente Famosos, com 
+mais exigências em questão de tempo, 
+obrigações, rivais, escândalos e na 
+incapacidade de se misturar à multidão 
+sem ser reconhecido.

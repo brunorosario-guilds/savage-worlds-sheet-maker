@@ -1,0 +1,263 @@
+SAVAGE WORLDS
+20
+20
+VALOR HABILIDADE
+1Cavar (1): A espécie pode se enterrar e se mover sob a terra comum com a metade 
+de sua Movimentação (não pode correr). Ele normalmente não pode ser atacado 
+enquanto está cavando. E pode tentar surpreender oponentes que não o vejam 
+chegando através de uma rolagem resistida de Furtividade contra Perceber. Se bem-
+sucedido, o cavador adiciona +2 no ataque e no dano naquela rodada, ou +4 com 
+uma ampliação (ele obtém A Finalização, pág. 122).
+1/2Chifres (1): O ser tem um chifre, ou chifres, que causam For+d4 de dano (ou For+d6 
+por 2 pontos). Veja Armas Naturais, pág. 115, para mais informações.
+8Construto (1): Construtos são seres artificiais feitos de material inorgânico. Eles 
+adicionam +2 para se recuperar do Estado de Abalado, ignoram um nível de 
+modificadores de Ferimento, não respiram e são imunes a doenças e venenos. 
+Ferimentos devem ser reparados com a perícia Consertar. Cada tentativa leva uma 
+hora por nível atual de Ferimento e ignora a "Hora de Ouro". Muitos construtos 
+possuem a Habilidade Racial Negativa Dependência (refletindo sua necessidade 
+de uma fonte de energia).
+2/3/4Garras (1): Ao custo de 2 pontos a raça tem garras que causam Força +d4 de dano. 
+Mais um ponto pode ser gasto para aumentar seu dano para Força +d6, e/ou outro 
+para adicionar PA 2. Veja Armas Naturais,pág. 115 para mais informações.
+1Imune a Doenças e Venenos (2):  A espécie é imune a doenças ou venenos (você 
+escolhe). Pode ser comprado duas vezes para ambos os efeitos.
+1Infravisão (1): A criatura “vê” calor, seja através dos olhos ou outro órgão sensorial. 
+Isso diminui à metade penalidades por Iluminação quando se ataca alvos quentes 
+(incluindo seres invisíveis).
+1Mordida (1): A raça tem presas que causam Força +d4 de dano. Veja Armas 
+Naturais, pág. 115 para mais informações.
+2Movimentação (2):  A Movimentação do personagem aumenta em +2 e seu dado 
+de corrida aumenta em um tipo.
+2Não Respira (1): A espécie não respira. Os indivíduos não são afetados por toxinas 
+inaladas, não se afogam e não sufocam no vácuo (Entretanto, eles ainda podem 
+congelar).
+1/2Perícia (1/Perícia): O personagem começa com um d4 em uma perícia inerente a sua 
+raça. Por 2 pontos (ou 1 se já é uma perícia básica), ela começa em d6 e o máximo 
+da perícia aumenta para d12+1.
+2/1Poder (S): A raça tem uma habilidade inata que funciona como um poder (veja pág. 
+177). Por 2 pontos, ela tem o Antecedente Arcano (Dom) e um poder que reflete sua 
+habilidade incomum. Cada vez que é escolhida depois da primeira custa 1 ponto 
+e concede outro poder. Ela não aumenta os Pontos de Poder—use a vantagem 
+Pontos de Poder para isso.
+1Redução de Sono (2): O ser precisa de metade do tempo de sono normal. Se 
+comprado uma segunda vez,ele nunca dorme.
+2/3Regeneração (1): O ser cura dano rapidamente. Ele pode fazer uma rolagem de 
+Cura natural uma vez por dia (em vez de uma vez por semana). Por 3 pontos, 
+lesões permanentes podem ser recuperadas quando todos os Ferimentos forem 
+regenerados. Trate a lesão como um Ferimento adicional para propósitos de 
+recuperação (pode-se tentar recuperá-la uma vez por semana).
+1Resistência (3): O personagem possui pele endurecida, escamas ou tecido 
+extremamente denso que aumenta sua Resistência em +1 .21
+21
+CAP
+1
+VALOR HABILIDADE
+1Resistência Ambiental (S): A espécie recebe um bônus de +4 para resistir a um 
+único efeito ambiental negativo como calor, frio, falta de ar, radiação etc. Dano 
+dessa fonte é reduzido em 4.
+2 Robusto (1): Um segundo Resultado Abalado não causa Ferimento.
+2Saltador (1): O personagem pode pular o dobro da distância listada em 
+Movimento, pág. 107. Além disso, ele adiciona +4 ao dano quando salta como 
+parte de um Ataque Selvagem em vez do +2 habitual (a menos que esteja em 
+um ambiente fechado ou confinado onde ele não possa saltar verticalmente ou 
+horizontalmente—critério do Mestre).
+1Sem Órgãos Vitais (1): Essas espécies possuem órgãos vitais escondidos, 
+extremamente resistentes ou redundantes. Ataques Localizados não provocam 
+dano extra contra eles.
+2+XSuper Poderes (1): A raça tem habilidades realmente extraordinárias tiradas do 
+Compêndio de Super Poderes do Savage Worlds. O custo é 2—pelo Antecedente 
+Arcano (Super Poderes)—mais o custo do poder selecionado (X). Tenha certeza de 
+ter a permissão do Mestre antes de escolher esta habilidade poderosa.
+1Tamanho +1 (3): A criatura é maior do que o normal. Cada ponto de Tamanho 
+soma diretamente na Resistência e aumenta a Força máxima em um nível. Espécies 
+grandes podem ter dificuldade em usar equipamentos desenvolvidos para 
+humanoides de tamanho comum. Veja pág. 127 para mais sobre Tamanho.
+1/3Toque Venenoso (1): Com um Ataque de Toque (pág. 115), mordida ou garra, bem-
+sucedido, a vítima deve rolar Vigor ou sofre os efeitos de um Veneno Moderado. 
+Por 3 pontos o veneno pode ser aprimorado para Nocauteador, Letal ou Paralisante, 
+mas cada uso provoca Fadiga no herói. O personagem sempre pode escolher usar 
+ou não seu toque venenoso. Veja pág. 147 para Veneno e seus efeitos.
+2+XVantagem (S): Todos os membros desta raça têm a mesma Vantagem inata, escolha 
+dentre aquelas disponíveis no cenário. Diferente de Adaptável, esta habilidade 
+ignora os Requisitos, exceto outras Vantagens. Cada Estágio além do Novato custa 
+um ponto adicional até um máximo do Estágio Heróico (5).
+1Visão No Escuro (1): O ser ignora penalidades por Penumbra e Escuridão (mas não 
+por Escuro Como um Breu).
+2/4/6Voo (1): A espécie pode voar com Movimentação 6 (ou 12 por 4 pontos) e "correr" 
+para ter movimento extra como de costume. Por 6 pontos a criatura pode voar com 
+Movimentação 24 e "correr" por mais 2d6 de movimento adicional. Manobrar usa 
+a perícia Atletismo. Voo racial pressupõe algum tipo de asa que pode ser mirada ou 
+danificada (um personagem que está Preso ou Enredado não pode voar).SAVAGE WORLDS
+22
+22VALOR HABILIDADE
+−1Aparar Baixo (3): Estes seres são péssimos se defendendo em combate corpo a corpo; 
+Aparar -1.
+−1/–2Complicação (S): A raça tem uma complicação inerente, ela é Menor por 1 ponto ou 
+Maior por 2. Isso não afeta a habilidade de escolher outras Complicações durante a 
+criação de personagem.
+–2Dependência (1): A criatura deve consumir ou ter contato com algum tipo 
+de substância relativamente comum por uma hora a cada 24 horas. Criaturas 
+de mundos aquáticos, por exemplo, podem precisar ser imersos em água; 
+povo planta pode precisar de luz do sol. Se não tiver o contato necessário, 
+um personagem recebe automaticamente um nível de Fadiga por dia até 
+ficar Incapacitado. No dia seguinte à Incapacitação, eles morrem. Cada hora 
+gasta se recuperando na substância apropriada restaura um nível de Fadiga .
+−1 Frágil (2):  A criatura é menos resistente do que a maioria. Reduza sua Resistência em 1.
+−1Fraqueza Ambiental (S):  A raça sofre uma penalidade de -4 para resistir a um efeito 
+ambiental específico, tais como calor, frio etc. Se o ser sofre um ataque baseado nessa 
+forma, a penalidade age como um bônus de dano.
+−1Inimigo Racial (S):  A espécie não gosta de outra espécie relativamente comum 
+no cenário. Eles sofrem uma penalidade de -2 em rolagens de Persuadir quando 
+lidam com seus rivais e podem ficar hostis com pouca provocação. Isso só pode ser 
+comprado uma vez por raça.
+−1/–2Movimentação Reduzida (1): Para cada -1 ponto, reduza 1 quadro da sua 
+Movimentação andando e seu dado de corrida em um tipo. Caso seu dado de corrida 
+já seja um d4, ele é reduzido para d4 -1. Por -2 pontos, reduza a Movimentação em 
+outros 2 pontos e subtraia 2 de rolagens de Atletismo onde movimento e mobilidade 
+são parte do desafio (Critério do Mestre).
+−1Não Fala (1): A raça não tem cordas vocais ou por qualquer outro motivo não pode 
+formar os sons comuns feitos pela maioria das raças. Ele pode se comunicar com 
+membros de sua própria raça normalmente (talvez através de música, feromônios, 
+linguagem corporal etc). Outras raças não podem falar seu "idioma" mas podem 
+compreendê-lo se adquirirem a perícia de Idioma apropriada. Entretanto, a espécie 
+pode escutar e entender outros idiomas comuns e se comunicar através de dispositivos.
+–2/–3Penalidade em Atributo (Uma vez por Atributo): Um Atributo (mas não suas 
+perícias associadas) sofre uma penalidade de -1. Por 3 pontos, ele sofre uma 
+penalidade de -2.
+−1/–2Penalidade em Perícia (Uma vez por Perícia): A raça sofre uma penalidade de -1 para 
+uma perícia muito comum como Lutar, Persuadir, ou até mesmo Pilotar em um jogo 
+focado em aviação (o Mestre decide baseado em sua cam panha). Caso a perícia seja 
+incomum ou apenas seja utilizada em determinadas ocasiões, a penalidade é de -2. Por 
+2 pontos, a penalidade é de -2 em perícias comuns ou -4 para perícias pouco usadas.
+−1Perícias Básicas Reduzidas (5): A raça começa com uma perícia básica a menos. A 
+perícia pode ser adquirida normalmente, mas não começa o jogo com um d4. Isso 
+pode ser escolhido uma vez por perícia básica afetada.
+−1Tamanho -1 (1): A entidade é menor que o normal, reduzindo seu Tamanho e 
+Resistência em 1 (veja a Tabela de Tamanho, pág. 216).
+–2Volumoso (1): A raça é particularmente grande em um mundo onde a maioria das 
+outras raças não é. Ele subtrai 2 de rolagens de Característica quando  usa equipamento 
+que não foi especificamente projetado para sua raça e não pode usar armaduras ou 
+roupas. Equipamento, comida e roupas custam o dobro do preço listado.HABILIDADES RACIAIS NEGATIVAS23
+23
+CAP
+1
+"Ainda não tô pronta 
+pra ser um anjo, mas eu 
+quero jogar isso!"
+— RedCELESTIAIS E GUARDIÕES
+Emília está criando uma campanha de "Fim dos Dias" — anjos e seus campeões lutam contra forças 
+demoníacas em um planeta Terra devastado. Ela decide que todos os personagens são celestiais 
+(anjos) ou guardiões (humanos), e terão +4 pontos em habilidades raciais em vez do +2 habitual.
+Ela quer que seus anjos sejam bastante icônicos. Eles são fortes, têm asas e podem invocar milagres. 
+Elá dá a eles Voo por 4 pontos, Antecedente Arcano (Milagres) por 2 pontos e Fé em d6 por 2 pontos. 
+São 8 pontos e ela precisa reduzir para +4, então ela precisa de 4 pontos de habilidades raciais 
+negativas. Celestiais são responsáveis pelos oprimidos e devem combater as legiões do inferno, então 
+ela dá a eles Voto (Maior: Proteger a humanidade) por -2 pontos e Inimigo Racial (Demônios e Diabos) 
+por -1 ponto. Ela encerra com Desastrado por -1, Emília acha que anjos não devem entender bem de 
+tecnologia.
+Os guardiões de Emília são campeões humanos que combatem os "Infernais". Eles são humanos, 
+então começam com Adaptável por 2 pontos. Eles também são sobreviventes calejados do Fim do s 
+Tempos, então recebem o Aumento de Atributo (Vigor) por outros dois pontos. Emília então atribui a 
+Vantagem Campeão por 2 pontos já que eles servem aos celestiais e o mesmo Voto (Maior: Proteger a 
+humanidade) por -2 pontos para equilibrar tudo em +4. Note que Emilia optou por não usar o +2 habitual.
+CELESTIAIS
+Anjos são uma espécie bastante variada, mas todos têm essas características em comum.
+ DESASTRADO:  Celestiais não estão acostumados com tecnologia ou máquinas.
+ ANTECEDENTE ARCANO ( Milagres):  Celestiais podem invocar uma grande variedade de 
+milagres.
+ FÉ: Todos os celestiais começam com um d6 em Fé. Isso aumenta seu máximo para d12 + 1.
+ VOO:  Anjos voam com Movimentação 12.
+ INIMIGO RACIAL (Demônios e Diabos ): Aqueles que vêm de cima não toleram facilmente 
+os saídos do abismo.
+ VOTO ( Maior:  Proteger a humanidade) : Os abençoados devem 
+proteger o rebanho que resta na Terra devastada.
+GUARDIÕES
+Humanos que servem ao Coro Celestial são chamados de 
+guardiões.
+ ADAPTÁVEL:  Guardiões começam o jogo com uma 
+Vantagem Novato de sua escolha (os Requisitos da 
+Vantagem devem ser atendidos normalmente).
+ CAMPEÕES:  Guardiões possuem a Vantagem 
+Campeão dando a eles um bônus de +2 em dano 
+contra forças malignas sobrenaturais como 
+demônios e diabos.
+ VIGOROSO:  Humanos que herdaram esta Terra 
+devastada começam o jogo com um D6 em Vigor em 
+vez de um d4. Isso aumenta seu Vigor máximo para 
+d12 + 1.
+ VOTO ( Maior:  Proteger a humanidade) : Os 
+abençoados devem proteger o rebanho que resta 
+na Terra devastada.SAVAGE WORLDS
+24
+24
+Gabe
+Natan sempre joga com 
+"Gabe" , um cara durão 
+e pragmático com 
+uma aparência bruta 
+mas com um coração 
+que é ouro puro.
+Em cenários com 
+tecnologia avançada ele 
+é um técnico. Em jogos de 
+fantasia, ele geralmente 
+é um cavaleiro ou um 
+guerreiro do mesmo tipo.
+COMPLICAÇÕES
+Complicações são falhas e/ou deficiências 
+físicas do personagem, tornando 
+ocasionalmente a vida do seu herói um 
+pouco mais dura.
+Algumas complicações têm efeito direto 
+em jogo. Outras são Complicações de 
+interpretação mais subjetivas que te ajudam 
+a compreender e a interpretar melhor seu 
+personagem. Elas ocasionalmente devem 
+fazer com que ele aja de maneiras que não são 
+necessariamente inteligentes, ou apropriadas aos interesses do grupo ou o objetivo geral. 
+É disso que se tratam os RPGs! E quando as 
+Complicações de um personagem causarem 
+problemas significativos o Mestre deve 
+recompensá-lo com Benes.
+ALMOFADINHA (MENOR)
+Seu personagem é um frangote que não 
+parece nada ameaçador. Talvez ele soe 
+meio molenga, tenha feições gentis ou uma 
+voz suave. Seja qual for a razão, ele tem 
+dificuldade em parecer durão. Ele subtrai 2 
+quando faz rolagens de Intimidar.
+ANALFABETO (MENOR)
+Seu herói não sabe ler. Ele provavelmente 
+pode assinar seu nome e sabe o significado 
+de um sinal de PARE, mas não pode fazer 
+muito mais que isso. Também não sabe 
+muito sobre matemática. Provavelmente 
+ele consegue efetuar 2 + 2 = 4, mas 
+multiplicações e similares estão além da sua 
+capacidade.
+A propósito, analfabetos não podem ler ou 
+escrever em nenhum idioma, não importa 
+quantos eles realmente falem.
+ANÊMICO (MENOR)
+Um personagem anêmico é particularmente 
+suscetível a infecções, doenças, efeitos 
+ambientais e fadiga. Ele subtrai 2 de todos 
+os testes de Vigor feitos para resistir a Fadiga 
+(veja Perigos , começando na pág. 142).
+ARROGANTE (MAIOR)
+Seu herói não acha que é o melhor, ele 
+sabe que é. Seja no que for – esgrima, kung 
+fu, pintura – poucos se comparam às 
+suas habilidades e ele ostenta isso a cada 
+oportunidade que tem.
+Só vencer não é o bastante para o seu 
+herói. Ele precisa dominar completamente o 
+seu oponente e provar que não há ninguém 
+melhor do que ele. É o tipo de homem que 
+desarma um oponente em um duelo só para 
+poder pegar a sua espada e devolvê-la com 
+um sorriso desdenhoso. Heróis arrogantes 
+sempre procuram pela maior ameaçam em 
+batalha, atacando lacaios menores apenas se 
+ficarem em seu caminho.

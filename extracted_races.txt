@@ -1,0 +1,972 @@
+
+--- PAGE 15 ---
+SAVAGE WORLDS
+14
+14
+AVIANO
+Avianos são humanoides com asas. Eles 
+tendem a ser bem leves devido a seus ossos 
+ocos. Alguns têm penas enquanto outros são 
+coriáceos ou até mesmo escamosos.
+FRÁGIL:  Avianos têm Resistência −1 
+devido a seus ossos ocos.
+MOVIMENTAÇÃO REDUZIDA:  
+Dependência de voo e asas pesadas 
+tornam os avianos um pouco mais 
+lentos ao andar. Reduza 1 quadro da sua 
+Movimentação andando e seu dado de 
+corrida em um tipo. 
+NÃO SABE NADAR:  Colocar as asas 
+dentro da água é um risco para os Avianos. 
+Eles subtraem 2 das rolagens de Atletismo 
+(natação) e cada quadro que se movem na 
+água custa 3 quadros de Movimentação.
+ SENTIDOS AGUÇADOS:  Avianos são 
+mais perspicazes do que a maioria das 
+raças. Começam com um d6 em Perceber 
+(em vez de um d4) e podem aumentar a 
+perícia até d12 + 1.
+VOO:  Avianos voam com uma 
+Movimentação de 12 quadros por rodada. 
+Use Atletismo ao realizar manobras.AQUARIANO
+O povo aquático vem das profundezas 
+esmagadoras do oceano. Eles são fortes 
+e resistentes debaixo das ondas, mas 
+geralmente são vulneráveis ao ar livre ou ao 
+calor abrasador da superfície.
+ AQUÁTICO:  Aquarianos não podem 
+se afogar na água e se movem com sua 
+Movimentação completa quando estão 
+nadando. Veja Movimento  na pág. 107 
+para velocidades normais de natação.
+ DEPENDÊNCIA:  Aquarianos devem 
+permanecer imersos em água por uma 
+hora a cada 24 ou recebem um nível 
+de Fadiga a cada dia até que fiquem 
+Incapacitados. No dia seguinte à 
+Incapacitação por desidratação, eles 
+morrem. A cada hora dentro d’água um 
+nível de fadiga é restaurado.
+ RESISTÊNCIA:  A vida nas profundezas 
+de seus mundos aquáticos fez com que a 
+pele dos aquarianos se tornasse dura e 
+resistente. Adicione +1 a sua Resistência.
+ VISÃO NO ESCURO:  Aquarianos 
+estão acostumados com a escuridão das 
+profundezas. ignorando penalidades por 
+Penumbra e Escuridão.
+--- PAGE 16 ---
+15
+15
+CAP
+1
+ELFOS 
+Elfos são seres altos e esguios com orelhas 
+pontudas e olhos profundos de cores 
+variadas. Sejam vindos de florestas ou vales 
+ocultos, todos nascem mais graciosos que os 
+humanos, embora um pouco mais esguios. A 
+maioria vive mais de 300 anos. Possuem pele 
+clara e seus cabelos incluem todas as cores 
+humanas, além de tons de prata e azul.
+ÁGIL:  Elfos são graciosos e ágeis. Eles 
+começam com um d6 em Agilidade em 
+vez de um d4. Isso aumenta a Agilidade 
+máxima para d12 + 1.
+DESASTRADO:  Elfos têm uma aversão 
+inata a objetos mecânicos e por isto 
+possuem a Complicação Desastrado. Eles 
+evitam a maioria dos modelos e itens 
+mecânicos.
+ VISÃO NO ESCURO:  Os olhos dos Elfos 
+ampliam a luz de tal forma que outras 
+raças alegam que podem ver estrelas nos 
+olhos dos elfos. Elfos ignoram penalidades 
+por Penumbra e Escuridão.MEIO-ELFOS
+Meio-Elfos ganham a graça dos elfos, mas 
+sem a sua fragilidade elegante. A maioria 
+é bem aceita, mas alguns são rejeitados 
+por um lado ou outro de sua família e 
+crescem ressentidos. Outros podem até 
+mesmo ser maltratados. Sua expectativa 
+de vida é mais próxima da de seu parente 
+humano que de sua parte élfica, vivendo 
+cerca de 100 anos.
+ FORASTEIRO ( Menor):  Meios-elfos 
+nunca ficam confortáveis na sociedade 
+humana ou na élfica, tendo um pé em cada 
+um dos mundos, mas nunca pertencendo 
+de fato a nenhum deles. Eles subtraem 
+2 de rolagens de Persuadir com todos 
+menos os de sua própria raça.
+ HERANÇA:  Meio-elfos retêm a graça 
+dos seus pais élficos ou a adaptabilidade 
+de seu ancestral humano. Um meio-elfo 
+pode começar com uma Vantagem em 
+Estágio Novato gratuita de sua escolha 
+ou um d6 em Agilidade em vez de um d4 
+(o que também aumenta sua Agilidade 
+máxima para d12+1).
+ VISÃO NO ESCURO:  Meio-elfos 
+ignoram penalidades por Penumbra e 
+Escuridão.
+--- PAGE 17 ---
+SAVAGE WORLDS
+16
+16
+HUMANOS
+Em muitos cenários os humanos recebem 
+uma Vantagem gratuita à sua escolha. 
+Esta opção reflete a sua versatilidade 
+e adaptabilidade em comparação a 
+outras raças.
+Para uma maior variedade, o Mestre 
+também pode conceder habilidades 
+humanas baseadas na cultura em vez 
+da raça. Por exemplo, uma sociedade 
+nômade que usa cavalos poderia começar 
+com pontos em Cavalgar e Sobrevivência. 
+Modelos culturais são desenvolvidos 
+da mesma forma que a criação de novas 
+raças, mas os Mestres devem permitir 
+mais exceções do que o habitual já que 
+habilidades tendem a ser aprendidas e não 
+inatas de fato.
+ ADAPTÁVEL:  Humanos começam com 
+qualquer Vantagem de nível Novato a 
+sua escolha. Eles devem atender aos 
+Requisitos da Vantagem normalmente.
+QUEBRANDO PARADIGMAS
+Os arquétipos raciais apresentados aqui são icônicos conforme sua aparição 
+habitual em fantasia e ficção científica, mas jogadores e Mestres devem se sentir 
+livres para romper com os padrões conforme lhes pareça apropriado ao seu 
+cenário em particular.
+Talvez o rakashanos no seu mundo tenham asas. Ou os aquarianos sejam canibais 
+primitivos com oito braços que caçam raças mais desenvolvidas em um mundo 
+aquático pós-apocalíptico.
+Você também pode criar versões diferentes das mesmas raças. Talvez os 
+rakashanos de uma área tenham evoluído para resistir ao frio (eles se parecem mais 
+com leopardos das neves), enquanto outros vieram dos guepardos (e possu em 
+Ligeiro como habilidade racial). O limite fica apenas na sua imaginação e desejo 
+de criar algo novo e incomum!
+--- PAGE 18 ---
+17
+17
+CAP
+1
+RAKASHANOS
+Rakashanos são felinos humanóides. Alguns 
+têm as cores brilhantes dos tigres, a pele 
+manchada dos leopardos ou a aparência 
+exótica dos gatos siameses. Possuem garras 
+e presas afiadas e uma natureza cruel ao 
+lidar com sua presa.
+Eles podem ser encontrados em suas 
+próprias cidades exóticas e remotas ou como 
+elementos marginais da sociedade normal. 
+Embora sejam belos demais para serem 
+rejeitados, são também muito estranhos 
+para ganharem a confiança dos outros.
+ ÁGIL:  A graça felina concede aos 
+rakashanos um d6 em Agilidade em 
+vez de um d4. Isso aumenta a Agilidade 
+máxima para d12 + 1.
+ INIMIGO RACIAL:  A sociedade 
+Rakashana cresceu em detrimento de 
+outra. Escolha uma raça comum em PEQUENINOS
+Pequeninos são seres baixos e ágeis com 
+cabelos ondulados castanhos ou negros. 
+Mesmo sendo frágeis em comparação à 
+demais raças, seu otimismo entusiástico (ou 
+astúcia ardilosa) os concede uma atitude 
+de “nunca diga nunca”, tornando-os 
+adversários a altura mesmo para criaturas 
+com o dobro de seu tamanho. Eles não veem 
+razão para atrair problemas e tendem a viver 
+em suas pequenas comunidades afastadas 
+dos caminhos mais usados.
+ ESPIRITUOSO:  Pequeninos normal -
+mente são seres otimistas. Eles começam 
+com um d6 em Espírito em vez de um 
+d4. Isso aumenta o Espírito máximo para 
+d12 + 1.
+ MOVIMENTAÇÃO REDUZIDA:  
+Reduza 1 quadro da sua Movimentação 
+andando e seu dado de corrida em um tipo.
+ SORTE:  Pequeninos sacam um Bene 
+adicional por sessão de jogo.
+ TAMANHO -1:  Pequeninos medem 
+cerca de um metro de altura, reduzindo 
+seu Tamanho (e também sua Resistência) 
+em 1.
+--- PAGE 19 ---
+SAVAGE WORLDS
+18
+18
+"Eu conheço um 
+cientista louco que é 
+um homem-lagarto 
+e uma garota 
+felina pacifista e 
+vegetariana. Não 
+julgue um livro pela 
+capa, amigo, ou um 
+homem-leopardo 
+por suas pintas."
+— Red FORASTEIRO ( Menor):  A maioria das 
+raças desconfia dos sáurios por alguma 
+razão. Talvez sejam seus modos e costumes 
+estranhos, sua fala geralmente sibilante 
+ou um medo antigo subconsciente dos 
+ancestrais reptilianos. Sáurios subtraem 
+2 de rolagens de Persuadir com todos 
+menos os de sua própria raça.
+ FRAQUEZA AMBIENTAL:  Embora 
+não sejam verdadeiramente de sangue 
+frio não são bem adaptados às condições 
+de clima frio. Eles sofrem uma penalidade 
+de -4 para resistir aos efeitos ambientais 
+do frio e recebem +4 de dano por ataques 
+baseados em frio.
+ MORDIDA:  As presas de um sáurio são 
+Armas Naturais  (pág. 115) e causam Força 
++d4 de dano.
+ SENTIDOS AGUÇADOS:  Sáurios têm 
+sentidos aguçados, ganhando a Vantagem 
+Prontidão.seu cenário. Membros de cada cultura 
+subtraem 2 de Persuadir quando lidam 
+uns com os outros e geralmente se atacam 
+à primeira vista.
+ MORDIDA/GARRAS:  As garras e 
+presas de um rakashano são  Armas 
+Naturais  (pág. 115) e causam Força +d4 
+de dano.
+ NÃO SABE NADAR:  Rakashanos até 
+podem nadar, eles apenas evitam e não 
+são particularmente bons nisso. Eles 
+subtraem 2 das rolagens de Atletismo 
+(natação) e cada quadro que se movem na 
+água custa 3 quadros de Movimentação.
+ SANGUINÁRIO:  Rakashanos podem ser 
+cruéis com seus inimigos, muitas vezes 
+brincando com eles por pura diversão. 
+Eles raramente fazem prisioneiros e 
+sentem pouco remorso a respeito de 
+inimigos capturados.
+ VISÃO NO ESCURO:  Os olhos 
+Rakashanos captam melhor a 
+luminosidade, ignorando penalidades por 
+Penumbra e Escuridão.
+SÁURIOS
+Homens-lagarto normalmente vêm de 
+selvas escaldantes ou de desertos ermos 
+onde possuem civilizações únicas que são 
+desconhecidas por outras raças sencientes.
+ ARMADURA +2:  Sáurios têm uma 
+pele escamosa que funciona como uma 
+armadura de couro. 
+--- PAGE 20 ---
+19
+19
+CAP
+1
+CRIANDO RAÇAS
+Mestres de Jogo e jogadores que desejem criar suas próprias raças (ou arquétipos culturais) 
+podem usar o sistema abaixo. Nossas raças são criadas com as seguintes regras:
+• Raças e culturas começam com 2 pontos de Habilidades Raciais Positivas. Habilidades 
+positivas adicionais devem ser balanceadas com um valor igual de habilidades negativas. 
+Por exemplo, uma habilidade +2 pode ser balanceada por uma única habilidade -2 ou 
+duas −1.
+• Se você desejar incluir uma habilidade que nós não incluímos aqui, simplesmente atribua 
+um valor baseado nos exemplos abaixo.
+Nomes:  Não tenha medo em renomear as habilidades para dar ao seu cenário algum 
+tempero. Se você quiser que os cavaleiros nômades tenham Cavalgar em d6, por exemplo, 
+pode chamar de Nascido na Sela. Trata-se de criar um bo m clima em vez de listas de 
+habilidades que seus jogadores devem se manter a par.
+VALOR HABILIDADE
+O número em parênteses após o nome de cada entrada representa o número de vezes que 
+essa habilidade em especial pode ser assumida. “S” significa sem limite.
+3Ação Adicional (1): O ser tem apêndices adicionais, reflexos melhorados ou uma 
+coordenação óculo-manual excepcional. Ele pode ignorar 2 pontos de penalidades 
+por Ações Múltiplas a cada turno.
+2Adaptável (1):  A raça é bem variada entre seu povo e cultura. Personagens começam 
+com uma Vantagem de nível Novato de sua escolha (e devem preencher todos os 
+requisitos).
+1Alcance (3): Tentáculos ou outros tipos de membros alongados. concedem Alcance 
++1 à criatura (adicione +1 cada vez que for escolhida depois da primeira).
+1Andar Pelas Paredes (1):  A espécie pode andar em superfícies verticais 
+normalmente, ou em superfícies invertidas com metade do deslocamento.
+1Aparar (3): O Aparar natural da criatura é aumentado em +1. Isso pode ser devido a 
+uma cauda preênsil, membros extras, reflexos aprimorados ou mesmo um sentido 
+psiônico latente.
+1/2Aquático/Semi-Aquático (1): Por um ponto o personagem é semi-aquático e pode 
+prender a respiração por 15 minutos antes de testes de afogamento. Por dois, ele é 
+um nativo da água. Ele não pode se afogar em líquido oxigenado e se move com sua 
+Movimentação completa quando nada (veja Movimento, pág. 107).
+1Armadura (3): A espécie tem uma pele grossa ou é incrustada por materiais 
+sólidos como placas ou até mesmo rocha. Isso garante Armadura +2 cada vez que 
+é comprada.
+2Aumento de Atributo (S): Durante a criação de personagem, a espécie aumenta 
+um atributo específico (Agilidade, Astúcia, Espírito, Força ou Vigor) em um tipo 
+de dado. Isso também aumenta o máximo da Característica em um.
+2Bônus de Perícia (1/Perícia): Por 2 pontos, o personagem tem um bônus de +2 
+quando usa uma perícia específica (isso só pode ser comprado uma vez por perícia).HABILIDADES RACIAIS POSITIVAS
+--- PAGE 21 ---
+SAVAGE WORLDS
+20
+20
+VALOR HABILIDADE
+1Cavar (1): A espécie pode se enterrar e se mover sob a terra comum com a metade 
+de sua Movimentação (não pode correr). Ele normalmente não pode ser atacado 
+enquanto está cavando. E pode tentar surpreender oponentes que não o vejam 
+chegando através de uma rolagem resistida de Furtividade contra Perceber. Se bem-
+sucedido, o cavador adiciona +2 no ataque e no dano naquela rodada, ou +4 com 
+uma ampliação (ele obtém A Finalização, pág. 122).
+1/2Chifres (1): O ser tem um chifre, ou chifres, que causam For+d4 de dano (ou For+d6 
+por 2 pontos). Veja Armas Naturais, pág. 115, para mais informações.
+8Construto (1): Construtos são seres artificiais feitos de material inorgânico. Eles 
+adicionam +2 para se recuperar do Estado de Abalado, ignoram um nível de 
+modificadores de Ferimento, não respiram e são imunes a doenças e venenos. 
+Ferimentos devem ser reparados com a perícia Consertar. Cada tentativa leva uma 
+hora por nível atual de Ferimento e ignora a "Hora de Ouro". Muitos construtos 
+possuem a Habilidade Racial Negativa Dependência (refletindo sua necessidade 
+de uma fonte de energia).
+2/3/4Garras (1): Ao custo de 2 pontos a raça tem garras que causam Força +d4 de dano. 
+Mais um ponto pode ser gasto para aumentar seu dano para Força +d6, e/ou outro 
+para adicionar PA 2. Veja Armas Naturais,pág. 115 para mais informações.
+1Imune a Doenças e Venenos (2):  A espécie é imune a doenças ou venenos (você 
+escolhe). Pode ser comprado duas vezes para ambos os efeitos.
+1Infravisão (1): A criatura “vê” calor, seja através dos olhos ou outro órgão sensorial. 
+Isso diminui à metade penalidades por Iluminação quando se ataca alvos quentes 
+(incluindo seres invisíveis).
+1Mordida (1): A raça tem presas que causam Força +d4 de dano. Veja Armas 
+Naturais, pág. 115 para mais informações.
+2Movimentação (2):  A Movimentação do personagem aumenta em +2 e seu dado 
+de corrida aumenta em um tipo.
+2Não Respira (1): A espécie não respira. Os indivíduos não são afetados por toxinas 
+inaladas, não se afogam e não sufocam no vácuo (Entretanto, eles ainda podem 
+congelar).
+1/2Perícia (1/Perícia): O personagem começa com um d4 em uma perícia inerente a sua 
+raça. Por 2 pontos (ou 1 se já é uma perícia básica), ela começa em d6 e o máximo 
+da perícia aumenta para d12+1.
+2/1Poder (S): A raça tem uma habilidade inata que funciona como um poder (veja pág. 
+177). Por 2 pontos, ela tem o Antecedente Arcano (Dom) e um poder que reflete sua 
+habilidade incomum. Cada vez que é escolhida depois da primeira custa 1 ponto 
+e concede outro poder. Ela não aumenta os Pontos de Poder—use a vantagem 
+Pontos de Poder para isso.
+1Redução de Sono (2): O ser precisa de metade do tempo de sono normal. Se 
+comprado uma segunda vez,ele nunca dorme.
+2/3Regeneração (1): O ser cura dano rapidamente. Ele pode fazer uma rolagem de 
+Cura natural uma vez por dia (em vez de uma vez por semana). Por 3 pontos, 
+lesões permanentes podem ser recuperadas quando todos os Ferimentos forem 
+regenerados. Trate a lesão como um Ferimento adicional para propósitos de 
+recuperação (pode-se tentar recuperá-la uma vez por semana).
+1Resistência (3): O personagem possui pele endurecida, escamas ou tecido 
+extremamente denso que aumenta sua Resistência em +1 .
+--- PAGE 22 ---
+21
+21
+CAP
+1
+VALOR HABILIDADE
+1Resistência Ambiental (S): A espécie recebe um bônus de +4 para resistir a um 
+único efeito ambiental negativo como calor, frio, falta de ar, radiação etc. Dano 
+dessa fonte é reduzido em 4.
+2 Robusto (1): Um segundo Resultado Abalado não causa Ferimento.
+2Saltador (1): O personagem pode pular o dobro da distância listada em 
+Movimento, pág. 107. Além disso, ele adiciona +4 ao dano quando salta como 
+parte de um Ataque Selvagem em vez do +2 habitual (a menos que esteja em 
+um ambiente fechado ou confinado onde ele não possa saltar verticalmente ou 
+horizontalmente—critério do Mestre).
+1Sem Órgãos Vitais (1): Essas espécies possuem órgãos vitais escondidos, 
+extremamente resistentes ou redundantes. Ataques Localizados não provocam 
+dano extra contra eles.
+2+XSuper Poderes (1): A raça tem habilidades realmente extraordinárias tiradas do 
+Compêndio de Super Poderes do Savage Worlds. O custo é 2—pelo Antecedente 
+Arcano (Super Poderes)—mais o custo do poder selecionado (X). Tenha certeza de 
+ter a permissão do Mestre antes de escolher esta habilidade poderosa.
+1Tamanho +1 (3): A criatura é maior do que o normal. Cada ponto de Tamanho 
+soma diretamente na Resistência e aumenta a Força máxima em um nível. Espécies 
+grandes podem ter dificuldade em usar equipamentos desenvolvidos para 
+humanoides de tamanho comum. Veja pág. 127 para mais sobre Tamanho.
+1/3Toque Venenoso (1): Com um Ataque de Toque (pág. 115), mordida ou garra, bem-
+sucedido, a vítima deve rolar Vigor ou sofre os efeitos de um Veneno Moderado. 
+Por 3 pontos o veneno pode ser aprimorado para Nocauteador, Letal ou Paralisante, 
+mas cada uso provoca Fadiga no herói. O personagem sempre pode escolher usar 
+ou não seu toque venenoso. Veja pág. 147 para Veneno e seus efeitos.
+2+XVantagem (S): Todos os membros desta raça têm a mesma Vantagem inata, escolha 
+dentre aquelas disponíveis no cenário. Diferente de Adaptável, esta habilidade 
+ignora os Requisitos, exceto outras Vantagens. Cada Estágio além do Novato custa 
+um ponto adicional até um máximo do Estágio Heróico (5).
+1Visão No Escuro (1): O ser ignora penalidades por Penumbra e Escuridão (mas não 
+por Escuro Como um Breu).
+2/4/6Voo (1): A espécie pode voar com Movimentação 6 (ou 12 por 4 pontos) e "correr" 
+para ter movimento extra como de costume. Por 6 pontos a criatura pode voar com 
+Movimentação 24 e "correr" por mais 2d6 de movimento adicional. Manobrar usa 
+a perícia Atletismo. Voo racial pressupõe algum tipo de asa que pode ser mirada ou 
+danificada (um personagem que está Preso ou Enredado não pode voar).
+--- PAGE 23 ---
+SAVAGE WORLDS
+22
+22VALOR HABILIDADE
+−1Aparar Baixo (3): Estes seres são péssimos se defendendo em combate corpo a corpo; 
+Aparar -1.
+−1/–2Complicação (S): A raça tem uma complicação inerente, ela é Menor por 1 ponto ou 
+Maior por 2. Isso não afeta a habilidade de escolher outras Complicações durante a 
+criação de personagem.
+–2Dependência (1): A criatura deve consumir ou ter contato com algum tipo 
+de substância relativamente comum por uma hora a cada 24 horas. Criaturas 
+de mundos aquáticos, por exemplo, podem precisar ser imersos em água; 
+povo planta pode precisar de luz do sol. Se não tiver o contato necessário, 
+um personagem recebe automaticamente um nível de Fadiga por dia até 
+ficar Incapacitado. No dia seguinte à Incapacitação, eles morrem. Cada hora 
+gasta se recuperando na substância apropriada restaura um nível de Fadiga .
+−1 Frágil (2):  A criatura é menos resistente do que a maioria. Reduza sua Resistência em 1.
+−1Fraqueza Ambiental (S):  A raça sofre uma penalidade de -4 para resistir a um efeito 
+ambiental específico, tais como calor, frio etc. Se o ser sofre um ataque baseado nessa 
+forma, a penalidade age como um bônus de dano.
+−1Inimigo Racial (S):  A espécie não gosta de outra espécie relativamente comum 
+no cenário. Eles sofrem uma penalidade de -2 em rolagens de Persuadir quando 
+lidam com seus rivais e podem ficar hostis com pouca provocação. Isso só pode ser 
+comprado uma vez por raça.
+−1/–2Movimentação Reduzida (1): Para cada -1 ponto, reduza 1 quadro da sua 
+Movimentação andando e seu dado de corrida em um tipo. Caso seu dado de corrida 
+já seja um d4, ele é reduzido para d4 -1. Por -2 pontos, reduza a Movimentação em 
+outros 2 pontos e subtraia 2 de rolagens de Atletismo onde movimento e mobilidade 
+são parte do desafio (Critério do Mestre).
+−1Não Fala (1): A raça não tem cordas vocais ou por qualquer outro motivo não pode 
+formar os sons comuns feitos pela maioria das raças. Ele pode se comunicar com 
+membros de sua própria raça normalmente (talvez através de música, feromônios, 
+linguagem corporal etc). Outras raças não podem falar seu "idioma" mas podem 
+compreendê-lo se adquirirem a perícia de Idioma apropriada. Entretanto, a espécie 
+pode escutar e entender outros idiomas comuns e se comunicar através de dispositivos.
+–2/–3Penalidade em Atributo (Uma vez por Atributo): Um Atributo (mas não suas 
+perícias associadas) sofre uma penalidade de -1. Por 3 pontos, ele sofre uma 
+penalidade de -2.
+−1/–2Penalidade em Perícia (Uma vez por Perícia): A raça sofre uma penalidade de -1 para 
+uma perícia muito comum como Lutar, Persuadir, ou até mesmo Pilotar em um jogo 
+focado em aviação (o Mestre decide baseado em sua cam panha). Caso a perícia seja 
+incomum ou apenas seja utilizada em determinadas ocasiões, a penalidade é de -2. Por 
+2 pontos, a penalidade é de -2 em perícias comuns ou -4 para perícias pouco usadas.
+−1Perícias Básicas Reduzidas (5): A raça começa com uma perícia básica a menos. A 
+perícia pode ser adquirida normalmente, mas não começa o jogo com um d4. Isso 
+pode ser escolhido uma vez por perícia básica afetada.
+−1Tamanho -1 (1): A entidade é menor que o normal, reduzindo seu Tamanho e 
+Resistência em 1 (veja a Tabela de Tamanho, pág. 216).
+–2Volumoso (1): A raça é particularmente grande em um mundo onde a maioria das 
+outras raças não é. Ele subtrai 2 de rolagens de Característica quando  usa equipamento 
+que não foi especificamente projetado para sua raça e não pode usar armaduras ou 
+roupas. Equipamento, comida e roupas custam o dobro do preço listado.HABILIDADES RACIAIS NEGATIVAS
+--- PAGE 24 ---
+23
+23
+CAP
+1
+"Ainda não tô pronta 
+pra ser um anjo, mas eu 
+quero jogar isso!"
+— RedCELESTIAIS E GUARDIÕES
+Emília está criando uma campanha de "Fim dos Dias" — anjos e seus campeões lutam contra forças 
+demoníacas em um planeta Terra devastado. Ela decide que todos os personagens são celestiais 
+(anjos) ou guardiões (humanos), e terão +4 pontos em habilidades raciais em vez do +2 habitual.
+Ela quer que seus anjos sejam bastante icônicos. Eles são fortes, têm asas e podem invocar milagres. 
+Elá dá a eles Voo por 4 pontos, Antecedente Arcano (Milagres) por 2 pontos e Fé em d6 por 2 pontos. 
+São 8 pontos e ela precisa reduzir para +4, então ela precisa de 4 pontos de habilidades raciais 
+negativas. Celestiais são responsáveis pelos oprimidos e devem combater as legiões do inferno, então 
+ela dá a eles Voto (Maior: Proteger a humanidade) por -2 pontos e Inimigo Racial (Demônios e Diabos) 
+por -1 ponto. Ela encerra com Desastrado por -1, Emília acha que anjos não devem entender bem de 
+tecnologia.
+Os guardiões de Emília são campeões humanos que combatem os "Infernais". Eles são humanos, 
+então começam com Adaptável por 2 pontos. Eles também são sobreviventes calejados do Fim do s 
+Tempos, então recebem o Aumento de Atributo (Vigor) por outros dois pontos. Emília então atribui a 
+Vantagem Campeão por 2 pontos já que eles servem aos celestiais e o mesmo Voto (Maior: Proteger a 
+humanidade) por -2 pontos para equilibrar tudo em +4. Note que Emilia optou por não usar o +2 habitual.
+CELESTIAIS
+Anjos são uma espécie bastante variada, mas todos têm essas características em comum.
+ DESASTRADO:  Celestiais não estão acostumados com tecnologia ou máquinas.
+ ANTECEDENTE ARCANO ( Milagres):  Celestiais podem invocar uma grande variedade de 
+milagres.
+ FÉ: Todos os celestiais começam com um d6 em Fé. Isso aumenta seu máximo para d12 + 1.
+ VOO:  Anjos voam com Movimentação 12.
+ INIMIGO RACIAL (Demônios e Diabos ): Aqueles que vêm de cima não toleram facilmente 
+os saídos do abismo.
+ VOTO ( Maior:  Proteger a humanidade) : Os abençoados devem 
+proteger o rebanho que resta na Terra devastada.
+GUARDIÕES
+Humanos que servem ao Coro Celestial são chamados de 
+guardiões.
+ ADAPTÁVEL:  Guardiões começam o jogo com uma 
+Vantagem Novato de sua escolha (os Requisitos da 
+Vantagem devem ser atendidos normalmente).
+ CAMPEÕES:  Guardiões possuem a Vantagem 
+Campeão dando a eles um bônus de +2 em dano 
+contra forças malignas sobrenaturais como 
+demônios e diabos.
+ VIGOROSO:  Humanos que herdaram esta Terra 
+devastada começam o jogo com um D6 em Vigor em 
+vez de um d4. Isso aumenta seu Vigor máximo para 
+d12 + 1.
+ VOTO ( Maior:  Proteger a humanidade) : Os 
+abençoados devem proteger o rebanho que resta 
+na Terra devastada.
+--- PAGE 25 ---
+SAVAGE WORLDS
+24
+24
+Gabe
+Natan sempre joga com 
+"Gabe" , um cara durão 
+e pragmático com 
+uma aparência bruta 
+mas com um coração 
+que é ouro puro.
+Em cenários com 
+tecnologia avançada ele 
+é um técnico. Em jogos de 
+fantasia, ele geralmente 
+é um cavaleiro ou um 
+guerreiro do mesmo tipo.
+COMPLICAÇÕES
+Complicações são falhas e/ou deficiências 
+físicas do personagem, tornando 
+ocasionalmente a vida do seu herói um 
+pouco mais dura.
+Algumas complicações têm efeito direto 
+em jogo. Outras são Complicações de 
+interpretação mais subjetivas que te ajudam 
+a compreender e a interpretar melhor seu 
+personagem. Elas ocasionalmente devem 
+fazer com que ele aja de maneiras que não são 
+necessariamente inteligentes, ou apropriadas aos interesses do grupo ou o objetivo geral. 
+É disso que se tratam os RPGs! E quando as 
+Complicações de um personagem causarem 
+problemas significativos o Mestre deve 
+recompensá-lo com Benes.
+ALMOFADINHA (MENOR)
+Seu personagem é um frangote que não 
+parece nada ameaçador. Talvez ele soe 
+meio molenga, tenha feições gentis ou uma 
+voz suave. Seja qual for a razão, ele tem 
+dificuldade em parecer durão. Ele subtrai 2 
+quando faz rolagens de Intimidar.
+ANALFABETO (MENOR)
+Seu herói não sabe ler. Ele provavelmente 
+pode assinar seu nome e sabe o significado 
+de um sinal de PARE, mas não pode fazer 
+muito mais que isso. Também não sabe 
+muito sobre matemática. Provavelmente 
+ele consegue efetuar 2 + 2 = 4, mas 
+multiplicações e similares estão além da sua 
+capacidade.
+A propósito, analfabetos não podem ler ou 
+escrever em nenhum idioma, não importa 
+quantos eles realmente falem.
+ANÊMICO (MENOR)
+Um personagem anêmico é particularmente 
+suscetível a infecções, doenças, efeitos 
+ambientais e fadiga. Ele subtrai 2 de todos 
+os testes de Vigor feitos para resistir a Fadiga 
+(veja Perigos , começando na pág. 142).
+ARROGANTE (MAIOR)
+Seu herói não acha que é o melhor, ele 
+sabe que é. Seja no que for – esgrima, kung 
+fu, pintura – poucos se comparam às 
+suas habilidades e ele ostenta isso a cada 
+oportunidade que tem.
+Só vencer não é o bastante para o seu 
+herói. Ele precisa dominar completamente o 
+seu oponente e provar que não há ninguém 
+melhor do que ele. É o tipo de homem que 
+desarma um oponente em um duelo só para 
+poder pegar a sua espada e devolvê-la com 
+um sorriso desdenhoso. Heróis arrogantes 
+sempre procuram pela maior ameaçam em 
+batalha, atacando lacaios menores apenas se 
+ficarem em seu caminho.
+--- PAGE 26 ---
+25
+25
+CAP
+1ATRAPALHADO (MAIOR)
+Seu personagem é um trapalhão sem 
+coordenação que tropeça sozinho e é sempre 
+o último a ser escolhido nos esportes. Ele 
+subtrai 2 em rolagens de Atletismo e 
+Furtividade.
+BOCA GRANDE (MENOR)
+Como diz o ditado, quem fala demais 
+dá bom dia a cavalo. Esse herói poderia 
+cumprimentar uma cavalaria inteira.
+O falastrão não consegue guardar 
+um segredo muito bem. Ele revela os 
+planos e deixa escapar os segredos mais 
+bem guardados entre os amigos. E isso 
+geralmente ocorre nos piores momentos 
+possíveis.
+CAUTELOSO (MENOR)
+Este personagem personifica a moderação 
+e a precaução. Ele nunca toma decisões 
+precipitadas e gosta de planejar tudo em 
+mínimos detalhes antes que qualquer ação 
+seja tomada.
+CEGO (MAIOR)
+O indivíduo é completamente cego. Ele sofre 
+−6 em todas as tarefas físicas dependentes da 
+visão (a critério do Mestre). Por outro lado, 
+personagens Cegos ganham uma Vantagem 
+gratuita a sua escolha para compensar esta 
+Complicação particularmente difícil.
+CÓDIGO DE HONRA (MAIOR)
+Honra é muito importante para o seu 
+personagem. Ele mantém sua palavra, não 
+abusa ou mata prisioneiros e geralmente tenta 
+operar dentro do comportamento adequado 
+para um cavalheiro ou dama segundo as 
+noções particulares de seu mundo.
+COVARDE (MAIOR)
+Nem todos têm sangue frio. Seu herói fica 
+enjoado quando vê sangue ou vísceras e fica 
+apavorado de se ferir. Ele subtrai 2 de testes 
+de Medo e quando resiste à Intimidação.
+CURIOSO (MAIOR)
+A curiosidade matou o gato e também pode 
+matar seu herói. Personagens curiosos têm 
+de checar tudo e sempre querem saber o que há por trás de um mistério ou segredo em 
+potencial.
+DEFICIENTE AUDITIVO 
+(MENOR OU MAIOR)
+Personagens que perderam parte ou toda a 
+sua audição têm esta desvantagem. Como 
+uma Complicação Menor, ela subtrai 4 de 
+todas as rolagens de Perceber feitas para 
+ouvir, incluindo acordar devido a ruídos 
+altos. Uma Complicação maior significa que 
+o personagem é surdo. Ele não pode ouvir e 
+falha automaticamente em todas as rolagens 
+de Perceber dependentes da audição.
+Aparelhos auditivos reduzem a 
+penalidade para 2, mas precisam de baterias 
+e têm 50% de chance de caírem quando ele 
+for Ferido, sofrer uma queda ou algum outro 
+tipo de trauma.
+DELIRANTE (MENOR OU MAIOR)
+Seu herói acredita em algo considerado 
+muito estranho por todos os outros. Delírios 
+Menores são inofensivos ou o personagem 
+normalmente os guarda para si mesmo (o 
+governo colocou sedativos em refrigerantes, 
+cães podem falar, todos nós somos apenas 
+personagens de algum jogo bizarro etc.).
+Com Delírios Maiores, ele frequentemente 
+expressa seu ponto de vista sobre a situação 
+e isso pode eventualmente levá-lo ao perigo 
+(o governo é comandado por alienígenas, 
+os hospitais são mortais, eu sou alérgico a 
+armaduras, zumbis são meus amigos).
+DESAGRADÁVEL (MENOR)
+Este camarada é mal-humorado e 
+desagradável. Ele tem problemas para 
+fazer qualquer tipo de ato caridoso a 
+qualquer pessoa e acredita que deve ser 
+pago pelos seus esforços, mas não aceita 
+favores ou premiações graciosamente. 
+Além das questões óbvias de interpretação, 
+personagens Desagradáveis subtraem 1 das 
+rolagens de Persuadir.
+DESASTRADO (MENOR)
+Devido a criação, falta de exposição ou 
+puramente má sorte, alguns indivíduos são 
+“desastrados” quando se trata de lidar com 
+dispositivos mecânicos ou tecnológicos.
+--- PAGE 27 ---
+SAVAGE WORLDS
+26
+26Desastrado inflige uma penalidade de 
+−2 quando se usa dispositivos elétricos ou 
+mecânicos. Se a rolagem for uma Falha 
+Crítica ao usar um dispositivo (caso o 
+dispositivo não preveja uma consequência 
+contra isso), ele quebra. Se o Mestre 
+considerar apropriado, pode ser consertado 
+com uma rolagem de Consertar e 1d6 horas.
+DESCONFIADO (MENOR OU MAIOR)
+Seu personagem desconfia de todo mundo. 
+Como uma Complicação Menor sua 
+paranoia cria frequentemente problemas 
+de confiança. Ele pode exigir o pagamento 
+integral antes de realizar uma tarefa, exigir 
+que todos os acordos estejam por escrito ou 
+mesmo acreditar que seus amigos o estão 
+perseguindo.
+Como uma Complicação Maior, rolagens 
+de Suporte para ajudar o indivíduo 
+desconfiado são feitas com −2.
+DESEJO DE MORRER (MENOR)
+Ter um desejo de morrer não significa que 
+seu herói seja um suicida – mas ele pode 
+achar que sua vida vale menos do que um 
+objetivo nobre, mas claramente mortífero.
+Quem tem Desejo de Morrer não jogará a 
+vida fora por qualquer razão, mas quando 
+houver uma chance de completar o seu 
+objetivo, fará qualquer coisa – e aceitará 
+qualquer risco – para alcançá-lo.
+EXCESSO DE CONFIANÇA (MAIOR)
+Não existe nada que seu herói não possa 
+derrotar. Pelo menos é isso que ele pensa. 
+Ele acredita poder fazer quase tudo e nunca 
+quer fugir de um desafio. O herói não é um 
+suicida, mas certamente faz mais do que dita 
+o bom senso.
+FEIO (MENOR OU MAIOR)
+Pessoas atraentes conseguem todo tipo de 
+vantagem. Este infeliz não tem a mesma sorte. 
+Ele subtrai 1 de suas rolagens de Persuadir 
+ou 2 se escolheu a Complicação Maior.
+FOBIA (MENOR OU MAIOR)
+Fobias são medos esmagadores e irracionais 
+que afetam a psique de um herói.Sempre que um personagem estiver na 
+presença de sua fobia (critério do Mestre, mas 
+geralmente quando avistá-la) subtraia 1 de 
+todos os testes de Característica no caso de 
+uma Complicação Menor e 2 se for uma Maior.
+Fobias não devem ser muito óbvias – 
+vampiros, por exemplo, devem ser temidos 
+por todos, portanto isso não é uma fobia, 
+é bom senso. Em invés disso, a fobia 
+geralmente se concentra em algum elemento 
+aleatório que a mente associa ao evento. 
+Lembre, fobias são medos irracionais .
+FORASTEIRO (MENOR OU MAIOR)
+Em uma sociedade formada por apenas 
+alguns tipos de pessoa, o seu herói não é uma 
+delas. Um nativo americano em uma cidade 
+do Velho Oeste, um alienígena em um jogo 
+de ficção científica de fuzileiros humanos ou 
+um meio-orc em um grupo de elfos, anões e 
+humanos são todos exemplos de Forasteiros. 
+Habitantes locais são suscetíveis a aumentar 
+os preços para o Forasteiro, ignorar seus 
+pedidos de socorro e geralmente tratam-no 
+como se fosse de uma classe mais baixa.
+Forasteiros subtraem 2 de rolagens de 
+Persuadir feitas para influenciar quem não 
+é do seu próprio povo. A versão Maior 
+também significa que o personagem tem 
+poucos, até mesmo nenhum, direitos legais 
+na região da campanha. Ele pode ser de 
+uma espécie diferente entre xenófobos, a 
+civilização pode ser cruel e pouco esclarecida 
+em relação a estranhos ou pode ser uma 
+inteligência artificial cuja consciência não é 
+reconhecida por lei.
+GANANCIOSO (MENOR OU MAIOR)
+Um avarento mede valor em bens materiais 
+ou riqueza. Se for uma Complicação Menor, 
+ele argumenta amargamente querendo 
+mais do que sua parte em qualquer despojo 
+adquirido durante o jogo. Se for uma 
+Complicação Maior, luta por qualquer coisa 
+que considerar injusta e pode até mesmo 
+matar ao se sentir menosprezado ou cobiçar 
+algo que não possa ter.
+GUIADO (MENOR OU MAIOR)
+Voto e Guiado são complicações diferentes. 
+Personagens com Voto tem um compromisso 
+--- PAGE 28 ---
+27
+27
+CAP
+1com outros, enquanto Guiados buscam 
+algo para si. Pode ser proteger o reino, se 
+tornar um oficial condecorado, provar 
+que é o melhor gladiador de Roma 
+ou o melhor piloto na frota galática.
+A versão Menor define o personagem 
+e dirige as suas decisões, mas acontece 
+raramente ou é relativamente inofensivo. 
+Como uma Complicação Maior o 
+personagem tem um desejo que lhe é 
+impreterível e aparece frequentemente 
+ou causa perigo para o herói e àqueles 
+próximos a ele.
+HÁBITO (MENOR OU MAIOR)
+Seu guerreiro possui um hábito irritante 
+e constante de algum tipo. Um Hábito 
+menor irrita aqueles a seu redor, mas não é 
+perigoso. Talvez ele cutuque seu nariz, não 
+consiga parar de mexer no seu telefone, diga 
+“cê sabe” no meio de cada frase ou masque 
+chiclete frequentemente fazendo um 
+barulho alto. Aliados o evitam se possível.
+Um Hábito maior é uma dependência 
+física ou mental de alguma espécie, 
+debilitante ou mesmo possivelmente mortal. 
+Isso inclui o uso de drogas, alcoolismo ou até 
+mesmo um vício em realidade virtual num 
+cenário de alta tecnologia.
+Um viciado que não receba sua dose 
+precisa fazer um teste de Vigor a cada 24 
+horas ou recebe um nível de Fadiga  (veja 
+pág. 122). 
+A cada 24 horas, uma rolagem de Curar 
+com algum tipo de medicamento apropriado 
+remove um nível de Fadiga por quatro horas. 
+Depois disso, a Fadiga retorna e só pode ser 
+recuperada com a substância viciante.
+HEROICO (MAIOR)
+Esta nobre alma nunca diz não a uma pessoa 
+necessitada. Ele não precisa ficar feliz com 
+isso, mas sempre virá em socorro daqueles 
+que não podem ajudar a si mesmos. É a 
+primeira pessoa a correr para dentro de um 
+prédio em chamas, geralmente aceita caçar 
+monstros por pouco ou nenhum pagamento 
+e normalmente é um alvo fácil para uma 
+história triste.HESITANTE (MENOR)
+Seu herói hesita em situações estressantes. 
+Saque duas Cartas de Ação em combate 
+e aja na menor. Se você sacar um Curinga, 
+use-o normalmente e ignore a Complicação 
+na rodada (sendo esta uma Complicação 
+Menor, na verdade ela aumenta suas 
+chances de sacar um Curinga!)
+Personagens Hesitantes não podem 
+escolher as Vantagens Rápido ou Focado.
+IDOSO (MAIOR)
+Seu herói está ficando velho, mas não 
+está totalmente pronto para o asilo. Sua 
+Movimentação é reduzida em 1 quadro e ele 
+subtrai 1 de rolagens de corrida (mínimo 1). 
+Ele também sofre uma penalidade de −1 em 
+rolagens de Agilidade, Força e Vigor, mas 
+não em suas perícias associadas.
+Por outro lado, a sabedoria dos seus 
+anos concede ao herói 5 pontos de perícia 
+adicionais que podem ser usados em 
+quaisquer perícias associadas à Astúcia.
+IMPULSIVO (MAIOR)
+O aventureiro mergulha de cabeça nas 
+situações. Ele raramente pensa antes de agir.
+INCRÉDULO (MENOR)
+Algumas pessoas não acreditam no 
+sobrenatural até já estarem a meio caminho 
+da garganta de alguma criatura. São pessoas 
+céticas que se esforçam para racionalizar 
+eventos sobrenaturais. Eles encaram 
+perigos que não acreditam e buscam por 
+explicações alternativas para todos os 
+eventos sobrenaturais.
+Mesmo que um incrédulo seja confrontado 
+com uma verdade inegável, a mente dele 
+eventualmente começa a duvidar do que 
+viu, racionalizando ou atribuindo ao evento 
+um caráter “único” enquanto continua a 
+duvidar do próximo mistério.
+INIMIGO (MENOR OU MAIOR)
+Alguém odeia o personagem e quer vê-lo 
+arruinado, preso ou morto. O valor da 
+Complicação depende do quão poderoso 
+é o Inimigo e de quantas vezes ele poderá 
+aparecer. Um Inimigo Menor pode ser um 
+pistoleiro solitário buscando vingança ou 
+--- PAGE 29 ---
+SAVAGE WORLDS
+28
+28uma irmandade traída que é mortal, mas 
+só aparece raramente. Um Inimigo Maior 
+pode representar autoridades poderosas, 
+um bando de foras da lei ou único rival 
+poderoso e incansável.
+Se o Inimigo um dia for vencido, o 
+Mestre deve trabalhar gradualmente em 
+um substituto ou o herói pode pagar pela 
+Complicação sacrificando um Progresso.
+INVEJOSO (MENOR OU MAIOR)
+A insegurança o leva a invejar as conquistas 
+alheias ou a ser extremamente possessivo 
+com o aquilo que esta alma descontente 
+considera que lhe pertence. Ele geralmente 
+reclama, choraminga, cobiça as posses ou 
+feitos dos outros, reivindica crédito pelo 
+trabalho alheio, desobedece comandos e 
+causa problemas no geral.
+Como uma Complicação Menor, a inveja 
+do personagem se foca em um assunto em 
+particular (como a sua perícia “inigualável” 
+em pilotagem ou um interesse amoroso).
+Como uma Complicação Maior, o 
+personagem sente inveja de todos que 
+ele considera que o ofuscam. Ele sempre 
+fala mal de seus rivais, tenta ofuscá-los ou 
+conspira ativamente para desacreditar quem 
+ameaça seu ego.
+JOVEM (MENOR OU MAIOR)
+O herói tem entre 12-15 anos de idade (em 
+idade humana—ajuste para outras raças). 
+Ele tem apenas 4 pontos para ajustar seus 
+atributos em vez de 5 e 10 pontos de perícia 
+em vez de 12. Ele também pode ter restrições 
+legais dependendo do cenário (não pode 
+dirigir, possuir uma arma de fogo e assim 
+por diante).
+Pelo lado positivo, jovens têm um bocado 
+de sorte. Eles sacam um Bene extra no início 
+de cada sessão de jogo (isso se acumula 
+com outras Vantagens como Sorte ou 
+Sorte Grande).
+A maioria dos personagens Jovens 
+também devem adotar a Complicação 
+Pequeno, mas não é obrigatório.
+Como uma Complicação Maior o 
+personagem é Muito Jovem (8 a 11 anos 
+de idade). Ele tem apenas 3 pontos para 
+atributos e 10 para perícias, além da Complicação Pequeno. Heróis Muito 
+Jovens sacam dois Benes extras no começo 
+de cada sessão.
+LEAL  (MENOR)
+Este defensor corajoso arrisca sua vida pelos 
+seus amigos sem qualquer hesitação. Alguns 
+heróis Leais podem não agir dessa maneira, 
+mas eles são os primeiros a ajudar seus 
+amigos quando eles são ameaçados.
+LENTO (MENOR OU MAIOR)
+Uma deficiência ou ferimento antigo 
+dificulta a mobilidade do herói. Como uma 
+Complicação Menor, reduza 1 quadro da 
+sua Movimentação andando e seu dado 
+de corrida em um tipo. Caso seu dado de 
+corrida já seja um d4, ele é reduzido para 
+d4-1. Como uma Complicação Maior, 
+reduza o dado de corrida em um tipo, 
+Movimentação em 2 quadros e subtraia 
+2 de rolagens de Atletismo e rolagens de 
+resistência a Atletismo (como Desafios 
+ou Agarrar).
+Personagens Lentos não podem ter a 
+Vantagem Ligeiro.
+Próteses:  Um personagem com a versão 
+Menor desta Complicação pode ter uma 
+prótese. Se a prótese se perder, ele sofre os 
+efeitos da versão Maior. 
+Cadeiras de rodas:  Da era vitoriana em 
+diante, personagens Lentos podem começar 
+com uma cadeira de rodas manual sem 
+custos. Na era moderna (1980 em diante) 
+o personagem também pode escolher uma 
+cadeira super leve ou uma motorizada.
+Todas as cadeiras de rodas requerem um 
+solo razoavelmente plano para funcionarem 
+(critério do Mestre).
+ MANUAL:  Movimentação é metade do 
+dado de Atletismo (máximo de 3) e não 
+pode correr.
+ SUPER LEVE:  Movimentação é metade 
+do dado de Atletismo e pode correr a d4 
+(Menor) ou d4 − 1 (Maior).
+ MOTORIZADA:  Movimentação 6 em 
+solo plano, 3 em solo acidentado, não 
+pode correr. A maioria das cadeiras 
+motorizadas pode andar cerca de 15 
+quilômetros antes de precisar de uma 
+recarga.

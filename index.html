@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador Savage Worlds (SWADE)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link id="main-css" rel="stylesheet" href="styles.css">
+    
+    <!-- External libraries for Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="layout-epic"> 
+
+    <div class="top-bar">
+        <span>Sistema Savage Worlds</span>
+        <div class="mode-switch" id="ui-mode-toggle">
+            <span id="btn-mode-edit" class="active">Edição Fácil</span>
+            <span id="btn-mode-aesthetic">Visualização Estética</span>
+        </div>
+        <div>
+            <a href="admin.html" style="margin-right: 15px;">Mestre (Opções)</a>
+            <button id="btn-export-pdf" class="btn-secondary">Exportar PDF</button>
+            <button id="btn-export-img" class="btn-secondary">Exportar Img</button>
+        </div>
+    </div>
+
+    <div class="container" id="character-sheet">
+        <h1>Ficha de Personagem</h1>
+        <div id="error-box" style="display:none;"></div>
+
+        <div class="character-header section" style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="flex: 1;">
+                <div class="input-group">
+                    <label>Nome / Conceito</label>
+                    <input type="text" id="char-name" placeholder="Fulano, o Caçador de Recompensas">
+                </div>
+                <div class="grid-2 edit-only">
+                    <div class="input-group">
+                        <label>Raça</label>
+                        <select id="char-race"></select>
+                    </div>
+                </div>
+
+                <!-- Estatísticas Derivadas Modidas Daqui para a Esquerda -->
+                <div style="margin-top: 15px;">
+                    <h2 style="font-size: 1.1rem; border-bottom: none; margin-bottom: 5px;">Estatísticas Derivadas</h2>
+                    <div class="grid-4">
+                        <div class="stat-box derived">
+                            <label>Movimentação</label>
+                            <div class="value" id="stat-pace">6</div>
+                        </div>
+                        <div class="stat-box derived">
+                            <label>Aparar</label>
+                            <div class="value" id="stat-parry">2</div>
+                        </div>
+                        <div class="stat-box derived">
+                            <label>Resistência</label>
+                            <div class="value" id="stat-toughness">2</div>
+                        </div>
+                        <div class="stat-box derived">
+                            <label>Bennies</label>
+                            <div class="value" id="stat-bennies" style="color: #ffaa00;">3</div>
+                        </div>
+                    </div>
+                    <!-- Badges de Penalidades Passivas -->
+                    <div id="passive-penalties-section" style="display: none; margin-top: 10px;">
+                        <h4 style="color: #28a745; margin-top: 0; margin-bottom: 5px; font-size: 0.9rem;">🌟 Efeitos Passivos</h4>
+                        <div id="passive-badges" style="display: flex; flex-wrap: wrap; gap: 5px;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <label>Retrato</label>
+                <div class="portrait-box" id="portrait-preview">
+                    <span class="edit-only">Clique para Imagem</span>
+                    <img id="portrait-img" alt="Retrato do Personagem">
+                </div>
+                <input type="file" id="portrait-upload" class="portrait-input edit-only" accept="image/png, image/jpeg, image/jpg">
+            </div>
+        </div>
+
+
+                <!-- Novo Master Card: Atributos & Perícias -->
+                <div class="section" id="attr-skill-card">
+                    <h2 style="display:flex; justify-content:space-between; align-items:center;">
+                        Atributos & Perícias
+                    </h2>
+                    
+                    <!-- Atributos Isolados (Força e Vigor) -->
+                    <div id="standalone-attrs" class="edit-only" style="display: flex; gap: 20px; justify-content: center; margin-bottom: 10px;">
+                        <div id="attr-standalone-4"></div>
+                        <div id="attr-standalone-5"></div>
+                    </div>
+
+                    <div id="card-trackers" class="edit-only" style="display: flex; gap: 10px; justify-content: center; border-radius: 8px; margin-bottom: 15px;">
+                        <div class="points-tracker" id="tracker-attributes" style="margin: 0; padding: 4px 10px; font-size: 0.8rem; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 6px;">
+                            <span>Atributos: <span id="val-attr-used">0</span> / <span id="val-attr-max">5</span></span>
+                        </div>
+                        <div class="points-tracker" id="tracker-skills" style="margin: 0; padding: 4px 10px; font-size: 0.8rem; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 6px;">
+                            <span>Perícias: <span id="val-skill-used">0</span> / <span id="val-skill-max">12</span></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Tracker do Idoso (Oculto até ativado, largura total se ativo para destaque) -->
+                    <div id="elderly-tracker-container" class="edit-only" style="display: none; padding: 5px; background: rgba(138,43,226, 0.15); border: 1px solid rgba(138,43,226, 0.5); border-radius: 6px; margin-bottom: 15px;">
+                        <div style="font-weight: bold; text-align: center; color: var(--accent-red, #dda0dd); font-size: 0.85rem;">
+                            👴🏻 Pts de Astúcia da Idade: <span id="val-elderly-used">0</span> / 5
+                        </div>
+                    </div>
+
+                    <!-- CSS do Switch Switch-Mode Menu -->
+                    <div class="attr-tabs-switch" id="attr-tabs-menu">
+                        <!-- Gerado via JS -->
+                    </div>
+
+                    <!-- Conteúdo Dinâmico da Aba -->
+                    <div id="attr-tab-content" style="margin-top: 20px;">
+                        <!-- Gerado via JS -->
+                    </div>
+                </div>
+
+                <!-- Estatísticas Derivadas Movidas Para o Topo -->
+
+                <div class="section">
+                    <h2>Complicações (+Pts)</h2>
+
+                    <!-- Trackers de Complicações e Custo -->
+                    <div id="card-trackers-hindrances" class="edit-only" style="padding: 10px; border-radius: 8px; margin-bottom: 15px; background: var(--bg-color); border: 1px solid var(--border-color);">
+                        <div class="points-tracker" id="tracker-hindrances" style="margin-bottom: 10px;">
+                            <span>Pontos de Complicação Gastos / Recebidos: 
+                                <span id="val-hind-spent">0</span> / <span id="val-hind-gen">0</span> (Máx: 4)
+                            </span>
+                        </div>
+                        
+                        <div style="background:#fff3cd; color:#856404; padding:10px; border-radius:4px; border:1px solid #ffeeba;">
+                            <h4 style="color:#856404; margin-bottom:5px;">Aplicar Pontos de Complicação</h4>
+                            <p style="font-size:0.8rem; margin-bottom:10px;">Compre aumentos permanentes com os pontos recebidos pelas Complicações.</p>
+                            <div class="grid-2">
+                                <button class="add-btn btn-secondary" id="buy-attr">+1 Ponto Atributo (2pts)</button>
+                                <button class="add-btn btn-secondary" id="buy-edge">+1 Vantagem Extra (2pts)</button>
+                                <button class="add-btn btn-secondary" id="buy-skill">+1 Ponto de Perícia (1pt)</button>
+                                <button class="add-btn btn-secondary" id="buy-funds">+$500 Iniciais (1pt)</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group flex-between edit-only" style="flex-wrap: wrap;">
+                        <select id="select-hindrance" style="width: 70%;"></select>
+                        <button class="add-btn" id="btn-add-hindrance">Adicionar</button>
+                    </div>
+                    <!-- New Toggle Switch for Hindrances -->
+                    <div id="hindrance-severity-toggle" class="severity-toggle edit-only">
+                        <span class="severity-label">Menor</span>
+                        <label class="toggle-switch-ui">
+                            <input type="checkbox" id="hindrance-severity-checkbox">
+                            <span class="slider-switch"></span>
+                        </label>
+                        <span class="severity-label">Maior</span>
+                    </div>
+                    <div id="active-hindrances"></div>
+                </div>
+
+                <div class="section">
+                    <h2>Vantagens</h2>
+                    <div class="input-group flex-between edit-only">
+                        <select id="select-edge" style="width: 70%;"></select>
+                        <button class="add-btn" id="btn-add-edge" disabled>Adicionar</button>
+                    </div>
+                    <div id="edge-hint" class="hint-box hidden" style="background:#e9ecef; padding:8px; border-radius:4px; margin-bottom:10px; font-size:0.9rem;">
+                        <strong id="edge-hint-name"></strong> <span id="edge-hint-req"></span><br>
+                        <span id="edge-hint-desc" style="display:block; margin-top:5px; color:#555;"></span>
+                    </div>
+                    <div id="arcane-type-wrapper" class="hidden edit-only" style="margin-bottom: 15px; padding: 10px; background: rgba(0,0,0,0.05); border-left: 3px solid var(--primary-color);">
+                        <label style="font-size: 0.85rem; display:block; margin-bottom: 5px;"><strong>Escolha a Tradição Arcana:</strong></label>
+                        <select id="select-arcane-type" style="width: 100%; padding: 4px; border-radius: 4px; border: 1px solid var(--border-color);"></select>
+                        <div id="arcane-hint" style="margin-top: 8px; font-size: 0.85rem; color: #444;"></div>
+                    </div>
+                    <div id="active-edges"></div>
+                </div>
+
+                <div class="section" id="section-powers" style="display: none;">
+                    <h2>Poderes</h2>
+                    <div id="powers-tracker" style="font-size: 0.85rem; margin-bottom: 10px; color: var(--text-color); font-weight: bold; background: rgba(0,0,0,0.1); padding: 5px; border-radius: 4px; text-align: center;">
+                        <span><span id="tracker-powers-count">0</span> / <span id="tracker-powers-max">0</span> Poderes Iniciais</span>
+                        <span><span id="tracker-pp-max">0</span> PP Máximo</span>
+                    </div>
+                    <div id="powers-locked-msg" style="color: #c0392b; font-size: 0.9rem; margin-bottom: 10px; text-align: center; font-weight: bold;">
+                        Magias requerem um Antecedente
+                    </div>
+                    <div id="powers-container" style="display: none;">
+                        <div class="input-group flex-between edit-only">
+                            <select id="select-power" style="width: 70%;"></select>
+                            <button class="add-btn" id="btn-add-power" disabled>Aprender</button>
+                        </div>
+                        <div id="power-hint" class="hint-box hidden" style="background:#e9ecef; padding:8px; border-radius:4px; margin-bottom:10px; font-size:0.9rem;">
+                            <strong id="power-hint-name"></strong> <span id="power-hint-rank"></span> <span id="power-hint-stats"></span><br>
+                            <span id="power-hint-desc" style="display:block; margin-top:5px; color:#555;"></span>
+                        </div>
+                    </div>
+                    <div id="active-powers"></div>
+                </div>
+
+                <div class="section">
+                    <h2>Equipamento e Armadura</h2>
+                    
+                    <div id="card-trackers-funds" class="edit-only" style="padding: 10px; border-radius: 8px; margin-bottom: 15px; background: var(--bg-color); border: 1px solid var(--border-color);">
+                        <div class="points-tracker" id="tracker-funds" style="margin-bottom: 0;">
+                            <span>Fundos: $<span id="val-funds-used">0</span> / $<span id="val-funds-max">500</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="edit-only" style="text-align: center;">
+                        <button class="add-btn" id="btn-open-store" style="width: 100%; font-size: 1.1rem; padding: 10px;">Abrir Catálogo da Loja (Filtros Avançados)</button>
+                    </div>
+                    <div id="active-equipment" style="margin-top: 15px;"></div>
+                </div>
+
+
+    </div>
+
+    <!-- EPIC PRESENTATION CARD (AESTHETIC MODE) -->
+    <div id="epic-presentation-card" style="display: none;">
+        <div class="epic-card-wrapper">
+            <div class="epic-title-container" id="epic-title-container">
+                <div class="epic-name-wrapper" id="epic-name-wrapper" style="display:flex; flex-direction:column; align-items:center; width:max-content; position:relative;">
+                    <div class="epic-divider-line" id="epic-divider-top" style="display:none; margin: 4px auto;"></div>
+                    <h1 class="epic-title" id="epic-char-name">SEU PERSONAGEM</h1>
+                    <h3 class="epic-subtitle" id="epic-char-race" style="margin-top: 5px; color: rgba(255, 255, 255, 0.85); font-weight: bold; text-transform: uppercase; font-family: 'Cinzel', serif; letter-spacing: 2px; font-size: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Raça</h3>
+                    <div class="epic-divider-line" id="epic-divider-bottom" style="display:none; margin: 4px auto;"></div>
+                </div>
+            </div>
+            
+            <!-- Camada 0: Imagem Global -->
+            <div class="epic-header-bg" id="epic-header-bg">
+                <img id="epic-portrait" src="" alt="Retrato Ausente">
+            </div>
+
+            <!-- Camada 1: Fundo da Área de Informações -->
+            <div id="epic-content-bg" class="epic-content-bg"></div>
+
+            <!-- Camada 2: Espaçador Físico (Empurra conteúdos para baixo) -->
+            <div id="epic-image-spacer" style="height: 350px; width: 100%; position: relative; z-index: 5;"></div>
+
+            <!-- Stats Medallions -->
+            <div class="epic-medallion-row" style="position: relative; z-index: 10;">
+                <div class="epic-medallion"><div class="epic-value" id="epic-parry">-</div><div class="epic-label">APARAR</div></div>
+                <div class="epic-medallion main-medallion"><div class="epic-value" id="epic-toughness">-</div><div class="epic-label">RESISTÊNCIA</div></div>
+                <div class="epic-medallion"><div class="epic-value" id="epic-pace">-</div><div class="epic-label">MOVIM.</div></div>
+                <div class="epic-medallion coins-medallion"><div class="epic-value" id="epic-bennies" style="color: gold;">-</div><div class="epic-label">BENNIES</div></div>
+            </div>
+
+            <!-- Epic Passive Badges -->
+            <div id="epic-passive-badges" style="position: relative; z-index: 10; display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 20px;"></div>
+
+            <!-- Double Column Core -->
+            <div class="epic-core-columns" style="position: relative; z-index: 10;">
+                <div class="epic-col">
+                    <h3 class="epic-section-title">COMPLICAÇÕES</h3>
+                    <ul class="epic-list hindrances-list" id="epic-list-hindrances"></ul>
+                </div>
+                <div class="epic-col">
+                    <h3 class="epic-section-title">VANTAGENS</h3>
+                    <ul class="epic-list edges-list" id="epic-list-edges"></ul>
+                </div>
+            </div>
+
+            <div class="epic-powers-section" id="epic-powers-section" style="position: relative; z-index: 10; display: none;">
+                <div class="epic-separator"></div>
+                <h3 class="epic-section-title" style="text-align: center; margin-bottom: 5px;">PODERES (<span id="epic-powers-count">0</span>)</h3>
+                <ul class="epic-list powers-list" id="epic-list-powers" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0; list-style: none;"></ul>
+            </div>
+
+            <div class="epic-separator" style="position: relative; z-index: 10;"></div>
+
+            <!-- Attributes & Skills Compact -->
+            <div class="epic-attr-skills-row" style="position: relative; z-index: 10;">
+                <h3 class="epic-section-title" style="text-align: center; margin-bottom: 15px;">ATRIBUTOS & PERÍCIAS</h3>
+                <div class="epic-attributes" id="epic-attributes"></div>
+                <div class="epic-skills" id="epic-skills"></div>
+            </div>
+
+            <div class="epic-separator" style="position: relative; z-index: 10;"></div>
+
+            <!-- Equipment -->
+            <div class="epic-equipment-area" style="position: relative; z-index: 10;">
+                <h3 class="epic-section-title" style="text-align: center; margin-bottom: 5px;">EQUIPAMENTOS & MOEDAS (<span style="color: var(--primary-color);" id="epic-funds">$0</span>)</h3>
+                <div id="epic-equipment-list" class="epic-equip-list"></div>
+            </div>
+
+            <div class="epic-footer-logo" style="position: relative; z-index: 10;">
+                <h3>SAVAGE WORLDS</h3>
+                <span>EDIÇÃO AVENTURA</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AESTHETIC CUSTOMIZER SIDEBAR -->
+    <aside id="aesthetic-customizer" style="display: none;">
+        <h3 class="customizer-title">🪄 Molderia Épica</h3>
+        <p class="customizer-subtitle">Personalize a sua carta</p>
+        
+        <div class="customizer-accordion">
+            <!-- SEÇÃO: NOME DO PERSONAGEM -->
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>A. Nome do Personagem</span>
+                </div>
+                <div class="accordion-body">
+                    
+                    <!-- POSICIONAMENTO E ALINHAMENTO -->
+                    <div class="custom-group">
+                        <label>Posicionamento Vertical</label>
+                        <select id="cust-name-vpos">
+                            <option value="top">Topo da Carta</option>
+                            <option value="bottom">Acima dos Atributos (Inferior)</option>
+                        </select>
+                    </div>
+
+                    <div class="custom-group">
+                        <label>Alinhamento Horizontal</label>
+                        <div class="toggle-btn-group" id="cust-name-hpos">
+                            <button data-val="left" class="t-btn">Esq.</button>
+                            <button data-val="center" class="t-btn active">Centro</button>
+                            <button data-val="right" class="t-btn">Dir.</button>
+                        </div>
+                    </div>
+
+                    <!-- ESTILO DE COR -->
+                    <div class="custom-group">
+                        <label>Preenchimento da Fonte</label>
+                        <div class="toggle-btn-group" id="cust-name-fill-toggle">
+                            <button data-val="solid" class="t-btn active">Sólida</button>
+                            <button data-val="gradient" class="t-btn">Gradiente</button>
+                        </div>
+                    </div>
+
+                    <!-- GRADIENTE CONFIGS (Hidden se Sólida) -->
+                    <div id="group-name-gradient" style="display:none; padding:10px; background:rgba(0,0,0,0.5); border-radius:4px; border:1px solid #4a3821; margin-bottom:15px;">
+                        
+                        <div class="custom-group">
+                            <label style="color:#dcb360;">Direção / Tipo</label>
+                            <div class="toggle-btn-group" id="cust-name-grad-dir" style="display:flex; flex-wrap:wrap;">
+                                <button data-val="to right" class="t-btn active" title="Esquerda p/ Direita">→</button>
+                                <button data-val="to left" class="t-btn" title="Direita p/ Esquerda">←</button>
+                                <button data-val="to bottom" class="t-btn" title="Cima p/ Baixo">↓</button>
+                                <button data-val="to top" class="t-btn" title="Baixo p/ Cima">↑</button>
+                                <button data-val="radial" class="t-btn" title="Radial">◉</button>
+                            </div>
+                        </div>
+
+                        <div class="custom-group">
+                            <label style="color:#dcb360; display:flex; justify-content:space-between;">
+                                Cores do Gradiente
+                                <button id="btn-add-grad-color" style="background:#dcb360; color:#000; border:none; border-radius:3px; cursor:pointer; font-weight:bold; padding:0 5px;">+</button>
+                            </label>
+                            <ul id="cust-grad-colors-list" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
+                                <!-- Cores injetadas via JS -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- COR SÓLIDA -->
+                    <div class="custom-group" id="group-name-solid">
+                        <label>Cor do Texto</label>
+                        <input type="color" id="cust-name-solid-color" value="#ffeba1" style="width:100%; height:40px;">
+                    </div>
+
+                    <!-- FONTE -->
+                    <div class="custom-group">
+                        <label>Familia de Fonte (*Web-Safe*)</label>
+                        <select id="cust-name-font">
+                            <option value="'Cinzel', serif">Cinzel (Gótica Épica)</option>
+                            <option value="'Inter', sans-serif">Inter (Moderna/Limpa)</option>
+                            <option value="Arial, sans-serif">Arial</option>
+                            <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                            <option value="'Courier New', Courier, monospace">Courier New</option>
+                            <option value="Verdana, sans-serif">Verdana</option>
+                            <option value="Tahoma, sans-serif">Tahoma</option>
+                            <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                            <option value="Impact, fantasy">Impact</option>
+                            <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+                            <option value="'Georgia', serif">Georgia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="custom-group" id="group-custom-font" style="padding-top:10px; border-top:1px dashed #4a3821;">
+                        <label style="color:#ffeba1;">Carregar Tipografia (.ttf, .otf)</label>
+                        <input type="file" id="cust-font-upload" accept=".ttf,.otf,.woff,.woff2" style="font-size:0.75rem; background:#111; padding:5px; border-radius:4px; border:1px solid #4a3821;">
+                    </div>
+
+                    <!-- EFEITOS AVANÇADOS -->
+                    <div class="custom-group" style="margin-top:15px; border-top:1px dashed #4a3821; padding-top:10px;">
+                        <label style="font-size:0.9rem; color:#ffeba1; margin-bottom:10px;">Efeitos Visuais (VFX)</label>
+                        
+                        <!-- SHADOW -->
+                        <div style="background:rgba(0,0,0,0.5); padding:8px; border:1px solid #4a3821; border-radius:4px; margin-bottom:8px;">
+                            <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="document.getElementById('cust-fx-shadow').click()">
+                                <input type="checkbox" id="cust-fx-shadow" class="fx-toggle" data-type="shadow" style="width:16px; height:16px;" onclick="event.stopPropagation()">
+                                <label style="margin:0; font-size:0.85rem; color:#fff; cursor:pointer;">Sombra Negra</label>
+                            </div>
+                            <div id="cfg-fx-shadow" style="display:none; margin-top:8px; border-top:1px dashed #4a3821; padding-top:8px;">
+                                <label style="font-size:0.7rem; color:#a89476;">Eixo X | Y | Blur</label>
+                                <div style="display:flex; gap:5px; margin-bottom:5px;">
+                                    <input title="X" type="number" id="inp-sha-x" class="fx-cfg" data-field="x" value="2" style="width:40px; background:#111; color:#fff; padding:4px;">
+                                    <input title="Y" type="number" id="inp-sha-y" class="fx-cfg" data-field="y" value="2" style="width:40px; background:#111; color:#fff; padding:4px;">
+                                    <input title="Blur" type="number" id="inp-sha-blur" class="fx-cfg" data-field="blur" value="4" style="width:40px; background:#111; color:#fff; padding:4px;">
+                                    <input type="color" id="inp-sha-color" class="fx-cfg" data-field="color" value="#000000" style="flex:1; height:25px; padding:0; border:none; border-radius:3px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GLOW -->
+                        <div style="background:rgba(0,0,0,0.5); padding:8px; border:1px solid #4a3821; border-radius:4px; margin-bottom:8px;">
+                            <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="document.getElementById('cust-fx-glow').click()">
+                                <input type="checkbox" id="cust-fx-glow" class="fx-toggle" data-type="glow" style="width:16px; height:16px;" onclick="event.stopPropagation()">
+                                <label style="margin:0; font-size:0.85rem; color:#fff; cursor:pointer;">Brilho (Glow)</label>
+                            </div>
+                            <div id="cfg-fx-glow" style="display:none; margin-top:8px; border-top:1px dashed #4a3821; padding-top:8px;">
+                                <label style="font-size:0.7rem; color:#a89476;">Expansão Radius</label>
+                                <div style="display:flex; gap:5px; margin-bottom:5px;">
+                                    <input title="Radial" type="number" id="inp-glow-blur" class="fx-cfg" data-field="blur" value="10" style="width:50px; background:#111; color:#fff; padding:4px;">
+                                    <input type="color" id="inp-glow-color" class="fx-cfg" data-field="color" value="#dcb360" style="flex:1; height:25px; padding:0; border:none; border-radius:3px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- OUTLINE -->
+                        <div style="background:rgba(0,0,0,0.5); padding:8px; border:1px solid #4a3821; border-radius:4px;">
+                            <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="document.getElementById('cust-fx-outline').click()">
+                                <input type="checkbox" id="cust-fx-outline" class="fx-toggle" data-type="outline" style="width:16px; height:16px;" onclick="event.stopPropagation()">
+                                <label style="margin:0; font-size:0.85rem; color:#fff; cursor:pointer;">Contorno Grosso</label>
+                            </div>
+                            <div id="cfg-fx-outline" style="display:none; margin-top:8px; border-top:1px dashed #4a3821; padding-top:8px;">
+                                <label style="font-size:0.7rem; color:#a89476;">Espessura</label>
+                                <div style="display:flex; gap:5px; margin-bottom:5px;">
+                                    <input title="Espessura" type="number" id="inp-out-blur" class="fx-cfg" data-field="blur" value="2" style="width:50px; background:#111; color:#fff; padding:4px;">
+                                    <input type="color" id="inp-out-color" class="fx-cfg" data-field="color" value="#000000" style="flex:1; height:25px; padding:0; border:none; border-radius:3px;">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- OPACIDADE -->
+                    <div class="custom-group">
+                        <label>Transparência do Texto (<span id="lbl-name-opacity">100%</span>)</label>
+                        <input type="range" id="cust-name-opacity" min="0" max="1" step="0.05" value="1">
+                    </div>
+
+                    <!-- DIVISÓRIA -->
+                    <div class="custom-group" style="padding-top:10px; border-top:1px dashed #4a3821;">
+                        <label style="font-size:0.9rem; color:#ffeba1;">Linha Divisória</label>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom:5px;">
+                            <label style="margin:0; font-weight: normal; cursor:pointer;" for="cust-name-divider">Mostrar Linha Divisória</label>
+                            <input type="checkbox" id="cust-name-divider" style="width:18px; height:18px;">
+                        </div>
+                        
+                        <div id="group-divider-configs" style="display:none; flex-direction:column; gap:5px;">
+                            <div style="display:flex; gap:10px;">
+                                <div style="flex:1;">
+                                    <label>Cor Extrema</label>
+                                    <input type="color" id="cust-div-color" value="#dcb360" style="width:100%; height:25px;">
+                                </div>
+                                <div style="flex:1;">
+                                    <label>Espessura</label>
+                                    <input type="range" id="cust-div-thickness" min="1" max="10" step="1" value="2">
+                                </div>
+                            </div>
+                            <div>
+                                <label>Largura (<span id="lbl-div-width">80%</span>)</label>
+                                <input type="range" id="cust-div-width" min="10" max="100" step="5" value="80">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SEÇÃO: AJUSTE DE IMAGEM -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>B. Imagem e Zoom</span>
+                </div>
+                <div class="accordion-body" style="display:none;">
+                    <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:4px; border:1px solid #4a3821; font-size:0.8rem; text-align:center; color:#c4b093; margin-bottom:15px;">
+                        💡 <strong>Dica:</strong> Para mover e enquadrar sua imagem livremente, basta clicar e arrastá-la diretamente na carta ao lado!
+                    </div>
+                    
+                    <div class="custom-group">
+                        <label>Controle de Zoom (<span id="lbl-img-zoom">1.0x</span>)</label>
+                        <input type="range" id="cust-img-zoom" min="1" max="3" step="0.01" value="1">
+                    </div>
+
+                    <div class="custom-group" style="margin-top: 15px;">
+                        <label>Altura da Imagem Pura (<span id="lbl-img-height">350px</span>)</label>
+                        <input type="range" id="cust-img-height" min="150" max="800" step="10" value="350">
+                    </div>
+
+                    <div class="custom-group" style="margin-top: 15px;">
+                        <label>Opacidade do Fundo dos Textos (<span id="lbl-bg-opacity">95%</span>)</label>
+                        <input type="range" id="cust-bg-opacity" min="0" max="1" step="0.05" value="0.95">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <!-- FORJA RACIAL MODAL -->
+    <div class="store-modal-overlay" id="race-builder-modal" style="display: none;">
+        <div class="store-modal" style="max-width: 1000px; max-height: 90vh; display: flex; flex-direction: column;">
+            <div class="store-header">
+                <h2>Forja Racial (Savage Worlds)</h2>
+                <button class="btn-close-modal" id="btn-close-race-builder">&times;</button>
+            </div>
+            
+            <div class="store-body" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column;">
+                <div style="padding: 15px; border-bottom: 2px solid var(--border-color); display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="font-size: 0.9rem; color: var(--text-color);">Nome da Raça</label>
+                        <input type="text" id="rb-race-name" placeholder="Ex: Mutante, Elfo Negro, Draconato..." style="width: 100%; padding: 8px; border-radius: 4px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color);">
+                    </div>
+                    <div style="flex-shrink: 0; background: var(--bg-color); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 8px; text-align: center;">
+                        <span style="display: block; font-size: 0.8rem; text-transform: uppercase;">Saldo de Pontos</span>
+                        <span id="rb-points-val" style="font-size: 1.5rem; font-weight: bold; color: #28a745;">+0</span> / <span>+2</span>
+                        <div style="font-size: 0.7rem; color: #999;">Restante p/ validação</div>
+                    </div>
+                    <div>
+                        <button id="btn-save-race" class="btn-primary" style="padding: 10px 20px;" disabled>Forjar Raça</button>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; padding: 15px; flex: 1; min-height: 0; overflow: hidden;">
+                    <!-- Left Column: Builders -->
+                    <div style="flex: 2; overflow-y: auto; padding-right: 10px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <!-- Positivos -->
+                            <div>
+                                <h3 style="color: #28a745; border-bottom: 1px solid #333; padding-bottom: 5px;">🧬 Habilidades Positivas <span id="rb-pos-sum" style="float: right;">(0 pts gstos)</span></h3>
+                                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">Compre vantagens raciais. A raça inicia com +2 pts grátis.</p>
+                                <div id="rb-list-pos" style="display: flex; flex-direction: column; gap: 8px;">
+                                    <!-- Injetado via character.js -->
+                                </div>
+                            </div>
+                            
+                            <!-- Negativos -->
+                            <div>
+                                <h3 style="color: #dc3545; border-bottom: 1px solid #333; padding-bottom: 5px;">⚠️ Habilidades Negativas <span id="rb-neg-sum" style="float: right;">(0 pts ganhos)</span></h3>
+                                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">Adote malus para obter pontos extras para usar em vantagens.</p>
+                                <div id="rb-list-neg" style="display: flex; flex-direction: column; gap: 8px;">
+                                    <!-- Injetado via character.js -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Preview Pane -->
+                    <div style="flex: 1; display: flex; flex-direction: column; border-left: 2px solid var(--border-color); padding-left: 15px; overflow-y: auto;">
+                        <h3 style="border-bottom: 1px solid #333; padding-bottom: 5px;">📝 Resumo da Raça</h3>
+                        <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">Pré-visualização dos traços selecionados.</p>
+                        <div id="rb-preview" style="flex: 1; background: rgba(0,0,0,0.2); border: 1px dashed var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; overflow-y: auto;">
+                            <!-- Preview Injetado via character.js -->
+                            <em>Nenhum traço selecionado.</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- STORE MODAL OVERLAY -->
+    <div class="store-modal-overlay" id="store-modal">
+        <div class="store-modal">
+            <div class="store-header">
+                <h2>Catálogo de Suprimentos</h2>
+                <button class="btn-close-modal" id="btn-close-store">&times;</button>
+            </div>
+            
+            <div class="store-body">
+                <!-- SIDEBAR FILTERS -->
+                <div class="store-sidebar">
+                    <h3>Filtros de Busca</h3>
+                    <div class="filter-group">
+                        <input type="text" id="shop-search" placeholder="Pesquisar por nome..." style="width: 100%; border-radius: 4px; padding: 5px;">
+                    </div>
+                    
+                    <h3 style="margin-top:20px;">Filtrar Categoria</h3>
+                    <div class="modal-tabs" id="shop-categories">
+                        <div class="modal-tab-btn active" data-cat="all">Todas</div>
+                        <div class="modal-tab-btn" data-cat="Armas Brancas">Armas Brancas</div>
+                        <div class="modal-tab-btn" data-cat="Armas de Fogo/Longa Distância">Longa Dist.</div>
+                        <div class="modal-tab-btn" data-cat="Armaduras">Armadura</div>
+                        <div class="modal-tab-btn" data-cat="Escudos">Escudos</div>
+                        <div class="modal-tab-btn" data-cat="Ficção Científica">Sci-Fi</div>
+                        <div class="modal-tab-btn" data-cat="Aventura/Utilitários">Geral/Útil</div>
+                    </div>
+                    
+                    <h3 style="margin-top:20px;">Filtros Matemáticos</h3>
+                    <div class="filter-group">
+                        <label>Range de Preço ($):</label>
+                        <div style="display:flex; gap: 5px;">
+                            <input type="number" id="shop-price-min" placeholder="0" value="0">
+                            <input type="number" id="shop-price-max" placeholder="Max" value="999999">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Força Mínima Ignorada (Ocultar pesados):</label>
+                        <select id="shop-minstr">
+                            <option value="99">Mostrar Todos</option>
+                            <option value="4">Até d4 (Leves)</option>
+                            <option value="6">Até d6</option>
+                            <option value="8">Até d8</option>
+                            <option value="10">Até d10</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <div style="display:flex; align-items:center; gap:5px;">
+                            <input type="checkbox" id="shop-no-ammo">
+                            <label style="margin:0;">Apenas itens S/ Munição</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <div style="display:flex; align-items:center; gap:5px;">
+                            <input type="checkbox" id="shop-req-benefit">
+                            <label style="margin:0;">Apenas c/ Benefícios (AP)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTENT AREA -->
+                <div class="store-content">
+                    <div class="store-grid" id="shop-grid">
+                        <!-- Cards injetados via JS -->
+                        <div style="text-align:center; width:100%; color:#999; margin-top: 50px;">Carregando loja...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js?v=14_powers"></script>
+    <script src="js/effects.js?v=14_powers"></script>
+    <script src="js/character.js?v=14_powers"></script>
+    <script src="js/pdfgen.js?v=14_powers"></script>
+</body>
+</html>
+
