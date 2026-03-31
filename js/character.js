@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         playClick() { this.playTone(800, 'sine', 0.05, 0.05); },      // high clink
+        playCoin() { this.playTone(1200, 'sine', 0.1, 0.1); setTimeout(()=>this.playTone(1800, 'sine', 0.15, 0.08), 80); }, // cash register / clink
         playThud() { this.playTone(150, 'triangle', 0.15, 0.2); },    // low thud
         playError() { this.playTone(100, 'sawtooth', 0.2, 0.1); },    // buzz
         playMagic() { this.playTone(600, 'sine', 0.3, 0.1); setTimeout(()=>this.playTone(900, 'triangle', 0.5, 0.1), 100); }
@@ -279,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
         els.btnAddEdge.addEventListener('click', () => { AudioEngine.playMagic(); addEdge(els.edgeSelect.value); });
         els.btnAddPower.addEventListener('click', () => { AudioEngine.playMagic(); addPower(els.powerSelect.value); });
         els.btnOpenStore.addEventListener('click', () => { 
-            alert('Ação registrada! Tentando abrir o modal... Se esta caixa apareceu, o Javascript de clique funciona.');
             AudioEngine.playClick(); 
             openStore(); 
         });
@@ -693,6 +693,9 @@ document.addEventListener('DOMContentLoaded', () => {
         state.equipment.forEach(eqId => { const def = dEq.find(d => d.id === eqId); if(def) moneySpent += def.cost; });
         const maxFunds = 500 + (state.boughtFunds * 500);
         const availableFunds = maxFunds - moneySpent;
+        
+        const fundsValEl = document.getElementById('store-modal-funds-val');
+        if(fundsValEl) fundsValEl.textContent = availableFunds;
     
         let count = 0;
         dEq.forEach(item => {
@@ -715,8 +718,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if(item.extraBenefits) statsHtml += `<span style="margin-top:5px; color:#c75a00; font-size:0.75rem;">${item.extraBenefits}</span>`;
     
             const canAfford = item.cost <= availableFunds;
+            
+            if (window.recentlyBoughtId === item.id) {
+                card.classList.add('purchased-pulse');
+            }
+            
+            const ownedCount = state.equipment.filter(eq => eq === item.id).length;
+            const ownedBadge = ownedCount > 0 ? `<div style="position:absolute; top:-10px; right:-10px; background:var(--success-color); color:#fff; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; box-shadow:0 2px 5px rgba(0,0,0,0.5); z-index:10; font-size: 0.9rem;" title="Você já comprou este item">x${ownedCount}</div>` : '';
     
             card.innerHTML = `
+                ${ownedBadge}
                 <h4>${item.name}</h4>
                 <div class="store-card-stats">${statsHtml}</div>
                 <div class="store-card-buy">
@@ -773,8 +784,11 @@ document.addEventListener('DOMContentLoaded', () => {
                    return;
                }
 
+               AudioEngine.playCoin();
+               window.recentlyBoughtId = id;
                addEquipment(id, qty); 
                renderStore(); // Re-render imediato p/ trancar saldo de outros cards rápidos
+               setTimeout(() => { if(window.recentlyBoughtId === id) window.recentlyBoughtId = null; }, 800);
             });
         });
     }
@@ -853,10 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
              }
         });
         
-        const selectedRace = dRaces.find(r => r.id === state.race);
-        if(selectedRace && selectedRace.name !== 'Humano') {
-              listE.innerHTML = `<li>Raça: ${selectedRace.name} [Vantagem Racial]</li>` + listE.innerHTML;
-        }
+
 
         const listP = document.getElementById('epic-list-powers');
         if(listP) {
@@ -1408,7 +1419,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.querySelector('.dec-attr').addEventListener('click', (e) => {
                     if(state.attributes[id] > 1) { 
                         AudioEngine.playThud();
-                        state.attributes[id]--; calculateAll(); renderAttrSkillCard(); 
+                        state.attributes[id]--; renderAttrSkillCard(); calculateAll(); 
                     } else {
                         AudioEngine.playError();
                         e.target.parentElement.parentElement.classList.add('error-shake');
@@ -1418,7 +1429,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.querySelector('.inc-attr').addEventListener('click', (e) => {
                     if(state.attributes[id] < 5) { 
                         AudioEngine.playThud();
-                        state.attributes[id]++; calculateAll(); renderAttrSkillCard(); 
+                        state.attributes[id]++; renderAttrSkillCard(); calculateAll(); 
                     } else {
                         AudioEngine.playError();
                         e.target.parentElement.parentElement.classList.add('error-shake');
@@ -1468,7 +1479,7 @@ document.addEventListener('DOMContentLoaded', () => {
         attrDiv.querySelector('.dec-attr').addEventListener('click', (e) => {
             if(state.attributes[currentAttr.id] > 1) { 
                 AudioEngine.playThud();
-                state.attributes[currentAttr.id]--; calculateAll(); renderAttrSkillCard(); 
+                state.attributes[currentAttr.id]--; renderAttrSkillCard(); calculateAll(); 
             } else {
                 AudioEngine.playError();
                 e.target.parentElement.classList.add('error-shake');
@@ -1478,7 +1489,7 @@ document.addEventListener('DOMContentLoaded', () => {
         attrDiv.querySelector('.inc-attr').addEventListener('click', (e) => {
             if(state.attributes[currentAttr.id] < 5) { 
                 AudioEngine.playThud();
-                state.attributes[currentAttr.id]++; calculateAll(); renderAttrSkillCard(); 
+                state.attributes[currentAttr.id]++; renderAttrSkillCard(); calculateAll(); 
             } else {
                 AudioEngine.playError();
                 e.target.parentElement.classList.add('error-shake');
@@ -1577,7 +1588,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     delete state.skills[sId];
                     if(state.elderlySkills[sId]) delete state.elderlySkills[sId];
                 }
-                calculateAll(); renderAttrSkillCard();
+                renderAttrSkillCard(); calculateAll();
             });
         });
 
@@ -1585,7 +1596,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = e.target.dataset.id;
             if(state.skills[id] > 1) { 
                 AudioEngine.playThud();
-                state.skills[id]--; calculateAll(); renderAttrSkillCard(); 
+                state.skills[id]--; renderAttrSkillCard(); calculateAll(); 
             } else {
                 AudioEngine.playError();
                 e.target.parentElement.parentElement.classList.add('error-shake');
@@ -1598,7 +1609,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const eldVal = state.elderlySkills[id] || 0;
             if(state.skills[id] + eldVal < 5) { 
                 AudioEngine.playThud();
-                state.skills[id]++; calculateAll(); renderAttrSkillCard(); 
+                state.skills[id]++; renderAttrSkillCard(); calculateAll(); 
             } else {
                 AudioEngine.playError();
                 e.target.parentElement.parentElement.classList.add('error-shake');
@@ -1610,7 +1621,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = e.target.dataset.id;
             if(state.elderlySkills[id] > 0) { 
                 AudioEngine.playThud();
-                state.elderlySkills[id]--; calculateAll(); renderAttrSkillCard(); 
+                state.elderlySkills[id]--; renderAttrSkillCard(); calculateAll(); 
             } else {
                 AudioEngine.playError();
                 e.target.parentElement.parentElement.classList.add('error-shake');
@@ -1628,7 +1639,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(ext < 5 && baseVal + eldVal < 5) {
                 AudioEngine.playThud();
                 state.elderlySkills[id] = eldVal + 1;
-                calculateAll(); renderAttrSkillCard();
+                renderAttrSkillCard(); calculateAll();
             } else {
                 AudioEngine.playError();
                 e.target.parentElement.parentElement.classList.add('error-shake');
@@ -1765,17 +1776,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const lockMsg = document.getElementById('powers-locked-msg');
         const pwrContainer = document.getElementById('powers-container');
         
+        const pwrTrackerDiv = document.getElementById('powers-tracker');
         if (trPowers) {
             trPowersMax.textContent = state.arcaneMaxPowers || 0;
             trPowers.textContent = state.powers.length;
             trPPMax.textContent = state.arcaneMaxPP || 0;
             
-            if (state.powers.length > (state.arcaneMaxPowers || 0)) {
-                trPowers.parentElement.className = 'points-tracker edit-only tracker-red';
-            } else if (state.powers.length === (state.arcaneMaxPowers || 0)) {
-                trPowers.parentElement.className = 'points-tracker edit-only tracker-green';
-            } else {
-                trPowers.parentElement.className = 'points-tracker edit-only';
+            if (pwrTrackerDiv) {
+                if (state.powers.length > (state.arcaneMaxPowers || 0)) {
+                    pwrTrackerDiv.className = 'points-tracker edit-only tracker-red';
+                } else if (state.powers.length === (state.arcaneMaxPowers || 0)) {
+                    pwrTrackerDiv.className = 'points-tracker edit-only tracker-green';
+                } else {
+                    pwrTrackerDiv.className = 'points-tracker edit-only';
+                }
             }
         }
         
@@ -2300,4 +2314,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
 

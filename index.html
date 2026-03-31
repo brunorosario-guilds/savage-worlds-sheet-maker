@@ -168,14 +168,14 @@
                         <select id="select-edge" style="width: 70%;"></select>
                         <button class="add-btn" id="btn-add-edge" disabled>Adicionar</button>
                     </div>
-                    <div id="edge-hint" class="hint-box hidden" style="background:#e9ecef; padding:8px; border-radius:4px; margin-bottom:10px; font-size:0.9rem;">
-                        <strong id="edge-hint-name"></strong> <span id="edge-hint-req"></span><br>
-                        <span id="edge-hint-desc" style="display:block; margin-top:5px; color:#555;"></span>
+                    <div id="edge-hint" class="hint-box hidden">
+                        <strong id="edge-hint-name"></strong> <span id="edge-hint-req" class="hint-req"></span><br>
+                        <span id="edge-hint-desc" class="hint-desc"></span>
                     </div>
-                    <div id="arcane-type-wrapper" class="hidden edit-only" style="margin-bottom: 15px; padding: 10px; background: rgba(0,0,0,0.05); border-left: 3px solid var(--primary-color);">
+                    <div id="arcane-type-wrapper" class="hidden edit-only" style="margin-bottom: 15px; padding: 10px; background: rgba(0,0,0,0.2); border-left: 3px solid var(--primary-color);">
                         <label style="font-size: 0.85rem; display:block; margin-bottom: 5px;"><strong>Escolha a Tradição Arcana:</strong></label>
-                        <select id="select-arcane-type" style="width: 100%; padding: 4px; border-radius: 4px; border: 1px solid var(--border-color);"></select>
-                        <div id="arcane-hint" style="margin-top: 8px; font-size: 0.85rem; color: #444;"></div>
+                        <select id="select-arcane-type" style="width: 100%; padding: 4px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--text-color);"></select>
+                        <div id="arcane-hint" style="margin-top: 8px; font-size: 0.85rem; color: var(--secondary-color);"></div>
                     </div>
                     <div id="active-edges"></div>
                 </div>
@@ -194,9 +194,9 @@
                             <select id="select-power" style="width: 70%;"></select>
                             <button class="add-btn" id="btn-add-power" disabled>Aprender</button>
                         </div>
-                        <div id="power-hint" class="hint-box hidden" style="background:#e9ecef; padding:8px; border-radius:4px; margin-bottom:10px; font-size:0.9rem;">
-                            <strong id="power-hint-name"></strong> <span id="power-hint-rank"></span> <span id="power-hint-stats"></span><br>
-                            <span id="power-hint-desc" style="display:block; margin-top:5px; color:#555;"></span>
+                        <div id="power-hint" class="hint-box hidden">
+                            <strong id="power-hint-name"></strong> <span id="power-hint-rank" class="hint-req"></span> <span id="power-hint-stats" class="hint-req"></span><br>
+                            <span id="power-hint-desc" class="hint-desc"></span>
                         </div>
                     </div>
                     <div id="active-powers"></div>
@@ -532,14 +532,17 @@
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 15px; padding: 15px; flex: 1; min-height: 0; overflow: hidden;">
+                <div class="rb-main-container">
                     <!-- Left Column: Builders -->
-                    <div style="flex: 2; overflow-y: auto; padding-right: 10px;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="rb-builder-col">
+                        <div class="rb-traits-grid">
                             <!-- Positivos -->
                             <div>
-                                <h3 style="color: #28a745; border-bottom: 1px solid #333; padding-bottom: 5px;">🧬 Habilidades Positivas <span id="rb-pos-sum" style="float: right;">(0 pts gstos)</span></h3>
-                                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">Compre vantagens raciais. A raça inicia com +2 pts grátis.</p>
+                                <div class="rb-header" style="color: #28a745;">
+                                    <h3>🧬 Habilidades Positivas</h3>
+                                    <span id="rb-pos-sum">(0 pts gastos)</span>
+                                </div>
+                                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px; margin-top:5px;">Compre vantagens raciais. A raça inicia com +2 pts grátis.</p>
                                 <div id="rb-list-pos" style="display: flex; flex-direction: column; gap: 8px;">
                                     <!-- Injetado via character.js -->
                                 </div>
@@ -547,8 +550,11 @@
                             
                             <!-- Negativos -->
                             <div>
-                                <h3 style="color: #dc3545; border-bottom: 1px solid #333; padding-bottom: 5px;">⚠️ Habilidades Negativas <span id="rb-neg-sum" style="float: right;">(0 pts ganhos)</span></h3>
-                                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">Adote malus para obter pontos extras para usar em vantagens.</p>
+                                <div class="rb-header" style="color: #dc3545;">
+                                    <h3>⚠️ Habilidades Negativas</h3>
+                                    <span id="rb-neg-sum">(0 pts ganhos)</span>
+                                </div>
+                                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px; margin-top:5px;">Adote malus para obter pontos extras para usar em vantagens.</p>
                                 <div id="rb-list-neg" style="display: flex; flex-direction: column; gap: 8px;">
                                     <!-- Injetado via character.js -->
                                 </div>
@@ -557,8 +563,8 @@
                     </div>
 
                     <!-- Right Column: Preview Pane -->
-                    <div style="flex: 1; display: flex; flex-direction: column; border-left: 2px solid var(--border-color); padding-left: 15px; overflow-y: auto;">
-                        <h3 style="border-bottom: 1px solid #333; padding-bottom: 5px;">📝 Resumo da Raça</h3>
+                    <div class="rb-preview-col">
+                        <h3 style="border-bottom: 1px solid #333; padding-bottom: 5px; margin-top:0;">📝 Resumo da Raça</h3>
                         <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">Pré-visualização dos traços selecionados.</p>
                         <div id="rb-preview" style="flex: 1; background: rgba(0,0,0,0.2); border: 1px dashed var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; overflow-y: auto;">
                             <!-- Preview Injetado via character.js -->
@@ -574,9 +580,12 @@
     <!-- STORE MODAL OVERLAY -->
     <div class="store-modal-overlay" id="store-modal">
         <div class="store-modal">
-            <div class="store-header">
+            <div class="store-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
                 <h2>Catálogo de Suprimentos</h2>
-                <button class="btn-close-modal" id="btn-close-store">&times;</button>
+                <div class="store-funds-display" style="background:var(--box-bg); color:var(--success-color); padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 1.1rem; border: 1px solid var(--success-color); box-shadow: 0 0 10px rgba(85,184,99,0.3);">
+                    Saldo Disponível: $<span id="store-modal-funds-val">500</span>
+                </div>
+                <button class="btn-close-modal" id="btn-close-store" style="position: static; margin-left: auto;">&times;</button>
             </div>
             
             <div class="store-body">
