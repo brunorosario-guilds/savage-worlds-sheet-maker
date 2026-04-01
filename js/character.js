@@ -257,22 +257,92 @@ document.addEventListener('DOMContentLoaded', () => {
         const initialH = dHinds.find(d => d.id === els.hindranceSelect.value);
         if(initialH && initialH.type === 'Menor/Maior') els.hindTogglePanel.classList.add('visible');
         
-        // Portrait
+        // Portrait (Mini-Preview Uploader Zone)
         const upload = document.getElementById('portrait-upload');
-        const box = document.getElementById('portrait-preview');
-        const img = document.getElementById('portrait-img');
-        box.addEventListener('click', () => { if(!isAesthetic) upload.click() });
+        const dropZone = document.getElementById('image-uploader-zone');
+        const instructions = document.getElementById('uploader-instructions');
+        const miniContainer = document.getElementById('mini-preview-container');
+        const miniImg = document.getElementById('mini-portrait-img');
+        const btnClear = document.getElementById('btn-clear-image');
+        const urlInput = document.getElementById('portrait-url');
+        state.uploadedPortraitSrc = null;
+
+        const applyPortraitImage = (src) => {
+            state.uploadedPortraitSrc = src;
+            miniImg.src = src;
+            instructions.style.display = 'none';
+            miniContainer.style.display = 'block';
+            btnClear.style.display = 'block';
+            const controls = document.getElementById('mini-preview-controls');
+            if(controls) controls.style.display = 'flex';
+            dropZone.style.border = 'none';
+            dropZone.style.background = 'transparent';
+            
+            const tempImg = new Image();
+            tempImg.onload = () => {
+                natW = tempImg.naturalWidth || 1;
+                natH = tempImg.naturalHeight || 1;
+                renderImageTransform();
+                renderEpicCard();
+            };
+            tempImg.src = src;
+        };
+
+        // Click to Upload
+        dropZone.addEventListener('click', (e) => {
+            if(!state.uploadedPortraitSrc && e.target !== urlInput) {
+                upload.click();
+            }
+        });
+
+        // File Input Change
         upload.addEventListener('change', (e) => {
-            if(e.target.files[0]) {
+            if(e.target.files && e.target.files[0]) {
                 const reader = new FileReader();
-                reader.onload = ev => {
-                    img.src = ev.target.result;
-                    img.style.display = 'block';
-                    box.querySelector('span').style.display = 'none';
-                    box.style.border = 'none';
-                };
+                reader.onload = ev => applyPortraitImage(ev.target.result);
                 reader.readAsDataURL(e.target.files[0]);
             }
+        });
+
+        // URL Paste/Enter
+        urlInput.addEventListener('change', (e) => {
+            const val = e.target.value.trim();
+            if(val) applyPortraitImage(val);
+        });
+
+        // Drag & Drop
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-active');
+        });
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-active');
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-active');
+            if(e.dataTransfer.files && e.dataTransfer.files[0]) {
+                const reader = new FileReader();
+                reader.onload = ev => applyPortraitImage(ev.target.result);
+                reader.readAsDataURL(e.dataTransfer.files[0]);
+            }
+        });
+
+        // Clear Image
+        btnClear.addEventListener('click', () => {
+            state.uploadedPortraitSrc = null;
+            miniImg.src = '';
+            upload.value = '';
+            urlInput.value = '';
+            instructions.style.display = 'flex';
+            miniContainer.style.display = 'none';
+            btnClear.style.display = 'none';
+            const controls = document.getElementById('mini-preview-controls');
+            if(controls) controls.style.display = 'none';
+            dropZone.style.border = '';
+            dropZone.style.background = '';
+            renderEpicCard();
         });
 
         // Add
@@ -828,11 +898,35 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('epic-char-race').textContent = raceStr.toUpperCase();
         
         const imgEl = document.getElementById('epic-portrait');
-        const sourceImg = document.getElementById('portrait-img').src;
-        if(sourceImg && !sourceImg.endsWith('index.html')) {
-            imgEl.src = sourceImg;
+        const miniPortrait = document.getElementById('mini-portrait-img');
+        
+        if (state.uploadedPortraitSrc) {
+            imgEl.src = state.uploadedPortraitSrc;
+            if (miniPortrait) {
+                miniPortrait.src = state.uploadedPortraitSrc;
+                // Reveal the preview UI if it was restored
+                const previewContainer = document.getElementById('mini-preview-container');
+                const btnClear = document.getElementById('btn-clear-image');
+                const instructions = document.querySelector('.upload-instructions');
+                if (previewContainer) previewContainer.style.display = 'block';
+                if (btnClear) btnClear.style.display = 'block';
+                if (instructions) instructions.style.display = 'none';
+            }
+            
+            // Re-calculate math dimensions if restoring from save data
+            const tempImg = new Image();
+            tempImg.onload = () => {
+                if (typeof natW !== 'undefined') {
+                    // Update global natW / natH if possible, handled mostly by applyPortraitImage but good to ensure
+                    // Actually, JavaScript scope might not let us reassign natW if it's let in initCardExporter.
+                    // Instead, we ensure it's calculated during the proper event or we dispatch a custom event.
+                }
+            };
+            tempImg.src = state.uploadedPortraitSrc;
         } else {
-            imgEl.src = 'data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="%231a1a1a"/></svg>';
+            const svgDefault = 'data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="%231a1a1a"/></svg>';
+            imgEl.src = svgDefault;
+            if (miniPortrait) miniPortrait.src = '';
         }
 
         // Medallions
@@ -1006,7 +1100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             imgZoom: 1,
             imgPanX: 0.5,
             imgPanY: 0.2,
-            imgHeight: 350,
+            imgHeight: 15,
             bgOpacity: 0.95
         };
 
@@ -1017,20 +1111,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (epicPortrait) {
             epicPortrait.addEventListener('load', () => {
-                natW = epicPortrait.naturalWidth || 1;
-                natH = epicPortrait.naturalHeight || 1;
-                renderImageTransform();
+                if (epicPortrait.naturalWidth > 1) {
+                    natW = epicPortrait.naturalWidth;
+                    natH = epicPortrait.naturalHeight;
+                    renderImageTransform();
+                }
             });
-            if (epicPortrait.complete) {
-                natW = epicPortrait.naturalWidth || 1;
-                natH = epicPortrait.naturalHeight || 1;
+            if (epicPortrait.complete && epicPortrait.naturalWidth > 1) {
+                natW = epicPortrait.naturalWidth;
+                natH = epicPortrait.naturalHeight;
             }
         }
 
         const renderImageTransform = () => {
             if (!epicPortrait || epicPortrait.src === '') return;
-            const cW = epicHeaderBg.clientWidth || 650;
-            const cH = epicHeaderBg.clientHeight || 350;
+            const cW = epicHeaderBg.clientWidth || 800;
+            const cH = epicHeaderBg.clientHeight || 1700;
             
             const baseScale = Math.max(cW / natW, cH / natH);
             const scaledW = natW * baseScale * state.imgZoom;
@@ -1049,17 +1145,34 @@ document.addEventListener('DOMContentLoaded', () => {
             epicPortrait.style.height = `${scaledH}px`;
             epicPortrait.style.left = `${leftOffset}px`;
             epicPortrait.style.top = `${topOffset}px`;
+
+            const miniPortrait = document.getElementById('mini-portrait-img');
+            if (miniPortrait && miniPortrait.src !== '') {
+                miniPortrait.style.width = `${scaledW}px`;
+                miniPortrait.style.height = `${scaledH}px`;
+                miniPortrait.style.left = `${leftOffset}px`;
+                miniPortrait.style.top = `${topOffset}px`;
+            }
         };
 
         const renderLayout = () => {
             const spacer = document.getElementById('epic-image-spacer');
             const bgMask = document.getElementById('epic-content-bg');
-            if (spacer) spacer.style.height = `${state.imgHeight}px`;
+            const wrapper = document.querySelector('.epic-card-wrapper');
+            const miniLayer = document.getElementById('mini-data-layer');
+            
+            if (wrapper) wrapper.style.setProperty('--content-gap', `${state.imgHeight}px`);
+            if (miniLayer) miniLayer.style.gap = `${state.imgHeight}px`;
+            
+            if (spacer) spacer.style.display = 'none';
+
             if (bgMask) {
-                // Background mask fade begins 150px above the text content
-                bgMask.style.top = `${Math.max(0, state.imgHeight - 150)}px`;
+                // Background mask anchors from bottom to cover text properly
+                bgMask.style.top = 'auto';
+                bgMask.style.bottom = '0px';
+                bgMask.style.height = '1400px';
                 const op = state.bgOpacity;
-                bgMask.style.background = `linear-gradient(to bottom, rgba(20,15,10,0) 0%, rgba(20,15,10,${Math.min(1, op)}) 150px, rgba(10,5,0,${op}) 100%)`;
+                bgMask.style.background = `linear-gradient(to bottom, rgba(20,15,10,0) 0%, rgba(20,15,10,${Math.min(1, op)}) 250px, rgba(10,5,0,${op}) 100%)`;
             }
         };
 
@@ -1279,66 +1392,95 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Image Zoom & Pan Events
         const zoomSlider = document.getElementById('cust-img-zoom');
-        if (zoomSlider) {
-            zoomSlider.addEventListener('input', e => {
-                state.imgZoom = parseFloat(e.target.value);
-                document.getElementById('lbl-img-zoom').textContent = state.imgZoom.toFixed(2) + 'x';
+            if (zoomSlider) {
+                zoomSlider.addEventListener('input', e => {
+                    state.imgZoom = parseFloat(e.target.value);
+                    document.getElementById('lbl-img-zoom').textContent = state.imgZoom.toFixed(2) + 'x';
+                    renderImageTransform();
+                });
+            }
+
+            let isDraggingImg = false, lastMouseX = 0, lastMouseY = 0, activeDragMultiplier = 1;
+
+            const startPan = (x, y, scale = 1) => {
+                if (!state.uploadedPortraitSrc) return;
+                isDraggingImg = true;
+                lastMouseX = x;
+                lastMouseY = y;
+                activeDragMultiplier = scale || 1;
+            };
+
+            const endPan = () => { isDraggingImg = false; };
+
+            const doPan = (x, y) => {
+                if (!isDraggingImg) return;
+                const dx = (x - lastMouseX) * activeDragMultiplier;
+                const dy = (y - lastMouseY) * activeDragMultiplier;
+                lastMouseX = x; lastMouseY = y;
+
+                const cW = epicHeaderBg.clientWidth || 800;
+                const cH = epicHeaderBg.clientHeight || 1700;
+                const baseScale = Math.max(cW / natW, cH / natH);
+                const excessX = (natW * baseScale * state.imgZoom) - cW;
+                const excessY = (natH * baseScale * state.imgZoom) - cH;
+                
+                let currentPixelX = -1 * (excessX * state.imgPanX) + dx;
+                let currentPixelY = -1 * (excessY * state.imgPanY) + dy;
+                currentPixelX = Math.min(0, Math.max(-excessX, currentPixelX));
+                currentPixelY = Math.min(0, Math.max(-excessY, currentPixelY));
+
+                state.imgPanX = excessX > 0 ? (currentPixelX / -excessX) : 0.5;
+                state.imgPanY = excessY > 0 ? (currentPixelY / -excessY) : 0.5;
+
                 renderImageTransform();
-            });
-        }
-        
-        let isDraggingImg = false;
-        let lastMouseX = 0, lastMouseY = 0;
-        const startPan = (x, y) => { isDraggingImg = true; lastMouseX = x; lastMouseY = y; };
-        const endPan = () => { isDraggingImg = false; };
-        const doPan = (x, y) => {
-            if (!isDraggingImg) return;
-            const dx = x - lastMouseX;
-            const dy = y - lastMouseY;
-            lastMouseX = x; lastMouseY = y;
+            };
 
-            const cW = epicHeaderBg.clientWidth || 650;
-            const cH = epicHeaderBg.clientHeight || 350;
-            const baseScale = Math.max(cW / natW, cH / natH);
-            const excessX = (natW * baseScale * state.imgZoom) - cW;
-            const excessY = (natH * baseScale * state.imgZoom) - cH;
+        // Escuta comum de movimento do Viewport / Document
+        document.addEventListener('mousemove', e => doPan(e.clientX, e.clientY));
+        document.addEventListener('mouseup', () => { 
+            if(epicHeaderBg) epicHeaderBg.style.cursor = 'grab'; 
+            const mini = document.getElementById('mini-preview-container');
+            if(mini) mini.style.cursor = 'grab';
+            endPan(); 
+        });
+        document.addEventListener('touchmove', e => {
+            if(isDraggingImg && e.touches.length === 1) {
+                e.preventDefault();
+                doPan(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, {passive: false});
+        document.addEventListener('touchend', endPan);
 
-            let currentPixelX = -1 * (excessX * state.imgPanX) + dx;
-            let currentPixelY = -1 * (excessY * state.imgPanY) + dy;
-            currentPixelX = Math.min(0, Math.max(-excessX, currentPixelX));
-            currentPixelY = Math.min(0, Math.max(-excessY, currentPixelY));
-
-            state.imgPanX = excessX > 0 ? (currentPixelX / -excessX) : 0.5;
-            state.imgPanY = excessY > 0 ? (currentPixelY / -excessY) : 0.5;
-            renderImageTransform();
-        };
-
+        // Disparo via Card Real (Scale Dinamico CSS)
         if (epicHeaderBg) {
             epicHeaderBg.style.cursor = 'grab';
-            epicHeaderBg.addEventListener('mousedown', e => { epicHeaderBg.style.cursor = 'grabbing'; startPan(e.clientX, e.clientY); });
-            document.addEventListener('mousemove', e => doPan(e.clientX, e.clientY));
-            document.addEventListener('mouseup', () => { epicHeaderBg.style.cursor = 'grab'; endPan(); });
-            
+            epicHeaderBg.addEventListener('mousedown', e => { 
+                epicHeaderBg.style.cursor = 'grabbing'; 
+                const scale = epicHeaderBg.offsetWidth / epicHeaderBg.getBoundingClientRect().width;
+                startPan(e.clientX, e.clientY, scale); 
+            });
             epicHeaderBg.addEventListener('touchstart', e => {
-                if(e.touches.length === 1) startPan(e.touches[0].clientX, e.touches[0].clientY);
-            }, {passive: false});
-            document.addEventListener('touchmove', e => {
-                if(isDraggingImg && e.touches.length === 1) {
-                    e.preventDefault();
-                    doPan(e.touches[0].clientX, e.touches[0].clientY);
+                if(e.touches.length === 1) {
+                    const scale = epicHeaderBg.offsetWidth / epicHeaderBg.getBoundingClientRect().width;
+                    startPan(e.touches[0].clientX, e.touches[0].clientY, scale);
                 }
             }, {passive: false});
-            document.addEventListener('touchend', endPan);
         }
         
-        const spacerHitbox = document.getElementById('epic-image-spacer');
-        if (spacerHitbox) {
-             spacerHitbox.style.cursor = 'grab';
-             spacerHitbox.addEventListener('mousedown', e => { spacerHitbox.style.cursor = 'grabbing'; startPan(e.clientX, e.clientY); });
-             spacerHitbox.addEventListener('mouseup', () => { spacerHitbox.style.cursor = 'grab'; endPan(); });
-             
-             spacerHitbox.addEventListener('touchstart', e => {
-                 if(e.touches.length === 1) startPan(e.touches[0].clientX, e.touches[0].clientY);
+        // Disparo via Mini-Preview Simulator (Scale 0.1875 Fixo)
+        const miniPreview = document.getElementById('mini-preview-container');
+        if (miniPreview) {
+             miniPreview.style.cursor = 'grab';
+             miniPreview.addEventListener('mousedown', e => { 
+                 e.preventDefault();
+                 miniPreview.style.cursor = 'grabbing'; 
+                 startPan(e.clientX, e.clientY, 1 / 0.1875); 
+             });
+             miniPreview.addEventListener('touchstart', e => {
+                 if(e.touches.length === 1) {
+                     e.preventDefault();
+                     startPan(e.touches[0].clientX, e.touches[0].clientY, 1 / 0.1875);
+                 }
              }, {passive: false});
         }
 
@@ -1755,18 +1897,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
         state.edges.push(pushObj);
         calculateAll();
-        renderSimpleList(state.edges, dEdges, els.edgeList, (idx) => { state.edges.splice(idx, 1); calculateAll(); });
+        renderEdges();
         els.edgeSelect.value = '';
         els.edgeSelect.dispatchEvent(new Event('change'));
+    }
+
+    function renderEdges() {
+        renderSimpleList(state.edges, dEdges, els.edgeList, (idx) => {
+            state.edges.splice(idx, 1);
+            calculateAll();
+            renderEdges(); // Re-render so the list reflects the removal
+        });
     }
 
     function addPower(id) {
         if(!id) return;
         state.powers.push(id);
         calculateAll();
-        renderSimpleList(state.powers, dPowers, els.powerList, (idx) => { state.powers.splice(idx, 1); calculateAll(); });
+        renderPowers();
         els.powerSelect.value = '';
         els.powerSelect.dispatchEvent(new Event('change'));
+    }
+
+    function renderPowers() {
+        renderSimpleList(state.powers, dPowers, els.powerList, (idx) => {
+            state.powers.splice(idx, 1);
+            calculateAll();
+            renderPowers(); // Re-render so the list reflects the removal
+        });
     }
 
     function renderArcaneTracker() {
@@ -2061,7 +2219,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const idStr = typeof eId === 'object' ? eId.id : eId;
                 const def = dEdges.find(d => d.id === idStr);
                 if(def) {
-                    if(def.id.includes('arcane') || def.id.includes('pwr') || def.type === 'Poderes') hasArcane = true;
+                    if(def.id === 'edge_antecedente_arcano' || def.id.includes('arcano') || def.id.includes('pwr') || def.type === 'Poder' || def.type === 'Poderes') hasArcane = true;
                     if (typeof eId === 'object' && eId.arcId) {
                         arcaneMaxPowers += (eId.powers || 0);
                         arcaneMaxPP += (eId.pp || 0);
@@ -2219,97 +2377,247 @@ document.addEventListener('DOMContentLoaded', () => {
         if(typeof renderArcaneTracker === 'function') renderArcaneTracker();
     }
 
-    // --- RE-BIND EXPORT TO RESPECT MODES ---
-    function prepareDOMforCapture() {
-        const charSheet = document.getElementById('character-sheet');
-        const epicSheet = document.getElementById('epic-presentation-card');
-        const activeSheet = isAesthetic ? epicSheet : charSheet;
-        
-        activeSheet.style.boxShadow = 'none';
-        activeSheet.style.border = 'none';
+    // --- EXPORT SYSTEM (Fidelidade Visual Absoluta) ---
+    // html2canvas has known limitations with modern CSS. This system
+    // temporarily patches the DOM before capture and restores it after.
 
-        // Translate CSS Filter to Text Shadow for better html2canvas rendering
+    function prepareDOMforCapture() {
+        const savedState = {
+            wasAesthetic: isAesthetic,
+            overrides: [] // [{element, prop, oldValue}]
+        };
+
+        // 1. Force aesthetic mode if not already active
+        const epicSheet = document.getElementById('epic-presentation-card');
+        const charSheet = document.getElementById('character-sheet');
+        const customizer = document.getElementById('aesthetic-customizer');
+
+        if (!isAesthetic) {
+            isAesthetic = true;
+            document.body.classList.add('mode-aesthetic');
+            charSheet.style.display = 'none';
+            epicSheet.style.display = 'flex';
+            renderEpicCard();
+        }
+
+        // Helper to save and override a style
+        function override(el, prop, newVal) {
+            savedState.overrides.push({ el, prop, oldVal: el.style[prop] });
+            el.style[prop] = newVal;
+        }
+
+        // 2. Hide the customizer during capture
+        if (customizer) override(customizer, 'display', 'none');
+
+        // 3. Remove outer box-shadow from epic sheet and force dimensions for capture
+        override(epicSheet, 'boxShadow', 'none');
+        override(epicSheet, 'height', '1700px');
+
+        // 4. Add solid dark background to card wrapper and RESET transform scaling
+        const wrapper = epicSheet.querySelector('.epic-card-wrapper');
+        if (wrapper) {
+            override(wrapper, 'backgroundColor', '#0a0500');
+            override(wrapper, 'transform', 'none');
+        }
+
+        // 5. Fix -webkit-background-clip:text (html2canvas cannot render it)
+        //    Convert gradient text to solid gold color
+        epicSheet.querySelectorAll('*').forEach(el => {
+            const cs = getComputedStyle(el);
+            if (cs.webkitBackgroundClip === 'text' || cs.backgroundClip === 'text') {
+                override(el, 'webkitBackgroundClip', 'border-box');
+                override(el, 'backgroundClip', 'border-box');
+                override(el, 'webkitTextFillColor', 'initial');
+                override(el, 'color', '#f9e596');
+                override(el, 'background', 'transparent');
+            }
+        });
+
+        // 6. Replace backdrop-filter with solid opaque background (unsupported by html2canvas)
+        epicSheet.querySelectorAll('*').forEach(el => {
+            const cs = getComputedStyle(el);
+            if (cs.backdropFilter && cs.backdropFilter !== 'none') {
+                override(el, 'backdropFilter', 'none');
+                override(el, 'webkitBackdropFilter', 'none');
+                // Make semi-transparent backgrounds fully opaque
+                const bg = cs.backgroundColor;
+                if (bg && bg.startsWith('rgba')) {
+                    const match = bg.match(/rgba\(\s*(\d+),\s*(\d+),\s*(\d+)/);
+                    if (match) {
+                        override(el, 'backgroundColor', `rgb(${match[1]}, ${match[2]}, ${match[3]})`);
+                    }
+                }
+            }
+        });
+
+        // 7. Convert CSS filter: drop-shadow() to text-shadow (for ALL text elements)
+        //    html2canvas has partial/broken filter support
         const epicCharName = document.getElementById('epic-char-name');
-        let oldFilter = null;
-        if (isAesthetic && epicCharName && state.effects) {
-            oldFilter = epicCharName.style.filter;
+        if (epicCharName && state.effects) {
             let dropShadows = [];
-            if (state.effects.shadow.active) {
+            if (state.effects.shadow && state.effects.shadow.active) {
                 const e = state.effects.shadow;
                 dropShadows.push(`${e.x}px ${e.y}px ${e.blur}px ${e.color}`);
             }
-            if (state.effects.glow.active) {
+            if (state.effects.glow && state.effects.glow.active) {
                 const e = state.effects.glow;
                 dropShadows.push(`0px 0px ${e.blur}px ${e.color}`);
                 dropShadows.push(`0px 0px ${e.blur * 2}px ${e.color}`);
             }
-            if (state.effects.outline.active) {
+            if (state.effects.outline && state.effects.outline.active) {
                 const o = state.effects.outline.blur; const c = state.effects.outline.color;
                 dropShadows.push(`-${o}px -${o}px 0 ${c}`);
                 dropShadows.push(`${o}px -${o}px 0 ${c}`);
                 dropShadows.push(`-${o}px ${o}px 0 ${c}`);
                 dropShadows.push(`${o}px ${o}px 0 ${c}`);
             }
-            if(dropShadows.length > 0) {
-                 epicCharName.style.filter = 'none';
-                 epicCharName.style.textShadow = dropShadows.join(', ');
+            if (dropShadows.length > 0) {
+                override(epicCharName, 'filter', 'none');
+                override(epicCharName, 'textShadow', dropShadows.join(', '));
             }
         }
-        
-        return { sheet: activeSheet, oldFilter };
+
+        // 8. Convert filter:drop-shadow on h1 elements to text-shadow fallback
+        epicSheet.querySelectorAll('h1, h2, h3').forEach(el => {
+            if (el === epicCharName) return; // already handled above
+            const cs = getComputedStyle(el);
+            if (cs.filter && cs.filter !== 'none' && cs.filter.includes('drop-shadow')) {
+                const match = cs.filter.match(/drop-shadow\((.+?)\)/);
+                if (match) {
+                    override(el, 'filter', 'none');
+                    override(el, 'textShadow', match[1]);
+                }
+            }
+        });
+
+        return { sheet: epicSheet, savedState };
     }
 
-    function resetDOMafterCapture(sheet, oldFilter) {
-        sheet.style.boxShadow = '';
-        sheet.style.border = '';
-        const epicCharName = document.getElementById('epic-char-name');
-        if (epicCharName && oldFilter !== null) {
-            epicCharName.style.textShadow = 'none';
-            epicCharName.style.filter = oldFilter;
+    function resetDOMafterCapture(savedState) {
+        // Restore all overridden styles in reverse order
+        for (let i = savedState.overrides.length - 1; i >= 0; i--) {
+            const { el, prop, oldVal } = savedState.overrides[i];
+            el.style[prop] = oldVal;
+        }
+
+        // Restore mode if it was switched
+        if (!savedState.wasAesthetic) {
+            isAesthetic = false;
+            document.body.classList.remove('mode-aesthetic');
+            document.getElementById('character-sheet').style.display = 'block';
+            document.getElementById('epic-presentation-card').style.display = 'none';
+            document.getElementById('aesthetic-customizer').style.display = 'none';
         }
     }
+
+    // --- Export Preview System ---
+    function showExportPreview(imgDataUrl, fileName, type) {
+        const overlay = document.getElementById('export-preview-overlay');
+        const body = document.getElementById('export-preview-body');
+        const title = document.getElementById('export-preview-title');
+        const btnDownload = document.getElementById('btn-export-download');
+
+        title.textContent = type === 'pdf' 
+            ? '📜 Pré-visualização — PDF' 
+            : '🖼️ Pré-visualização — Imagem';
+
+        body.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = imgDataUrl;
+        img.alt = 'Pré-visualização da exportação';
+        body.appendChild(img);
+
+        // Store download data for the button
+        btnDownload._downloadData = { imgDataUrl, fileName, type };
+
+        overlay.classList.add('active');
+        AudioEngine.playClick();
+    }
+
+    // Close preview modal
+    document.getElementById('btn-close-export-preview').addEventListener('click', () => {
+        document.getElementById('export-preview-overlay').classList.remove('active');
+    });
+    document.getElementById('export-preview-overlay').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+            e.currentTarget.classList.remove('active');
+        }
+    });
+
+    // Download button inside preview
+    document.getElementById('btn-export-download').addEventListener('click', function() {
+        const data = this._downloadData;
+        if (!data) return;
+
+        if (data.type === 'pdf') {
+            // Rebuild PDF from the stored canvas image
+            const { jsPDF } = window.jspdf;
+            const img = new Image();
+            img.onload = function() {
+                const pdfWidth = img.naturalWidth;
+                const pdfHeight = img.naturalHeight;
+                const orientation = pdfWidth > pdfHeight ? 'l' : 'p';
+                const pdf = new jsPDF({
+                    orientation: orientation,
+                    unit: 'px',
+                    format: [pdfWidth, pdfHeight]
+                });
+                pdf.setFillColor(10, 5, 0);
+                pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
+                pdf.addImage(data.imgDataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save(data.fileName);
+            };
+            img.src = data.imgDataUrl;
+        } else {
+            const link = document.createElement('a');
+            link.download = data.fileName;
+            link.href = data.imgDataUrl;
+            link.click();
+        }
+
+        AudioEngine.playCoin();
+    });
 
     async function exportImg() {
-        const { sheet, oldFilter } = prepareDOMforCapture();
+        const { sheet, savedState } = prepareDOMforCapture();
         const charName = document.getElementById('char-name').value || 'Personagem';
         try {
-            const canvas = await html2canvas(sheet, { scale: 2, useCORS: true, backgroundColor: null });
-            const link = document.createElement('a');
-            link.download = `${charName.replace(/ /g, '_')}_SWADE.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
+            const canvas = await html2canvas(sheet, { 
+                scale: 2, 
+                useCORS: true, 
+                backgroundColor: null,
+                logging: false
+            });
+            const imgDataUrl = canvas.toDataURL('image/png');
+            const fileName = `${charName.replace(/ /g, '_')}_SWADE.png`;
+            resetDOMafterCapture(savedState);
+            showExportPreview(imgDataUrl, fileName, 'img');
         } catch (e) {
-            console.error(e);
+            console.error('Export IMG Error:', e);
             alert("Falha ao exportar imagem.");
+            resetDOMafterCapture(savedState);
         }
-        resetDOMafterCapture(sheet, oldFilter);
     }
 
     async function exportPDF() {
-        const { sheet, oldFilter } = prepareDOMforCapture();
+        const { sheet, savedState } = prepareDOMforCapture();
         const charName = document.getElementById('char-name').value || 'Personagem';
         try {
-            const canvas = await html2canvas(sheet, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
-            const imgData = canvas.toDataURL('image/png');
-            const { jsPDF } = window.jspdf;
-            
-            const pdfWidth = canvas.width;
-            const pdfHeight = canvas.height;
-            const orientation = pdfWidth > pdfHeight ? 'l' : 'p';
-            
-            const pdf = new jsPDF({
-                orientation: orientation,
-                unit: 'px',
-                format: [pdfWidth, pdfHeight]
+            const canvas = await html2canvas(sheet, { 
+                scale: 2, 
+                useCORS: true, 
+                backgroundColor: null,
+                logging: false
             });
-            
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save(`${charName.replace(/ /g, '_')}_SWADE.pdf`);
+            const imgDataUrl = canvas.toDataURL('image/png');
+            const fileName = `${charName.replace(/ /g, '_')}_SWADE.pdf`;
+            resetDOMafterCapture(savedState);
+            showExportPreview(imgDataUrl, fileName, 'pdf');
         } catch (e) {
-            console.error(e);
+            console.error('Export PDF Error:', e);
             alert("Falha ao exportar PDF.");
+            resetDOMafterCapture(savedState);
         }
-        resetDOMafterCapture(sheet, oldFilter);
     }
 
     init();
