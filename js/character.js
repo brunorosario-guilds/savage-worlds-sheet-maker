@@ -1125,8 +1125,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const renderImageTransform = () => {
             if (!epicPortrait || epicPortrait.src === '') return;
-            const cW = epicHeaderBg.clientWidth || 800;
-            const cH = epicHeaderBg.clientHeight || 1700;
+            const cW = 800;
+            const cH = 1700;
             
             const baseScale = Math.max(cW / natW, cH / natH);
             const scaledW = natW * baseScale * state.imgZoom;
@@ -1418,8 +1418,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dy = (y - lastMouseY) * activeDragMultiplier;
                 lastMouseX = x; lastMouseY = y;
 
-                const cW = epicHeaderBg.clientWidth || 800;
-                const cH = epicHeaderBg.clientHeight || 1700;
+                const cW = 800;
+                const cH = 1700;
                 const baseScale = Math.max(cW / natW, cH / natH);
                 const excessX = (natW * baseScale * state.imgZoom) - cW;
                 const excessY = (natH * baseScale * state.imgZoom) - cH;
