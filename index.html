@@ -44,7 +44,10 @@
                 <div class="grid-2 edit-only">
                     <div class="input-group">
                         <label>Raça</label>
-                        <select id="char-race"></select>
+                        <div style="display: flex; gap: 5px;">
+                            <select id="char-race" style="flex: 1;"></select>
+                            <button id="btn-open-race-builder-direct" class="btn-primary" style="padding: 0 15px;" title="Forjar Nova Raça">🧬 Forjar Raça</button>
+                        </div>
                     </div>
                 </div>
 
@@ -78,14 +81,14 @@
             </div>
             
             <div>
-                <label style="display:flex; justify-content:space-between; align-items:center;">
-                    Arte (Mini-Prévia)
-                    <span style="font-size:0.75rem; color:var(--primary-color);">URL ou Arquivo</span>
+                <label style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                    <span>Arte do Personagem</span>
+                    <span id="lbl-preview-subtitle" style="display:none; font-size:0.75rem; color:var(--primary-color); font-weight:normal; margin-top:2px;">Prévia do Card</span>
                 </label>
                 
                 <div class="image-uploader-zone" id="image-uploader-zone">
                     <div class="uploader-instructions" id="uploader-instructions">
-                        <i class="fas fa-image" style="font-size:2rem; margin-bottom:10px; color:#a89476;"></i>
+                        <div style="font-size:2rem; margin-bottom:10px; color:#a89476;">🖼️</div>
                         <p style="margin:0; font-weight:bold; color:#e0d5c1;">Arraste e Solte</p>
                         <p style="margin:5px 0; font-size:0.8rem; color:#888;">ou clique para Imagem Física</p>
                         
@@ -116,7 +119,8 @@
                             <div id="mini-content-bg" style="position:absolute; bottom:0; left:0; width:100%; height:1400px; background:linear-gradient(to bottom, rgba(20,15,10,0) 0%, rgba(20,15,10,0.95) 250px, rgba(10,5,0,0.95) 100%); z-index:4;"></div>
 
                             <!-- Data Ghost Layer (Flexible) -->
-                            <div id="mini-data-layer" style="position:absolute; bottom:0; left:0; width:100%; height:1700px; display:flex; flex-direction:column; justify-content:flex-end; align-items:stretch; padding: 20px 0 30px 0; z-index:5; gap: 15px;">
+                            <div id="mini-data-layer" style="position:absolute; bottom:0; left:0; width:100%; height:1700px; display:flex; flex-direction:column; justify-content:flex-start; align-items:stretch; padding: 0; z-index:5; gap: 15px;">
+                                <div id="mini-image-spacer" style="height: 600px; width: 100%; position: relative;"></div>
                                 <div style="display:flex; justify-content:center; gap:30px; margin-bottom:10px;">
                                     <div style="width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.4);"></div>
                                     <div style="width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.4);"></div>
@@ -134,14 +138,14 @@
                 
                 <input type="file" id="portrait-upload" class="portrait-input edit-only" style="display:none;" accept="image/png, image/jpeg, image/jpg, image/webp">
                 
-                <div id="mini-preview-controls" class="edit-only" style="display:none; margin-top:15px; width: 100%; align-items:center; flex-direction:column; gap:10px;">
-                    <div class="custom-group" style="width: 100%; text-align:center;">
+                <div id="mini-preview-controls" class="edit-only" style="display:none; margin-top:5px; width: 100%; align-items:center; flex-direction:column; gap:0;">
+                    <div class="custom-group" style="width: 100%; text-align:center; margin-bottom:5px;">
                         <label style="color:#dcb360;">Zoom Prévia (<span id="lbl-mini-zoom">1.0x</span>)</label>
                         <input type="range" id="mini-img-zoom" min="1" max="3" step="0.01" value="1" style="width:100%;">
                     </div>
-                    <div class="custom-group" style="width: 100%; text-align:center;">
-                        <label style="color:#dcb360;">Info Box Prévia (<span id="lbl-mini-height">15px</span>)</label>
-                        <input type="range" id="mini-img-height" min="0" max="150" step="2" value="15" style="width:100%;">
+                    <div style="margin-top: 0; margin-bottom: 10px; width: 100%;">
+                        <span style="font-size: 0.8rem; font-weight: bold; color: #cfb98e; text-align: center; display: block;">Info Box Prévia (<span id="lbl-mini-height">600px</span>)</span>
+                        <input type="range" id="mini-img-height" min="110" max="1200" step="10" value="600" style="width:100%;">
                     </div>
                 </div>
 
@@ -153,7 +157,14 @@
                 <!-- Novo Master Card: Atributos & Perícias -->
                 <div class="section" id="attr-skill-card">
                     <h2 style="display:flex; justify-content:space-between; align-items:center;">
-                        Atributos & Perícias
+                        <span>Atributos & Perícias</span>
+                        <div id="refund-box-attrskill" class="refund-box edit-only" style="display:none;">
+                            <span class="refund-label">Pontos de Complicação Gastos: <strong id="lbl-refund-attrskill-total" style="color:#dcb360;">0</strong></span>
+                            <div style="display:flex; gap: 5px;">
+                                <button class="btn-refund" id="btn-refund-attr" style="display:none;">Restituir Atributo</button>
+                                <button class="btn-refund" id="btn-refund-skill" style="display:none;">Restituir Perícia</button>
+                            </div>
+                        </div>
                     </h2>
                     
                     <!-- Atributos Isolados (Força e Vigor) -->
@@ -197,14 +208,12 @@
                     <!-- Trackers de Complicações e Custo -->
                     <div id="card-trackers-hindrances" class="edit-only" style="padding: 10px; border-radius: 8px; margin-bottom: 15px; background: var(--bg-color); border: 1px solid var(--border-color);">
                         <div class="points-tracker" id="tracker-hindrances" style="margin-bottom: 10px;">
-                            <span>Pontos de Complicação Gastos / Recebidos: 
-                                <span id="val-hind-spent">0</span> / <span id="val-hind-gen">0</span> (Máx: 4)
-                            </span>
+                            <span>Gastos <span id="val-hind-spent">0</span> / <span id="val-hind-avail">0</span> Disponíveis (Máx: 4)</span>
                         </div>
                         
-                        <div style="background:#fff3cd; color:#856404; padding:10px; border-radius:4px; border:1px solid #ffeeba;">
-                            <h4 style="color:#856404; margin-bottom:5px;">Aplicar Pontos de Complicação</h4>
-                            <p style="font-size:0.8rem; margin-bottom:10px;">Compre aumentos permanentes com os pontos recebidos pelas Complicações.</p>
+                        <div style="background:linear-gradient(135deg, #1f170f 0%, #0d0905 100%); padding:12px; border-radius:8px; border:1px solid #4a3821; box-shadow: inset 0 0 15px rgba(0,0,0,0.5);">
+                            <h4 style="color:#dcb360; font-family:var(--header-font); letter-spacing:1px; margin-bottom:5px; text-shadow:1px 1px 3px rgba(0,0,0,0.8);">Aplicar Pontos de Complicação</h4>
+                            <p style="font-size:0.8rem; margin-bottom:12px; color:#c4b093;">Compre aumentos permanentes com os pontos recebidos pelas Complicações.</p>
                             <div class="grid-2">
                                 <button class="add-btn btn-secondary" id="buy-attr">+1 Ponto Atributo (2pts)</button>
                                 <button class="add-btn btn-secondary" id="buy-edge">+1 Vantagem Extra (2pts)</button>
@@ -230,7 +239,13 @@
                 </div>
 
                 <div class="section">
-                    <h2>Vantagens</h2>
+                    <h2 style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Vantagens</span>
+                        <div id="refund-box-edge" class="refund-box edit-only" style="display:none;">
+                            <span class="refund-label">Pontos de Complicação Gastos: <strong id="lbl-refund-edge-total" style="color:#dcb360;">0</strong></span>
+                            <button class="btn-refund" id="btn-refund-edge">Restituir</button>
+                        </div>
+                    </h2>
                     <div class="input-group flex-between edit-only">
                         <select id="select-edge" style="width: 70%;"></select>
                         <button class="add-btn" id="btn-add-edge" disabled>Adicionar</button>
@@ -270,7 +285,13 @@
                 </div>
 
                 <div class="section">
-                    <h2>Equipamento e Armadura</h2>
+                    <h2 style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Equipamento e Armadura</span>
+                        <div id="refund-box-funds" class="refund-box edit-only" style="display:none;">
+                            <span class="refund-label">Pontos de Complicação Gastos: <strong id="lbl-refund-funds-total" style="color:#dcb360;">0</strong></span>
+                            <button class="btn-refund" id="btn-refund-funds">Restituir</button>
+                        </div>
+                    </h2>
                     
                     <div id="card-trackers-funds" class="edit-only" style="padding: 10px; border-radius: 8px; margin-bottom: 15px; background: var(--bg-color); border: 1px solid var(--border-color);">
                         <div class="points-tracker" id="tracker-funds" style="margin-bottom: 0;">
@@ -563,9 +584,9 @@
                         <input type="range" id="cust-img-zoom" min="1" max="3" step="0.01" value="1" style="width:100%;">
                         <small style="color:#aaa; display:block; margin-top:3px;">Você pode arrastar a arte diretamente no card se preferir.</small>
                     </div>
-                    <div class="custom-group" style="margin-top: 15px;">
-                        <label>Altura do Início da Info Box (<span id="lbl-img-height">15px</span>)</label>
-                        <input type="range" id="cust-img-height" min="0" max="150" step="2" value="15" style="width:100%;">
+                    <div style="margin-top: 15px;">
+                        <span style="font-size: 0.85rem; font-weight: bold; color: #cfb98e;">Altura do Início da Info Box (<span id="lbl-img-height">600px</span>)</span>
+                        <input type="range" id="cust-img-height" min="110" max="1200" step="10" value="600" style="width:100%;">
                     </div>
                 </div>
             </div>
@@ -656,73 +677,108 @@
         </div>
     </div>
 
-    <!-- STORE MODAL OVERLAY -->
+    <!-- STORE MODAL OVERLAY (PRO E-COMMERCE) -->
     <div class="store-modal-overlay" id="store-modal">
-        <div class="store-modal">
-            <div class="store-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
-                <h2>Catálogo de Suprimentos</h2>
-                <div class="store-funds-display" style="background:var(--box-bg); color:var(--success-color); padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 1.1rem; border: 1px solid var(--success-color); box-shadow: 0 0 10px rgba(85,184,99,0.3);">
-                    Saldo Disponível: $<span id="store-modal-funds-val">500</span>
+        <div class="store-modal store-modal-pro">
+            <div class="store-header-pro">
+                <div class="store-brand">
+                    <h2>🛒 Catálogo de Suprimentos</h2>
+                    <div class="store-funds-display">
+                        Carteira: $<span id="store-modal-funds-val">500</span>
+                    </div>
                 </div>
-                <button class="btn-close-modal" id="btn-close-store" style="position: static; margin-left: auto;">&times;</button>
+                <div class="store-search-bar">
+                    <button id="btn-toggle-filters" class="btn-store-action" title="Mostrar/Esconder Filtros Extras" style="font-size: 0.8rem; padding: 6px 12px; display: flex; align-items: center; gap: 6px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                        Filtros
+                    </button>
+                    <input type="text" id="shop-search" placeholder="Buscar suprimento..." class="shop-search-input">
+                </div>
+                <button class="btn-close-modal" id="btn-close-store" style="position: static;">&times;</button>
             </div>
             
-            <div class="store-body">
-                <!-- SIDEBAR FILTERS -->
-                <div class="store-sidebar">
-                    <h3>Filtros de Busca</h3>
-                    <div class="filter-group">
-                        <input type="text" id="shop-search" placeholder="Pesquisar por nome..." style="width: 100%; border-radius: 4px; padding: 5px;">
-                    </div>
-                    
-                    <h3 style="margin-top:20px;">Filtrar Categoria</h3>
-                    <div class="modal-tabs" id="shop-categories">
-                        <div class="modal-tab-btn active" data-cat="all">Todas</div>
-                        <div class="modal-tab-btn" data-cat="Armas Brancas">Armas Brancas</div>
-                        <div class="modal-tab-btn" data-cat="Armas de Fogo/Longa Distância">Longa Dist.</div>
-                        <div class="modal-tab-btn" data-cat="Armaduras">Armadura</div>
-                        <div class="modal-tab-btn" data-cat="Escudos">Escudos</div>
-                        <div class="modal-tab-btn" data-cat="Ficção Científica">Sci-Fi</div>
-                        <div class="modal-tab-btn" data-cat="Aventura/Utilitários">Geral/Útil</div>
-                    </div>
-                    
-                    <h3 style="margin-top:20px;">Filtros Matemáticos</h3>
-                    <div class="filter-group">
-                        <label>Range de Preço ($):</label>
-                        <div style="display:flex; gap: 5px;">
-                            <input type="number" id="shop-price-min" placeholder="0" value="0">
-                            <input type="number" id="shop-price-max" placeholder="Max" value="999999">
-                        </div>
-                    </div>
-                    <div class="filter-group">
-                        <label>Força Mínima Ignorada (Ocultar pesados):</label>
-                        <select id="shop-minstr">
-                            <option value="99">Mostrar Todos</option>
-                            <option value="4">Até d4 (Leves)</option>
-                            <option value="6">Até d6</option>
-                            <option value="8">Até d8</option>
-                            <option value="10">Até d10</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <div style="display:flex; align-items:center; gap:5px;">
-                            <input type="checkbox" id="shop-no-ammo">
-                            <label style="margin:0;">Apenas itens S/ Munição</label>
-                        </div>
-                    </div>
-                    <div class="filter-group">
-                        <div style="display:flex; align-items:center; gap:5px;">
-                            <input type="checkbox" id="shop-req-benefit">
-                            <label style="margin:0;">Apenas c/ Benefícios (AP)</label>
-                        </div>
+            <div class="store-categories-switch" id="shop-categories">
+                <div class="store-tab-btn active" data-cat="all">Todas as Áreas</div>
+                <div class="store-tab-btn" data-cat="Armas Brancas">Armas Brancas</div>
+                <div class="store-tab-btn" data-cat="Armas de Fogo/Longa Distância">Longa Distância</div>
+                <div class="store-tab-btn" data-cat="Armaduras">Armaduras</div>
+                <div class="store-tab-btn" data-cat="Escudos">Escudos</div>
+                <div class="store-tab-btn" data-cat="Utilidades">Utilidades</div>
+                <div class="store-tab-btn" data-cat="owned" style="margin-left: auto; border: 1px solid #dcb360; background: rgba(220,179,96,0.1); color: #dcb360;">🎒 Itens Adquiridos</div>
+            </div>
+
+            <div class="store-filters-row" id="shop-filters-row" style="display: none;">
+                <div class="filter-col">
+                    <label>Ordenar Por:</label>
+                    <select id="shop-sort-by" class="shop-select">
+                        <option value="alpha">A-Z (Alfabético)</option>
+                        <option value="price_asc">Menor Preço</option>
+                        <option value="price_desc">Maior Preço</option>
+                        <option value="weight_asc">Mais Leves</option>
+                        <option value="weight_desc">Mais Pesados</option>
+                        <option value="dmg_desc" class="sort-opt-dmg">Maior Dano</option>
+                        <option value="dmg_asc" class="sort-opt-dmg">Menor Dano</option>
+                        <option value="str_asc" class="sort-opt-str">Dado de Força ⬆</option>
+                        <option value="str_desc" class="sort-opt-str">Dado de Força ⬇</option>
+                        <option value="armor_desc" class="sort-opt-armor">Maior Armadura</option>
+                        <option value="armor_asc" class="sort-opt-armor">Menor Armadura</option>
+                    </select>
+                </div>
+                <div class="filter-col">
+                    <label>Range de Preço ($):</label>
+                    <div style="display:flex; gap: 5px;">
+                        <input type="number" id="shop-price-min" placeholder="Mín" value="0" class="shop-input-num">
+                        <input type="number" id="shop-price-max" placeholder="Máx" value="999999" class="shop-input-num">
                     </div>
                 </div>
+                <div class="filter-col filter-mod-str">
+                    <label>Força Mínima (Ocultar):</label>
+                    <select id="shop-minstr" class="shop-select">
+                        <option value="99">Mostrar Todos</option>
+                        <option value="4">Até d4 (Leves)</option>
+                        <option value="6">Até d6</option>
+                        <option value="8">Até d8</option>
+                        <option value="10">Até d10</option>
+                    </select>
+                </div>
+                <div class="filter-col filter-mod-ammo" style="align-self: center; margin-top: 15px;">
+                    <label style="display:flex; align-items:center; gap:5px; cursor:pointer;">
+                        <input type="checkbox" id="shop-no-ammo"> Apenas itens S/ Munição
+                    </label>
+                </div>
+            </div>
 
-                <!-- CONTENT AREA -->
-                <div class="store-content">
-                    <div class="store-grid" id="shop-grid">
-                        <!-- Cards injetados via JS -->
-                        <div style="text-align:center; width:100%; color:#999; margin-top: 50px;">Carregando loja...</div>
+            <div class="store-body-pro">
+                <div class="shop-items-grid-pro" id="shop-grid">
+                    <!-- Cards here -->
+                    <div style="text-align:center; width:100%; color:#999; margin-top: 50px;">Carregando loja...</div>
+                </div>
+
+                <div class="store-sidebar-cart" id="store-sidebar-cart" style="display: flex; position: relative;">
+                    <!-- Overlay Limpar Carrinho -->
+                    <div id="cart-confirm-overlay" class="cart-confirm-overlay" style="display: none;">
+                        <div class="cart-confirm-box">
+                            <p>Esvaziar todo o carrinho?</p>
+                            <div class="cart-confirm-actions">
+                                <button id="btn-confirm-empty-yes" class="btn-confirm-yes">Sim</button>
+                                <button id="btn-confirm-empty-no" class="btn-confirm-no">Não</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-header">
+                        <h3>🛒 Meu Carrinho</h3>
+                        <button id="btn-empty-cart" class="btn-empty-cart" title="Esvaziar Carrinho">🗑️ Limpar Carrinho</button>
+                    </div>
+                    <div class="cart-items-list" id="cart-items-list">
+                        <!-- Cart items injected here -->
+                        <div style="text-align:center; padding: 20px; font-size: 0.8rem; color: #888;">Nenhum item adicionado à lista.</div>
+                    </div>
+                    <div class="cart-footer">
+                        <div class="cart-total-row">
+                            <span>Total Estimado:</span>
+                            <span id="cart-total-value" class="cart-total-value">$0</span>
+                        </div>
+                        <button id="btn-checkout-cart" class="btn-checkout-cart" disabled>Finalizar Compra</button>
                     </div>
                 </div>
             </div>

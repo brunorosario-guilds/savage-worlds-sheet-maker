@@ -40,6 +40,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Init Audio context on first user interaction
     document.body.addEventListener('click', () => AudioEngine.init(), {once:true});
     
+    // Toast Notification System
+    window.showToast = function(message, type = 'info') {
+        let container = document.getElementById('toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'toast-container';
+            document.body.appendChild(container);
+        }
+        
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        
+        // Add icon based on type
+        let icon = 'fa-info-circle';
+        if (type === 'success') icon = 'fa-check-circle';
+        if (type === 'error') icon = 'fa-exclamation-triangle';
+        
+        toast.innerHTML = `<span>${message}</span>`; // Simplified toast as we don't have fontawesome
+        container.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('fade-out');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    };
+    
     // UI State
     let isAesthetic = false;
     let currentShopCategory = 'all';
@@ -57,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
         powers: [],
         equipment: [],
         
+        buyHistory: [], // ['attr', 'skill', 'edge', 'funds'] chronologically
+
         // Compras com pontos de complicação
         boughtAttr: 0,
         boughtSkill: 0,
@@ -275,15 +303,19 @@ document.addEventListener('DOMContentLoaded', () => {
             btnClear.style.display = 'block';
             const controls = document.getElementById('mini-preview-controls');
             if(controls) controls.style.display = 'flex';
+            const subtitle = document.getElementById('lbl-preview-subtitle');
+            if(subtitle) subtitle.style.display = 'block';
             dropZone.style.border = 'none';
             dropZone.style.background = 'transparent';
+            dropZone.style.padding = '5px 0';
             
             const tempImg = new Image();
             tempImg.onload = () => {
-                natW = tempImg.naturalWidth || 1;
-                natH = tempImg.naturalHeight || 1;
-                renderImageTransform();
-                renderEpicCard();
+                state.imgNatW = tempImg.naturalWidth || 1;
+                state.imgNatH = tempImg.naturalHeight || 1;
+                // Defer until variables are populated
+                if(typeof renderImageTransform === 'function') renderImageTransform();
+                if(typeof renderEpicCard === 'function') renderEpicCard();
             };
             tempImg.src = src;
         };
@@ -340,8 +372,11 @@ document.addEventListener('DOMContentLoaded', () => {
             btnClear.style.display = 'none';
             const controls = document.getElementById('mini-preview-controls');
             if(controls) controls.style.display = 'none';
+            const subtitle = document.getElementById('lbl-preview-subtitle');
+            if(subtitle) subtitle.style.display = 'none';
             dropZone.style.border = '';
             dropZone.style.background = '';
+            dropZone.style.padding = '';
             renderEpicCard();
         });
 
@@ -354,11 +389,86 @@ document.addEventListener('DOMContentLoaded', () => {
             openStore(); 
         });
 
+        const flashBtn = (e) => {
+            if(!e || !e.currentTarget) return;
+            const btn = e.currentTarget;
+            btn.classList.remove('btn-flash-success');
+            void btn.offsetWidth; // trigger DOM reflow to restart animation
+            btn.classList.add('btn-flash-success');
+        };
         // Buys
-        els.buyAttr.addEventListener('click', () => { AudioEngine.playClick(); state.boughtAttr++; calculateAll(); });
-        els.buySkill.addEventListener('click', () => { AudioEngine.playClick(); state.boughtSkill++; calculateAll(); });
-        els.buyEdge.addEventListener('click', () => { AudioEngine.playClick(); state.boughtEdges++; calculateAll(); });
-        els.buyFunds.addEventListener('click', () => { AudioEngine.playClick(); state.boughtFunds++; calculateAll(); });
+        els.buyAttr.addEventListener('click', (e) => { 
+            flashBtn(e);
+            AudioEngine.playCoin(); 
+            state.boughtAttr++; 
+            state.buyHistory.push('attr');
+            if(typeof showToast === 'function') showToast('+1 Ponto de Atributo adquirido!', 'success'); 
+            calculateAll(); 
+        });
+        els.buySkill.addEventListener('click', (e) => { 
+            flashBtn(e);
+            AudioEngine.playCoin(); 
+            state.boughtSkill++; 
+            state.buyHistory.push('skill');
+            if(typeof showToast === 'function') showToast('+1 Ponto de Perícia adquirido!', 'success'); 
+            calculateAll(); 
+        });
+        els.buyEdge.addEventListener('click', (e) => { 
+            flashBtn(e);
+            AudioEngine.playCoin(); 
+            state.boughtEdges++; 
+            state.buyHistory.push('edge');
+            if(typeof showToast === 'function') showToast('+1 Vantagem Extra adquirida!', 'success'); 
+            calculateAll(); 
+        });
+        els.buyFunds.addEventListener('click', (e) => { 
+            flashBtn(e);
+            AudioEngine.playCoin(); 
+            state.boughtFunds++; 
+            state.buyHistory.push('funds');
+            if(typeof showToast === 'function') showToast('+$500 Iniciais adquiridos!', 'success'); 
+            calculateAll(); 
+        });
+
+        // Refunds
+        const refundBuy = (e, type) => {
+            let foundIdx = -1;
+            for (let i = state.buyHistory.length - 1; i >= 0; i--) {
+                if (state.buyHistory[i] === type) {
+                    foundIdx = i;
+                    break;
+                }
+            }
+            if (foundIdx === -1) return; // shouldn't happen if button is visible
+            
+            state.buyHistory.splice(foundIdx, 1);
+            if(type === 'attr') state.boughtAttr--;
+            if(type === 'skill') state.boughtSkill--;
+            if(type === 'edge') state.boughtEdges--;
+            if(type === 'funds') state.boughtFunds--;
+            
+            if(e && e.currentTarget) {
+                const btn = e.currentTarget;
+                btn.classList.remove('btn-flash-refund');
+                void btn.offsetWidth;
+                btn.classList.add('btn-flash-refund');
+            }
+            AudioEngine.playClick();
+            if(typeof showToast === 'function') showToast('Pontos restituídos.', 'info'); 
+            calculateAll();
+        };
+
+        const btnRefundAttr = document.getElementById('btn-refund-attr');
+        if(btnRefundAttr) btnRefundAttr.addEventListener('click', (e) => refundBuy(e, 'attr'));
+        
+        const btnRefundSkill = document.getElementById('btn-refund-skill');
+        if(btnRefundSkill) btnRefundSkill.addEventListener('click', (e) => refundBuy(e, 'skill'));
+        
+        const btnRefundEdge = document.getElementById('btn-refund-edge');
+        if(btnRefundEdge) btnRefundEdge.addEventListener('click', (e) => refundBuy(e, 'edge'));
+        
+        const btnRefundFunds = document.getElementById('btn-refund-funds');
+        if(btnRefundFunds) btnRefundFunds.addEventListener('click', (e) => refundBuy(e, 'funds'));
 
         // Export
         const btnPdf = document.getElementById('btn-export-pdf');
@@ -366,21 +476,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnImg = document.getElementById('btn-export-img');
         if(btnImg) btnImg.addEventListener('click', exportImg);
         
-        // Add Custom Race Option to the select
-        const optCustom = document.createElement('option');
-        optCustom.value = '__custom__';
-        optCustom.textContent = '-- Forjar Nova Raça... --';
-        optCustom.style.color = '#cfa85e';
-        optCustom.style.fontWeight = 'bold';
-        els.raceSelect.appendChild(optCustom);
+        // Listen to new direct Race Builder button
+        const btnRaceBuilder = document.getElementById('btn-open-race-builder-direct');
+        if(btnRaceBuilder) {
+            btnRaceBuilder.addEventListener('click', () => {
+                openRaceBuilder();
+            });
+        }
         
         els.raceSelect.addEventListener('change', (e) => { 
-            if(e.target.value === '__custom__') {
-                openRaceBuilder();
-            } else {
-                state.race = e.target.value; 
-                calculateAll(); 
-            }
+            state.race = e.target.value; 
+            calculateAll(); 
         });
     }
 
@@ -696,13 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Refresh select list and select it
         populateSelect(els.raceSelect, dRaces);
         
-        // Re-inject "Forjar Nova Raça"
-        const optCustom = document.createElement('option');
-        optCustom.value = '__custom__';
-        optCustom.textContent = '-- Forjar Nova Raça... --';
-        optCustom.style.color = '#cfa85e';
-        optCustom.style.fontWeight = 'bold';
-        els.raceSelect.appendChild(optCustom);
+        // The button handles this now, no need to re-inject standard option
         
         els.raceSelect.value = newRaceId;
         state.race = newRaceId;
@@ -714,51 +814,239 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateAll();
     }
     
-    // --- STORE LOGIC ---
+    // --- STORE LOGIC & CART ---
+    let storeCart = [];
+
+    function extractWeight(item) {
+        const m = (item.extraBenefits || '').match(/Peso:\s*([\d.]+)/i);
+        return m ? parseFloat(m[1]) : 0;
+    }
+
+    function extractDmgMax(item) {
+        if(!item.damage || item.damage === '-') return 0;
+        const dmg = item.damage.toLowerCase();
+        let val = 0;
+        if(dmg.includes('d4')) val = 4;
+        else if(dmg.includes('d6')) val = 6;
+        else if(dmg.includes('d8')) val = 8;
+        else if(dmg.includes('d10')) val = 10;
+        else if(dmg.includes('d12')) val = 12;
+        
+        let multiplier = 1;
+        const match = dmg.match(/^(\d+)d/);
+        if(match) multiplier = parseInt(match[1]);
+        
+        return val * multiplier;
+    }
+
     function setupStoreListeners() {
         document.getElementById('btn-close-store').addEventListener('click', () => {
             document.getElementById('store-modal').classList.remove('active');
         });
 
-        document.querySelectorAll('.modal-tab-btn').forEach(btn => {
+        // Tabs
+        document.querySelectorAll('#shop-categories .store-tab-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.modal-tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('#shop-categories .store-tab-btn').forEach(b => b.classList.remove('active'));
                 e.target.classList.add('active');
                 currentShopCategory = e.target.dataset.cat;
+                updateStoreSortOptions();
                 renderStore();
             });
         });
 
-        ['shop-search', 'shop-price-min', 'shop-price-max', 'shop-minstr'].forEach(id => {
-            document.getElementById(id).addEventListener('input', renderStore);
+        // Toggle Filters
+        const btnToggleFilters = document.getElementById('btn-toggle-filters');
+        if (btnToggleFilters) {
+            btnToggleFilters.addEventListener('click', () => {
+                const row = document.getElementById('shop-filters-row');
+                row.style.display = row.style.display === 'none' ? 'flex' : 'none';
+            });
+        }
+
+        // Inputs
+        ['shop-search', 'shop-price-min', 'shop-price-max', 'shop-minstr', 'shop-sort-by'].forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.addEventListener('input', renderStore);
         });
-        ['shop-no-ammo', 'shop-req-benefit'].forEach(id => {
-            document.getElementById(id).addEventListener('change', renderStore);
-        });
+        const noAmmoEl = document.getElementById('shop-no-ammo');
+        if(noAmmoEl) noAmmoEl.addEventListener('change', renderStore);
+
+        // Cart Actions
+        const btnEmptyCart = document.getElementById('btn-empty-cart');
+        const overlayConfirm = document.getElementById('cart-confirm-overlay');
+        const btnConfirmYes = document.getElementById('btn-confirm-empty-yes');
+        const btnConfirmNo = document.getElementById('btn-confirm-empty-no');
+
+        if(btnEmptyCart && overlayConfirm) {
+            btnEmptyCart.addEventListener('click', () => {
+                if(storeCart.length > 0) {
+                    overlayConfirm.style.display = 'flex';
+                }
+            });
+
+            btnConfirmNo.addEventListener('click', () => {
+                overlayConfirm.style.display = 'none';
+            });
+
+            btnConfirmYes.addEventListener('click', () => {
+                storeCart.length = 0;
+                renderCart();
+                overlayConfirm.style.display = 'none';
+                showToast("Carrinho esvaziado com sucesso!", "success");
+            });
+        }
+
+        const btnCheckout = document.getElementById('btn-checkout-cart');
+        if(btnCheckout) {
+            btnCheckout.addEventListener('click', () => {
+                let cartTotal = storeCart.reduce((sum, ci) => sum + (ci.cost * ci.qty), 0);
+                let moneySpent = 0;
+                state.equipment.forEach(eqId => { const d = dEq.find(x => x.id === eqId); if(d) moneySpent += d.cost; });
+                const availableFunds = (500 + (state.boughtFunds * 500)) - moneySpent;
+
+                if (cartTotal > availableFunds) {
+                    alert(`Fundos insuficientes! O carrinho custa $${cartTotal}, mas você só tem $${availableFunds}.`);
+                    return;
+                }
+
+                storeCart.forEach(ci => {
+                    addEquipment(ci.id, ci.qty); // This adds to state and handles multiple additions natively inside calculateAll / render logic! Wait addEquipment handles array pushes.
+                });
+                
+                AudioEngine.playCoin();
+                storeCart = [];
+                renderCart();
+                renderStore();
+                showToast("Compra finalizada com sucesso!");
+            });
+        }
+    }
+
+    function updateStoreSortOptions() {
+        const cat = currentShopCategory;
+        const sortBy = document.getElementById('shop-sort-by');
+        if (!sortBy) return;
+
+        // Reset to Alpha to prevent invalid selections if necessary
+        // sortBy.value = 'alpha'; // optional
+
+        // Hide/Show context-specific sort options
+        document.querySelectorAll('.sort-opt-dmg').forEach(el => el.style.display = (cat === 'Armas Brancas' || cat === 'Armas de Fogo/Longa Distância' || cat === 'all') ? '' : 'none');
+        document.querySelectorAll('.sort-opt-str').forEach(el => el.style.display = (cat === 'Armas Brancas' || cat === 'Armas de Fogo/Longa Distância' || cat === 'Armaduras' || cat === 'all') ? '' : 'none');
+        document.querySelectorAll('.sort-opt-armor').forEach(el => el.style.display = (cat === 'Armaduras' || cat === 'Escudos' || cat === 'all') ? '' : 'none');
     }
 
     function openStore() {
         try {
             document.getElementById('store-modal').classList.add('active');
+            updateStoreSortOptions();
             renderStore();
+            renderCart();
         } catch(e) {
             console.error("Store error: ", e);
             alert("Erro ao abrir catálogo: " + e.message);
         }
     }
 
+    function renderCart() {
+        const list = document.getElementById('cart-items-list');
+        const countSpan = document.getElementById('cart-total-value');
+        const btnCheckout = document.getElementById('btn-checkout-cart');
+
+        if (!list) return;
+
+        list.innerHTML = '';
+        let total = 0;
+
+        if (storeCart.length === 0) {
+            list.innerHTML = '<div style="text-align:center; padding: 20px; font-size: 0.8rem; color: #888;">Nenhum item adicionado à lista.</div>';
+            countSpan.textContent = '$0';
+            btnCheckout.disabled = true;
+            return;
+        }
+
+        storeCart.forEach((item, index) => {
+            const subtotal = item.cost * item.qty;
+            total += subtotal;
+
+            const ci = document.createElement('div');
+            ci.className = 'cart-item';
+            ci.innerHTML = `
+                <div class="cart-item-header">
+                    <span class="cart-item-title">${item.name}</span>
+                    <button class="btn-remove-cart" data-index="${index}" title="Remover">🗑️</button>
+                </div>
+                <div class="cart-item-controls">
+                    <div class="qty-selector" style="transform: scale(0.9); transform-origin: left center;">
+                        <button class="qty-btn dec-cart-item" data-index="${index}">-</button>
+                        <span style="width: 15px; display: inline-block; text-align: center;">${item.qty}</span>
+                        <button class="qty-btn inc-cart-item" data-index="${index}" data-cost="${item.cost}">+</button>
+                    </div>
+                    <span class="cart-item-price">$${subtotal}</span>
+                </div>
+            `;
+            list.appendChild(ci);
+        });
+
+        countSpan.textContent = '$' + total;
+
+        let moneySpent = 0;
+        state.equipment.forEach(eqId => { const def = dEq.find(x => x.id === eqId); if(def) moneySpent += def.cost; });
+        const availableFunds = (500 + (state.boughtFunds * 500)) - moneySpent;
+
+        btnCheckout.disabled = (total > availableFunds || storeCart.length === 0);
+
+        list.querySelectorAll('.btn-remove-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(e.currentTarget.dataset.index);
+                storeCart.splice(idx, 1);
+                renderCart();
+            });
+        });
+
+        list.querySelectorAll('.dec-cart-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(e.currentTarget.dataset.index);
+                if (storeCart[idx].qty > 1) {
+                    storeCart[idx].qty--;
+                    renderCart();
+                }
+            });
+        });
+
+        list.querySelectorAll('.inc-cart-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(e.currentTarget.dataset.index);
+                const cost = parseInt(e.currentTarget.dataset.cost);
+                
+                // Currently in cart
+                const cartTotal = storeCart.reduce((sum, ci) => sum + (ci.cost * ci.qty), 0);
+                
+                if (cartTotal + cost <= availableFunds) {
+                    storeCart[idx].qty++;
+                    renderCart();
+                } else {
+                    showToast(`Fundos insuficientes para adicionar mais deste item!`, "warning");
+                }
+            });
+        });
+    }
+
     function renderStore() {
         const grid = document.getElementById('shop-grid');
         grid.innerHTML = '';
         
-        const search = document.getElementById('shop-search').value.toLowerCase();
+        const searchInput = document.getElementById('shop-search');
+        const search = searchInput ? searchInput.value.toLowerCase() : '';
         const pMin = parseInt(document.getElementById('shop-price-min').value) || 0;
         const pMax = parseInt(document.getElementById('shop-price-max').value) || 999999;
         const maxMinStr = parseInt(document.getElementById('shop-minstr').value) || 99;
-        const noAmmo = document.getElementById('shop-no-ammo').checked;
-        const reqBenefit = document.getElementById('shop-req-benefit').checked;
+        const noAmmoObj = document.getElementById('shop-no-ammo');
+        const noAmmo = noAmmoObj ? noAmmoObj.checked : false;
         
-        // Verifica dinheiro livre para evitar trapaças
+        const sortMode = document.getElementById('shop-sort-by') ? document.getElementById('shop-sort-by').value : 'alpha';
+
         let moneySpent = 0;
         state.equipment.forEach(eqId => { const def = dEq.find(d => d.id === eqId); if(def) moneySpent += def.cost; });
         const maxFunds = 500 + (state.boughtFunds * 500);
@@ -767,98 +1055,222 @@ document.addEventListener('DOMContentLoaded', () => {
         const fundsValEl = document.getElementById('store-modal-funds-val');
         if(fundsValEl) fundsValEl.textContent = availableFunds;
     
-        let count = 0;
-        dEq.forEach(item => {
-            if(currentShopCategory !== 'all' && item.category !== currentShopCategory) return;
-            if(search && !item.name.toLowerCase().includes(search)) return;
-            if(item.cost < pMin || item.cost > pMax) return;
-            if(item.minStr > maxMinStr) return;
-            if(noAmmo && item.requiresAmmo) return;
-            if(reqBenefit && !item.extraBenefits) return;
-            
-            count++;
+        let filteredItems = dEq.filter(item => {
+            if(currentShopCategory === 'owned') {
+                if(!state.equipment || !state.equipment.includes(item.id)) return false;
+            } else if(currentShopCategory !== 'all' && item.category !== currentShopCategory) {
+                return false;
+            }
+            if(search && !item.name.toLowerCase().includes(search)) return false;
+            if(item.cost < pMin || item.cost > pMax) return false;
+            if(item.minStr > maxMinStr) return false;
+            if(noAmmo && item.requiresAmmo) return false;
+            return true;
+        });
+
+        // Apply Sorting
+        filteredItems.sort((a, b) => {
+            if (sortMode === 'price_asc') return a.cost - b.cost;
+            if (sortMode === 'price_desc') return b.cost - a.cost;
+            if (sortMode === 'weight_asc') return extractWeight(a) - extractWeight(b);
+            if (sortMode === 'weight_desc') return extractWeight(b) - extractWeight(a);
+            if (sortMode === 'dmg_asc') return extractDmgMax(a) - extractDmgMax(b);
+            if (sortMode === 'dmg_desc') return extractDmgMax(b) - extractDmgMax(a);
+            if (sortMode === 'str_asc') return (a.minStr||0) - (b.minStr||0);
+            if (sortMode === 'str_desc') return (b.minStr||0) - (a.minStr||0);
+            if (sortMode === 'armor_asc') return (a.armor||0) - (b.armor||0);
+            if (sortMode === 'armor_desc') return (b.armor||0) - (a.armor||0);
+            // Default: alpha
+            return a.name.localeCompare(b.name);
+        });
+
+        if(filteredItems.length === 0) {
+            grid.innerHTML = '<div style="grid-column: 1 / -1; text-align:center; padding: 20px;">Nenhum equipamento localizou as suas restrições de busca.</div>';
+            return;
+        }
+
+        filteredItems.forEach(item => {
             const card = document.createElement('div');
-            card.className = 'store-card';
+            card.className = 'item-card-pro';
             
-            let statsHtml = `<span><strong>Cat:</strong> ${item.category || '?'}</span>`;
-            if(item.damage && item.damage !== '-') statsHtml += `<span><strong>Dano:</strong> ${item.damage}</span>`;
-            if(item.armor > 0) statsHtml += `<span><strong>Armadura:</strong> +${item.armor}</span>`;
-            if(item.minStr > 0) statsHtml += `<span><strong>Força Min:</strong> d${item.minStr}</span>`;
-            if(item.requiresAmmo) statsHtml += `<span><strong>Exige Munição:</strong> Sim</span>`;
-            if(item.extraBenefits) statsHtml += `<span style="margin-top:5px; color:#c75a00; font-size:0.75rem;">${item.extraBenefits}</span>`;
+            let statsHtml = '';
+            if(item.damage && item.damage !== '-') statsHtml += `<span>🥊 <strong>Dano:</strong> ${item.damage}</span>`;
+            if(item.minStr > 0) statsHtml += `<span>💪 <strong>Mín Força:</strong> d${item.minStr}</span>`;
+            if(item.armor > 0) statsHtml += `<span>🛡️ <strong>Armadura:</strong> +${item.armor}</span>`;
+            if(item.requiresAmmo) statsHtml += `<span>🏹 <strong>Exige Munição</strong></span>`;
+            if(item.extraBenefits) statsHtml += `<div class="item-p-desc">${item.extraBenefits}</div>`;
     
             const canAfford = item.cost <= availableFunds;
-            
-            if (window.recentlyBoughtId === item.id) {
-                card.classList.add('purchased-pulse');
-            }
-            
             const ownedCount = state.equipment.filter(eq => eq === item.id).length;
-            const ownedBadge = ownedCount > 0 ? `<div style="position:absolute; top:-10px; right:-10px; background:var(--success-color); color:#fff; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; box-shadow:0 2px 5px rgba(0,0,0,0.5); z-index:10; font-size: 0.9rem;" title="Você já comprou este item">x${ownedCount}</div>` : '';
-    
+            
+            let qtyRefundHtml = '';
+            if (ownedCount > 0) {
+                let qtySelector = '';
+                if(ownedCount > 1) {
+                    qtySelector = `
+                        <div class="qty-selector">
+                            <button class="qty-btn dec-refund" data-id="${item.id}">-</button>
+                            <span id="refund-qty-val-${item.id}">1</span>
+                            <button class="qty-btn inc-refund" data-id="${item.id}" data-max="${ownedCount}">+</button>
+                        </div>
+                    `;
+                } else {
+                    qtySelector = `<span id="refund-qty-val-${item.id}" style="display:none;">1</span>`;
+                }
+
+                qtyRefundHtml = `
+                    <div class="item-p-refund-area">
+                        <span style="color:#e74c3c; font-weight:bold; font-size:0.8rem;">🎒 Possui: ${ownedCount}</span>
+                        ${qtySelector}
+                        <button class="btn-refund-sm" data-id="${item.id}" data-cost="${item.cost}">Vender</button>
+                    </div>
+                `;
+            }
+
             card.innerHTML = `
-                ${ownedBadge}
-                <h4>${item.name}</h4>
-                <div class="store-card-stats">${statsHtml}</div>
-                <div class="store-card-buy">
-                    <span class="store-card-price">$${item.cost}</span>
-                    <div style="display:flex; align-items:center;">
-                        <button class="qty-btn dec-qty" data-id="${item.id}" style="padding: 2px 8px; margin-right: 4px; border-radius: 4px; background: var(--border-color); color: var(--text-color); border: none; cursor: pointer; font-weight: bold;">-</button>
-                        <input type="number" id="qty-${item.id}" value="1" min="1" max="99" style="width: 35px; text-align:center; padding: 4px; border: 1px solid var(--border-color); border-radius: 4px; margin-right: 4px; background: var(--box-bg); color: var(--text-color); font-size: 0.8rem;" readonly>
-                        <button class="qty-btn inc-qty" data-id="${item.id}" style="padding: 2px 8px; margin-right: 8px; border-radius: 4px; background: var(--border-color); color: var(--text-color); border: none; cursor: pointer; font-weight: bold;">+</button>
-                        <button class="buy-item-btn ${canAfford ? 'btn-secondary' : 'btn-danger'}" data-id="${item.id}" data-cost="${item.cost}" ${canAfford ? '' : 'disabled'}>
-                            ${canAfford ? 'Comprar' : 'S/ Saldo'}
+                <div style="flex: 1 1 auto; display: flex; flex-direction: column;">
+                    <div class="item-p-header">
+                        <h4 class="item-p-title">${item.name}</h4>
+                        <span class="item-p-price">$${item.cost}</span>
+                    </div>
+                    <div class="item-p-stats">${statsHtml}</div>
+                </div>
+                <div style="flex: 0 0 auto; margin-top: auto;">
+                    <div class="item-p-actions">
+                        <button class="btn-cart-btn" data-id="${item.id}" data-name="${item.name}" data-cost="${item.cost}">+ 🛒</button>
+                        <button class="btn-buy-btn ${!canAfford ? 'disabled' : ''}" style="${!canAfford ? 'opacity:0.5;cursor:not-allowed;' : ''}" data-id="${item.id}" data-cost="${item.cost}" ${!canAfford ? 'disabled' : ''}>
+                            ⚡ Comprar
                         </button>
                     </div>
+                    ${qtyRefundHtml}
+                </div>
+                <div class="purchase-qty-capsule">
+                    <button class="qty-btn dec-buy" data-id="${item.id}">-</button>
+                    <span id="buy-qty-val-${item.id}">1</span>
+                    <button class="qty-btn inc-buy" data-id="${item.id}" data-cost="${item.cost}">+</button>
                 </div>
             `;
             grid.appendChild(card);
         });
     
-        if(count === 0) {
-            grid.innerHTML = '<div style="grid-column: 1 / -1; text-align:center; padding: 20px;">Nenhum equipamento localizou as suas restrições de busca.</div>';
-        }
-    
-        grid.querySelectorAll('.dec-qty').forEach(btn => {
+        // Actions Binding
+        grid.querySelectorAll('.dec-buy').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const id = e.target.dataset.id;
-                const input = document.getElementById(`qty-${id}`);
-                const val = parseInt(input.value) || 1;
-                if(val > 1) input.value = val - 1;
+                const id = e.currentTarget.dataset.id;
+                const span = document.getElementById(`buy-qty-val-${id}`);
+                let v = parseInt(span.textContent);
+                if(v > 1) span.textContent = v - 1;
             });
         });
 
-        grid.querySelectorAll('.inc-qty').forEach(btn => {
+        grid.querySelectorAll('.inc-buy').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const id = e.target.dataset.id;
-                const input = document.getElementById(`qty-${id}`);
-                const val = parseInt(input.value) || 1;
-                if(val < 99) input.value = val + 1;
+                const id = e.currentTarget.dataset.id;
+                const cost = parseInt(e.currentTarget.dataset.cost);
+                const span = document.getElementById(`buy-qty-val-${id}`);
+                let v = parseInt(span.textContent);
+
+                let cMoneySpent = 0;
+                state.equipment.forEach(eqId => { const def = dEq.find(x => x.id === eqId); if(def) cMoneySpent += def.cost; });
+                const cMaxFunds = 500 + (state.boughtFunds * 500);
+                const cAvailableFunds = cMaxFunds - cMoneySpent;
+
+                if ((v + 1) * cost <= cAvailableFunds) {
+                    span.textContent = v + 1;
+                } else {
+                    showToast(`Fundos insuficientes para mais unidades!`, "warning");
+                }
             });
         });
 
-        grid.querySelectorAll('.buy-item-btn').forEach(btn => {
+        grid.querySelectorAll('.btn-buy-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-               const id = e.target.dataset.id;
-               const cost = parseInt(e.target.dataset.cost);
-               const qty = parseInt(document.getElementById(`qty-${id}`).value) || 1;
+               const id = e.currentTarget.dataset.id;
+               const cost = parseInt(e.currentTarget.dataset.cost);
+               const qty = parseInt(document.getElementById(`buy-qty-val-${id}`)?.textContent) || 1;
                
-               // Verifica fundo extra pra garantir que a multiplicação de QTY não fure o limite da carteira!
-               let moneySpent = 0;
-               state.equipment.forEach(eqId => { const d = dEq.find(x => x.id === eqId); if(d) moneySpent += d.cost; });
-               const maxFunds = 500 + (state.boughtFunds * 500);
-               const availableFunds = maxFunds - moneySpent;
+               // Re-verify funds
+               let cMoneySpent = 0;
+               state.equipment.forEach(eqId => { const def = dEq.find(x => x.id === eqId); if(def) cMoneySpent += def.cost; });
+               const cMaxFunds = 500 + (state.boughtFunds * 500);
+               const cAvailableFunds = cMaxFunds - cMoneySpent;
                
-               if(cost * qty > availableFunds) {
-                   alert(`⚠️ Fundos insuficientes! Comprar ${qty} unidades requer $${cost * qty}, mas você só tem $${availableFunds}.`);
+               if(cost * qty > cAvailableFunds) {
+                   showToast(`Fundos insuficientes!`, "error");
                    return;
                }
 
                AudioEngine.playCoin();
-               window.recentlyBoughtId = id;
-               addEquipment(id, qty); 
-               renderStore(); // Re-render imediato p/ trancar saldo de outros cards rápidos
-               setTimeout(() => { if(window.recentlyBoughtId === id) window.recentlyBoughtId = null; }, 800);
+               for(let i=0; i<qty; i++) {
+                   addEquipment(id, 1);
+               }
+               showToast(`Comprado ${qty}x!`, "success");
+               renderStore();
+               renderCart();
+            });
+        });
+
+        grid.querySelectorAll('.btn-cart-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.dataset.id;
+                const name = e.currentTarget.dataset.name;
+                const cost = parseInt(e.currentTarget.dataset.cost);
+                const qty = parseInt(document.getElementById(`buy-qty-val-${id}`)?.textContent) || 1;
+                
+                // Add or increment in cart
+                let existing = storeCart.find(ci => ci.id === id);
+                if (existing) {
+                    existing.qty += qty;
+                } else {
+                    storeCart.push({ id, name, cost, qty });
+                }
+                
+                showToast(`Adicionado ao carrinho (${qty}x)!`, "info");
+                renderCart();
+                document.getElementById(`buy-qty-val-${id}`).textContent = "1"; // reset qty
+            });
+        });
+
+        // Refund Binding
+        grid.querySelectorAll('.dec-refund').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.dataset.id;
+                const span = document.getElementById(`refund-qty-val-${id}`);
+                let v = parseInt(span.textContent);
+                if(v > 1) span.textContent = v - 1;
+            });
+        });
+        grid.querySelectorAll('.inc-refund').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.dataset.id;
+                const max = parseInt(e.currentTarget.dataset.max);
+                const span = document.getElementById(`refund-qty-val-${id}`);
+                let v = parseInt(span.textContent);
+                if(v < max) span.textContent = v + 1;
+            });
+        });
+        grid.querySelectorAll('.btn-refund-sm').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.dataset.id;
+                const cost = parseInt(e.currentTarget.dataset.cost);
+                const amountToRefund = parseInt(document.getElementById(`refund-qty-val-${id}`).textContent) || 1;
+                
+                // Remove exactly amountToRefund instances of id from state.equipment
+                let removedCount = 0;
+                for (let i = state.equipment.length - 1; i >= 0; i--) {
+                    if (state.equipment[i] === id && removedCount < amountToRefund) {
+                        state.equipment.splice(i, 1);
+                        removedCount++;
+                    }
+                }
+                
+                if (removedCount > 0) {
+                    AudioEngine.playClick();
+                    showToast(`Reembolsado ${removedCount}x ($${cost * removedCount})`, "success");
+                    calculateAll(); // rebuilds UI and saves
+                    renderStore();
+                    renderCart();
+                }
             });
         });
     }
@@ -1100,41 +1512,42 @@ document.addEventListener('DOMContentLoaded', () => {
             imgZoom: 1,
             imgPanX: 0.5,
             imgPanY: 0.2,
-            imgHeight: 15,
+            imgHeight: 600,
             miniZoom: 1,
             miniPanX: 0.5,
             miniPanY: 0.2,
-            miniHeight: 15,
-            bgOpacity: 0.95
+            miniHeight: 600,
+            bgOpacity: 0.95,
+            imgNatW: 1,
+            imgNatH: 1
         };
 
         // Epic Portrait Panning Maths
         const epicPortrait = document.getElementById('epic-portrait');
         const epicHeaderBg = document.querySelector('.epic-header-bg');
-        let natW = 1, natH = 1;
 
         if (epicPortrait) {
             epicPortrait.addEventListener('load', () => {
                 if (epicPortrait.naturalWidth > 1) {
-                    natW = epicPortrait.naturalWidth;
-                    natH = epicPortrait.naturalHeight;
+                    state.imgNatW = epicPortrait.naturalWidth;
+                    state.imgNatH = epicPortrait.naturalHeight;
                     renderImageTransform();
                 }
             });
             if (epicPortrait.complete && epicPortrait.naturalWidth > 1) {
-                natW = epicPortrait.naturalWidth;
-                natH = epicPortrait.naturalHeight;
+                state.imgNatW = epicPortrait.naturalWidth;
+                state.imgNatH = epicPortrait.naturalHeight;
             }
         }
 
         const renderImageTransform = () => {
             const cW = 800;
             const cH = 1700;
-            const baseScale = Math.max(cW / natW, cH / natH);
+            const baseScale = Math.max(cW / state.imgNatW, cH / state.imgNatH);
 
             if (epicPortrait && epicPortrait.src !== '') {
-                const scaledW = natW * baseScale * state.imgZoom;
-                const scaledH = natH * baseScale * state.imgZoom;
+                const scaledW = state.imgNatW * baseScale * state.imgZoom;
+                const scaledH = state.imgNatH * baseScale * state.imgZoom;
                 const excessX = scaledW - cW;
                 const excessY = scaledH - cH;
                 state.imgPanX = Math.max(0, Math.min(1, state.imgPanX));
@@ -1149,8 +1562,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const miniPortrait = document.getElementById('mini-portrait-img');
             if (miniPortrait && miniPortrait.src !== '') {
-                const miniScaledW = natW * baseScale * state.miniZoom;
-                const miniScaledH = natH * baseScale * state.miniZoom;
+                const miniScaledW = state.imgNatW * baseScale * state.miniZoom;
+                const miniScaledH = state.imgNatH * baseScale * state.miniZoom;
                 const miniExcessX = miniScaledW - cW;
                 const miniExcessY = miniScaledH - cH;
                 state.miniPanX = Math.max(0, Math.min(1, state.miniPanX));
@@ -1169,18 +1582,38 @@ document.addEventListener('DOMContentLoaded', () => {
             const bgMask = document.getElementById('epic-content-bg');
             const wrapper = document.querySelector('.epic-card-wrapper');
             const miniLayer = document.getElementById('mini-data-layer');
+            const miniSpacer = document.getElementById('mini-image-spacer');
             
-            if (wrapper) wrapper.style.setProperty('--content-gap', `${state.imgHeight}px`);
-            if (miniLayer) miniLayer.style.gap = `${state.miniHeight}px`;
-            
-            if (spacer) spacer.style.display = 'none';
+            // Invert the logical behavior: higher numbers mean higher info box start (smaller spacer)
+            // Giving extra 40px clearance (base 1350 instead of 1310) to prevent overlap with race text
+            const calcEpicSpacer = 1350 - state.imgHeight;
+            const calcMiniSpacer = 1350 - state.miniHeight;
+
+            // Fixed base spacer logic
+            if (spacer) {
+                spacer.style.height = `${calcEpicSpacer}px`;
+                spacer.style.display = 'block';
+            }
+            if (miniSpacer) {
+                miniSpacer.style.height = `${calcMiniSpacer}px`;
+                miniSpacer.style.display = 'block';
+            }
 
             if (bgMask) {
-                bgMask.style.top = 'auto';
-                bgMask.style.bottom = '0px';
-                bgMask.style.height = '1400px';
+                bgMask.style.top = `${calcEpicSpacer}px`;
+                bgMask.style.bottom = 'auto';
+                bgMask.style.height = `${Math.max(0, 1700 - calcEpicSpacer)}px`;
                 const op = state.bgOpacity;
                 bgMask.style.background = `linear-gradient(to bottom, rgba(20,15,10,0) 0%, rgba(20,15,10,${Math.min(1, op)}) 250px, rgba(10,5,0,${op}) 100%)`;
+            }
+            
+            const miniBgMask = document.getElementById('mini-content-bg');
+            if (miniBgMask) {
+                miniBgMask.style.top = `${calcMiniSpacer}px`;
+                miniBgMask.style.bottom = 'auto';
+                miniBgMask.style.height = `${Math.max(0, 1700 - calcMiniSpacer)}px`;
+                const op = state.bgOpacity;
+                miniBgMask.style.background = `linear-gradient(to bottom, rgba(20,15,10,0) 0%, rgba(20,15,10,${Math.min(1, op)}) 250px, rgba(10,5,0,${op}) 100%)`;
             }
         };
 
@@ -1436,11 +1869,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const cW = 800;
             const cH = 1700;
-            const baseScale = Math.max(cW / natW, cH / natH);
+            const baseScale = Math.max(cW / state.imgNatW, cH / state.imgNatH);
             
             if (draggingTarget === 'epic') {
-                const excessX = (natW * baseScale * state.imgZoom) - cW;
-                const excessY = (natH * baseScale * state.imgZoom) - cH;
+                const excessX = (state.imgNatW * baseScale * state.imgZoom) - cW;
+                const excessY = (state.imgNatH * baseScale * state.imgZoom) - cH;
                 let currentPixelX = -1 * (excessX * state.imgPanX) + dx;
                 let currentPixelY = -1 * (excessY * state.imgPanY) + dy;
                 currentPixelX = Math.min(0, Math.max(-excessX, currentPixelX));
@@ -1448,8 +1881,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 state.imgPanX = excessX > 0 ? (currentPixelX / -excessX) : 0.5;
                 state.imgPanY = excessY > 0 ? (currentPixelY / -excessY) : 0.5;
             } else if (draggingTarget === 'mini') {
-                const excessX = (natW * baseScale * state.miniZoom) - cW;
-                const excessY = (natH * baseScale * state.miniZoom) - cH;
+                const excessX = (state.imgNatW * baseScale * state.miniZoom) - cW;
+                const excessY = (state.imgNatH * baseScale * state.miniZoom) - cH;
                 let currentPixelX = -1 * (excessX * state.miniPanX) + dx;
                 let currentPixelY = -1 * (excessY * state.miniPanY) + dy;
                 currentPixelX = Math.min(0, Math.max(-excessX, currentPixelX));
@@ -2289,8 +2722,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let spentHind = (state.boughtAttr*2) + state.boughtSkill + (state.boughtEdges*2) + state.boughtFunds;
 
-        document.getElementById('val-hind-gen').textContent = generatedHind;
-        document.getElementById('val-hind-spent').textContent = spentHind;
+        if(document.getElementById('val-hind-avail')) document.getElementById('val-hind-avail').textContent = generatedHind - spentHind;
+        if(document.getElementById('val-hind-spent')) document.getElementById('val-hind-spent').textContent = spentHind;
         
         els.btnAddHind.disabled = (generatedHind >= 4);
 
@@ -2410,6 +2843,41 @@ document.addEventListener('DOMContentLoaded', () => {
         state.arcaneMaxPP = arcaneMaxPP;
         state.hasArcane = hasArcane;
         if(typeof renderArcaneTracker === 'function') renderArcaneTracker();
+        updateRefundBoxes();
+    }
+
+    function updateRefundBoxes() {
+        // Atributos & Skills
+        const ptsAttrSkill = (state.boughtAttr * 2) + state.boughtSkill;
+        const totalBuysAttrSkill = state.boughtAttr + state.boughtSkill;
+        const boxAttrSkill = document.getElementById('refund-box-attrskill');
+        const lblAttrSkill = document.getElementById('lbl-refund-attrskill-total');
+        const btnRefundAttr = document.getElementById('btn-refund-attr');
+        const btnRefundSkill = document.getElementById('btn-refund-skill');
+
+        if (boxAttrSkill) {
+            boxAttrSkill.style.display = totalBuysAttrSkill > 0 ? 'flex' : 'none';
+            if (lblAttrSkill) lblAttrSkill.textContent = ptsAttrSkill;
+            if (btnRefundAttr) btnRefundAttr.style.display = state.boughtAttr > 0 ? 'block' : 'none';
+            if (btnRefundSkill) btnRefundSkill.style.display = state.boughtSkill > 0 ? 'block' : 'none';
+        }
+
+        // Edges
+        const ptsEdge = state.boughtEdges * 2;
+        const boxEdge = document.getElementById('refund-box-edge');
+        const lblEdge = document.getElementById('lbl-refund-edge-total');
+        if (boxEdge) {
+            boxEdge.style.display = state.boughtEdges > 0 ? 'flex' : 'none';
+            if (lblEdge) lblEdge.textContent = ptsEdge;
+        }
+
+        // Funds
+        const boxFunds = document.getElementById('refund-box-funds');
+        const lblFunds = document.getElementById('lbl-refund-funds-total');
+        if (boxFunds) {
+            boxFunds.style.display = state.boughtFunds > 0 ? 'flex' : 'none';
+            if (lblFunds) lblFunds.textContent = state.boughtFunds;
+        }
     }
 
     // --- EXPORT SYSTEM (Fidelidade Visual Absoluta) ---
