@@ -38,6 +38,11 @@ body {
 
 /* Scrollbar escura (Webkit) */
 ::-webkit-scrollbar { width: 8px; }
+
+/* Global Responsive Utils */
+@media (min-width: 769px) {
+    .hidden-desktop { display: none !important; }
+}
 ::-webkit-scrollbar-track { background: #111; }
 ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
@@ -1439,6 +1444,7 @@ body.layout-aggressive .container { border: 2px solid var(--primary-color); box-
         text-align: center;
         gap: 8px;
         padding: 10px;
+        padding-top: 45px;
         position: relative;
     }
     .store-header h2 { font-size: 1.4rem; }
@@ -1607,8 +1613,21 @@ body.layout-aggressive .container { border: 2px solid var(--primary-color); box-
 
 .rb-builder-col {
     flex: 2;
-    overflow-y: auto;
     padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rb-scroll-list::-webkit-scrollbar {
+    width: 6px;
+}
+.rb-scroll-list::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+}
+.rb-scroll-list::-webkit-scrollbar-thumb {
+    background: #dcb360;
+    border-radius: 4px;
 }
 
 .rb-traits-grid {
@@ -1651,13 +1670,10 @@ body.layout-aggressive .container { border: 2px solid var(--primary-color); box-
 @media (max-width: 768px) {
     .rb-main-container {
         flex-direction: column;
-        overflow: visible;
-        min-height: auto;
     }
     
     .rb-builder-col {
         padding-right: 0;
-        overflow-y: visible;
     }
     
     .rb-traits-grid {
@@ -1671,6 +1687,135 @@ body.layout-aggressive .container { border: 2px solid var(--primary-color); box-
         padding-top: 15px;
         overflow-y: visible;
     }
+    .hidden-mobile { display: none !important; }
+    .rb-mobile-header { display: flex !important; }
+    .rb-mobile-toggle { display: flex !important; }
+    .rb-desktop-points { display: none !important; }
+    .rb-preview-col { display: none !important; }
+    
+    /* Mobile Store Pro (New E-commerce Layout) */
+    .store-sticky-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(10, 7, 5, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .store-mobile-header {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Mobile Capsule Carousel */
+    .mobile-carousel-container {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        background: transparent;
+        padding: 10px 5px;
+        gap: 10px;
+    }
+    .car-arrow {
+        background: transparent;
+        color: #dcb360;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px 15px;
+        transition: 0.2s;
+        text-shadow: 0 0 5px rgba(220,179,96,0.5);
+    }
+    .car-arrow:active { transform: scale(0.8); }
+    
+    .car-capsule {
+        flex: 1;
+        text-align: center;
+        background: #5a4220;
+        color: #fff;
+        padding: 8px 15px;
+        border: 1px solid #dcb360;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        font-family: var(--body-font);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 0 15px rgba(220,179,96,0.4);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Action Row Bottom */
+    .store-mobile-action-row {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+        background: #080604;
+        border-top: 1px solid #2a1f14;
+    }
+    
+    .mobile-wallet, .btn-mobile-cat, .btn-mobile-cart-toggle {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+        padding: 0;
+        margin: 0;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+    
+    .mobile-wallet {
+        color: var(--success-color);
+        background: rgba(85, 184, 99, 0.15);
+        border: 1px solid var(--success-color);
+        font-size: 1rem;
+    }
+    
+    .btn-mobile-cat { background: #1e1510; color: #dcb360; border: 1px solid #dcb360; cursor: pointer; transition: 0.2s; }
+    .btn-mobile-cat.active-owned { background: #dcb360; color: #000; box-shadow: 0 0 8px #dcb360; }
+    
+    .btn-mobile-cart-toggle { background: #5a4220; color: #fff; border: 1px solid #dcb360; font-size: 1.2rem; cursor: pointer; }
+    
+    /* Filter Row Mobile Adjustments */
+    .store-filters-row { padding: 10px; gap: 8px; justify-content: space-between; background: #0f0a07; border-bottom: none; }
+    .filter-col { flex: 1; min-width: calc(50% - 8px); }
+    .shop-input-num { width: 100% !important; padding: 4px; font-size: 0.85rem; }
+    
+    /* Cart Off-Canvas Sidebar */
+    .store-sidebar-cart {
+        position: fixed !important;
+        top: 0;
+        right: 0;
+        width: 85% !important;
+        max-width: 320px;
+        height: 100vh !important;
+        z-index: 500;
+        background: rgba(15, 10, 8, 0.98) !important;
+        backdrop-filter: blur(8px);
+        border-left: 2px solid var(--border-color) !important;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+    }
+    .store-sidebar-cart.cart-open {
+        transform: translateX(0);
+    }
+    
+    /* Grid adjustments to fill space properly under stick header */
+    .store-body-pro { flex: 1; flex-direction: column !important; }
 }
 
 /* Refund System Styles */
@@ -1729,13 +1874,10 @@ body.layout-aggressive .container { border: 2px solid var(--primary-color); box-
 @media (max-width: 768px) {
     .rb-main-container {
         flex-direction: column;
-        overflow: visible;
-        min-height: auto;
     }
     
     .rb-builder-col {
         padding-right: 0;
-        overflow-y: visible;
     }
     
     .rb-traits-grid {

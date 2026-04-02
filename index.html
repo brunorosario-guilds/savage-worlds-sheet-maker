@@ -41,7 +41,7 @@
                     <label>Nome / Conceito</label>
                     <input type="text" id="char-name" placeholder="Fulano, o Caçador de Recompensas">
                 </div>
-                <div class="grid-2 edit-only">
+                <div class="edit-only">
                     <div class="input-group">
                         <label>Raça</label>
                         <div style="display: flex; gap: 5px;">
@@ -611,51 +611,67 @@
     <!-- FORJA RACIAL MODAL -->
     <div class="store-modal-overlay" id="race-builder-modal" style="display: none;">
         <div class="store-modal" style="max-width: 1000px; max-height: 90vh; display: flex; flex-direction: column;">
-            <div class="store-header">
-                <h2>Forja Racial (Savage Worlds)</h2>
+            <div class="store-header" style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 0; position: relative;">
+                <h2 style="margin: 0; font-size: 1.5rem; color: #dcb360; flex: 1; margin-right: 15px; text-align: center;">Forja Racial (Savage Worlds)</h2>
                 <button class="btn-close-modal" id="btn-close-race-builder">&times;</button>
             </div>
             
-            <div class="store-body" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column;">
-                <div style="padding: 15px; border-bottom: 2px solid var(--border-color); display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 250px;">
-                        <label style="font-size: 0.9rem; color: var(--text-color);">Nome da Raça</label>
-                        <input type="text" id="rb-race-name" placeholder="Ex: Mutante, Elfo Negro, Draconato..." style="width: 100%; padding: 8px; border-radius: 4px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color);">
+            <div class="store-body" style="flex: 1; overflow-y: hidden; display: flex; flex-direction: column; padding: 15px;">
+                <div class="rb-main-container" style="padding: 0;">
+                    <!-- Mobile Header (Hidden on Desktop) -->
+                    <div class="rb-mobile-header hidden-desktop" style="display: none; flex-direction: column; background: rgba(15, 10, 8, 0.95); border-bottom: 2px solid var(--border-color); padding: 10px; z-index: 100;">
+                        <div style="display: flex; justify-content: space-between; align-items: stretch; gap: 10px;">
+                            <!-- Mobile Points -->
+                            <div style="background: rgba(0,0,0,0.8); border: 1px solid var(--border-color); padding: 5px 12px; border-radius: 6px; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <span style="font-size: 0.65rem; text-transform: uppercase;">Saldo</span>
+                                <div><span id="rb-mobile-points-val" style="font-size: 1.2rem; font-weight: bold; color: #dcb360;">0</span> <span style="font-size:1rem; color:#888;">/ <span id="rb-mobile-points-max">2</span></span></div>
+                            </div>
+                            <!-- Nome e Botão Forjar -->
+                            <div style="flex: 2; display: flex; flex-direction: column; gap: 5px;">
+                                <input type="text" id="rb-mobile-race-name" placeholder="Nome da Raça..." style="width: 100%; padding: 6px; border-radius: 4px; background: rgba(0,0,0,0.5); color: #cfa85e; border: 1px solid #dcb360; font-weight: bold; font-size: 0.85rem;">
+                                <button id="btn-mobile-save-race" class="btn-primary" style="padding: 6px 10px; font-size: 0.9rem; width: 100%;" disabled>🔨 Forjar Raça</button>
+                            </div>
+                        </div>
+                        <button id="rb-mobile-toggle-preview" style="background: transparent; border: 1px solid #333; color: #aaa; margin-top: 8px; padding: 4px; border-radius: 4px; cursor: pointer; text-align: center;">⬇️ Ver Resumo dos Traços ⬇️</button>
+                        <div id="rb-mobile-preview" style="display: none; background: rgba(0,0,0,0.4); border: 1px dashed #444; border-radius: 6px; padding: 8px; margin-top: 8px; max-height: 150px; overflow-y: auto; font-size: 0.8rem;">
+                            <!-- Preview Injetado via character.js -->
+                            <em>Nenhum traço selecionado.</em>
+                        </div>
                     </div>
-                    <div style="flex-shrink: 0; background: var(--bg-color); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 8px; text-align: center;">
-                        <span style="display: block; font-size: 0.8rem; text-transform: uppercase;">Saldo de Pontos</span>
-                        <span id="rb-points-val" style="font-size: 1.5rem; font-weight: bold; color: #28a745;">+0</span> / <span>+2</span>
-                        <div style="font-size: 0.7rem; color: #999;">Restante p/ validação</div>
-                    </div>
-                    <div>
-                        <button id="btn-save-race" class="btn-primary" style="padding: 10px 20px;" disabled>Forjar Raça</button>
-                    </div>
-                </div>
 
-                <div class="rb-main-container">
-                    <!-- Left Column: Builders -->
-                    <div class="rb-builder-col">
-                        <div class="rb-traits-grid">
+                    <!-- Left Column: Builders (Desktop layout preserved) -->
+                    <div class="rb-builder-col" style="display: flex; flex-direction: column; flex: 1; min-height: 0;">
+                        <!-- Saldo Center Top (Desktop) -->
+                        <div class="rb-desktop-points" style="background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
+                            <span style="display: block; font-size: 0.8rem; text-transform: uppercase;">Saldo de Pontos (Restantes / Máximo)</span>
+                            <span id="rb-points-val" style="font-size: 1.8rem; font-weight: bold; color: #dcb360;">0</span> <span style="font-size:1.4rem; color:#888;">/ <span id="rb-points-max">2</span></span>
+                        </div>
+
+                        <!-- Mobile List Toggle -->
+                        <div class="rb-mobile-toggle hidden-desktop" style="display: none; gap: 5px; margin-bottom: 10px;">
+                            <button id="rb-toggle-pos" style="flex: 1; padding: 8px; background: #162419; color: #28a745; border: 1px solid #28a745; border-radius: 4px; font-weight: bold; cursor: pointer;" class="active">🧬 Positivos</button>
+                            <button id="rb-toggle-neg" style="flex: 1; padding: 8px; background: #080604; color: #999; border: 1px solid #333; border-radius: 4px; font-weight: bold; cursor: pointer;">⚠️ Negativos</button>
+                        </div>
+
+                        <div class="rb-traits-grid" style="flex: 1; min-height: 0;">
                             <!-- Positivos -->
-                            <div>
-                                <div class="rb-header" style="color: #28a745;">
-                                    <h3>🧬 Habilidades Positivas</h3>
-                                    <span id="rb-pos-sum">(0 pts gastos)</span>
+                            <div id="rb-col-pos" style="display: flex; flex-direction: column; min-height: 0;">
+                                <div class="rb-header hidden-mobile" style="color: #28a745; justify-content: center;">
+                                    <h3 style="margin: 0; text-align: center;">🧬 Habilidades Positivas</h3>
                                 </div>
-                                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px; margin-top:5px;">Compre vantagens raciais. A raça inicia com +2 pts grátis.</p>
-                                <div id="rb-list-pos" style="display: flex; flex-direction: column; gap: 8px;">
+                                <input type="text" id="rb-search-pos" placeholder="🔍 Buscar habilidade positiva..." style="width:100%; padding: 8px; margin: 10px 0; border-radius: 4px; border: 1px solid #3a2a1a; background: #080604; color: #fff;">
+                                <div id="rb-list-pos" class="rb-scroll-list" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 5px;">
                                     <!-- Injetado via character.js -->
                                 </div>
                             </div>
                             
                             <!-- Negativos -->
-                            <div>
-                                <div class="rb-header" style="color: #dc3545;">
-                                    <h3>⚠️ Habilidades Negativas</h3>
-                                    <span id="rb-neg-sum">(0 pts ganhos)</span>
+                            <div id="rb-col-neg" class="hidden-mobile" style="display: flex; flex-direction: column; min-height: 0;">
+                                <div class="rb-header hidden-mobile" style="color: #dc3545; justify-content: center;">
+                                    <h3 style="margin: 0; text-align: center;">⚠️ Habilidades Negativas</h3>
                                 </div>
-                                <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px; margin-top:5px;">Adote malus para obter pontos extras para usar em vantagens.</p>
-                                <div id="rb-list-neg" style="display: flex; flex-direction: column; gap: 8px;">
+                                <input type="text" id="rb-search-neg" placeholder="🔍 Buscar habilidade negativa..." style="width:100%; padding: 8px; margin: 10px 0; border-radius: 4px; border: 1px solid #3a2a1a; background: #080604; color: #fff;">
+                                <div id="rb-list-neg" class="rb-scroll-list" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 5px;">
                                     <!-- Injetado via character.js -->
                                 </div>
                             </div>
@@ -663,13 +679,19 @@
                     </div>
 
                     <!-- Right Column: Preview Pane -->
-                    <div class="rb-preview-col">
-                        <h3 style="border-bottom: 1px solid #333; padding-bottom: 5px; margin-top:0;">📝 Resumo da Raça</h3>
-                        <p style="font-size: 0.8rem; color: #999; margin-bottom: 10px;">Pré-visualização dos traços selecionados.</p>
-                        <div id="rb-preview" style="flex: 1; background: rgba(0,0,0,0.2); border: 1px dashed var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; overflow-y: auto;">
+                    <div class="rb-preview-col" style="display: flex; flex-direction: column;">
+                        <div style="margin-bottom: 15px;">
+                            <label style="font-size: 0.9rem; color: var(--text-color); font-weight: bold;">Nome da Raça</label>
+                            <input type="text" id="rb-race-name" placeholder="Ex: Mutante, Elfo Negro, Draconato..." style="width: 100%; padding: 10px; border-radius: 4px; background: rgba(0,0,0,0.5); color: #cfa85e; border: 1px solid #dcb360; margin-top:5px; font-weight: bold;">
+                        </div>
+                        
+                        <h3 style="border-bottom: 1px solid #333; padding-bottom: 5px; margin-top:0; font-size: 1rem;">📝 Resumo dos Traços</h3>
+                        <div id="rb-preview" style="flex: 1; min-height: 0; background: rgba(0,0,0,0.2); border: 1px dashed var(--border-color); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; overflow-y: auto;">
                             <!-- Preview Injetado via character.js -->
                             <em>Nenhum traço selecionado.</em>
                         </div>
+                        
+                        <button id="btn-save-race" class="btn-primary" style="padding: 12px 20px; margin-top: 15px; width: 100%; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; gap: 8px;" disabled>🔨 Forjar Raça</button>
                     </div>
                 </div>
             </div>
@@ -680,24 +702,46 @@
     <!-- STORE MODAL OVERLAY (PRO E-COMMERCE) -->
     <div class="store-modal-overlay" id="store-modal">
         <div class="store-modal store-modal-pro">
-            <div class="store-header-pro">
-                <div class="store-brand">
-                    <h2>🛒 Catálogo de Suprimentos</h2>
-                    <div class="store-funds-display">
-                        Carteira: $<span id="store-modal-funds-val">500</span>
+            <div class="store-sticky-wrapper">
+                <!-- DESKTOP HEADER -->
+                <div class="store-header-pro hidden-mobile">
+                    <div class="store-brand">
+                        <h2>🛒 Catálogo de Suprimentos</h2>
+                        <div class="store-funds-display">
+                            Carteira: $<span class="store-modal-funds-val">500</span>
+                        </div>
+                    </div>
+                    <div class="store-search-bar">
+                        <button id="btn-toggle-filters" class="btn-store-action" title="Mostrar/Esconder Filtros Extras" style="font-size: 0.8rem; padding: 6px 12px; display: flex; align-items: center; gap: 6px;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                            Filtros
+                        </button>
+                        <input type="text" id="shop-search" placeholder="Buscar suprimento..." class="shop-search-input">
+                    </div>
+                    <button class="btn-close-modal" id="btn-close-store" style="position: static;">&times;</button>
+                </div>
+
+                <!-- MOBILE HEADER TOP -->
+                <div class="store-mobile-header hidden-desktop">
+                    <button class="btn-close-modal" id="btn-close-store-mobile" style="position: absolute; top: 10px; right: 15px;">&times;</button>
+                    <h2 style="margin: 0; font-size: 1.5rem; color: #dcb360; text-align: center; padding-top: 15px; margin-bottom: 15px;">Catálogo de Suprimentos</h2>
+                    
+                    <div style="display: flex; gap: 8px; padding: 0 10px; margin-bottom: 10px;">
+                        <input type="text" id="shop-search-mobile" placeholder="Buscar suprimento..." class="shop-search-input" style="flex: 1;">
+                        <button id="btn-toggle-filters-mobile" class="btn-store-action" style="padding: 10px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                        </button>
+                    </div>
+
+                    <!-- MOBILE CAPSULE CAROUSEL -->
+                    <div class="mobile-carousel-container hidden-desktop">
+                        <button id="btn-car-left" class="car-arrow">◀</button>
+                        <div class="car-capsule" id="car-capsule-text">Todas as Áreas</div>
+                        <button id="btn-car-right" class="car-arrow">▶</button>
                     </div>
                 </div>
-                <div class="store-search-bar">
-                    <button id="btn-toggle-filters" class="btn-store-action" title="Mostrar/Esconder Filtros Extras" style="font-size: 0.8rem; padding: 6px 12px; display: flex; align-items: center; gap: 6px;">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-                        Filtros
-                    </button>
-                    <input type="text" id="shop-search" placeholder="Buscar suprimento..." class="shop-search-input">
-                </div>
-                <button class="btn-close-modal" id="btn-close-store" style="position: static;">&times;</button>
-            </div>
             
-            <div class="store-categories-switch" id="shop-categories">
+            <div class="store-categories-switch hidden-mobile" id="shop-categories">
                 <div class="store-tab-btn active" data-cat="all">Todas as Áreas</div>
                 <div class="store-tab-btn" data-cat="Armas Brancas">Armas Brancas</div>
                 <div class="store-tab-btn" data-cat="Armas de Fogo/Longa Distância">Longa Distância</div>
@@ -746,7 +790,17 @@
                         <input type="checkbox" id="shop-no-ammo"> Apenas itens S/ Munição
                     </label>
                 </div>
+            </div> <!-- End shop-filters-row -->
+            
+            <!-- MOBILE HEADER BOTTOM (Action Row) -->
+            <div class="store-mobile-action-row hidden-desktop">
+                <div class="mobile-wallet">
+                    $<span class="store-modal-funds-val">500</span>
+                </div>
+                <button id="btn-mobile-owned-items" class="btn-mobile-cat" data-cat="owned">🎒 Meus Itens</button>
+                <button id="btn-mobile-open-cart" class="btn-mobile-cart-toggle">🛒</button>
             </div>
+        </div> <!-- End store-sticky-wrapper -->
 
             <div class="store-body-pro">
                 <div class="shop-items-grid-pro" id="shop-grid">
@@ -767,7 +821,10 @@
                     </div>
                     <div class="cart-header">
                         <h3>🛒 Meu Carrinho</h3>
-                        <button id="btn-empty-cart" class="btn-empty-cart" title="Esvaziar Carrinho">🗑️ Limpar Carrinho</button>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button id="btn-empty-cart" class="btn-empty-cart" title="Esvaziar Carrinho">🗑️ Limpar</button>
+                            <button id="btn-close-cart-mobile" class="btn-close-modal hidden-desktop" style="font-size: 2rem; position: static; padding-bottom: 3px;">&times;</button>
+                        </div>
                     </div>
                     <div class="cart-items-list" id="cart-items-list">
                         <!-- Cart items injected here -->

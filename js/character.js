@@ -505,12 +505,63 @@ document.addEventListener('DOMContentLoaded', () => {
             els.raceSelect.value = state.race || (dRaces[0] ? dRaces[0].id : ''); // revert
         };
         
+        // Setup Search Bars
+        const searchPosEl = document.getElementById('rb-search-pos');
+        if(searchPosEl) searchPosEl.oninput = () => renderRaceBuilder();
+        
+        const searchNegEl = document.getElementById('rb-search-neg');
+        if(searchNegEl) searchNegEl.oninput = () => renderRaceBuilder();
+        
         document.getElementById('rb-race-name').oninput = (e) => {
             builderRace.name = e.target.value;
+            const mobileInput = document.getElementById('rb-mobile-race-name');
+            if(mobileInput) mobileInput.value = e.target.value;
             validateRaceBuilder();
         };
 
+        const mobileNameInput = document.getElementById('rb-mobile-race-name');
+        if(mobileNameInput) {
+            mobileNameInput.oninput = (e) => {
+                builderRace.name = e.target.value;
+                document.getElementById('rb-race-name').value = e.target.value;
+                validateRaceBuilder();
+            };
+        }
+
         document.getElementById('btn-save-race').onclick = saveCustomRace;
+        const btnMobileSave = document.getElementById('btn-mobile-save-race');
+        if(btnMobileSave) btnMobileSave.onclick = saveCustomRace;
+
+        const btnPos = document.getElementById('rb-toggle-pos');
+        const btnNeg = document.getElementById('rb-toggle-neg');
+        if(btnPos && btnNeg) {
+            btnPos.onclick = (e) => {
+                e.target.style.background = '#162419'; e.target.style.color = '#28a745'; e.target.style.borderColor = '#28a745';
+                btnNeg.style.background = '#080604'; btnNeg.style.color = '#999'; btnNeg.style.borderColor = '#333';
+                document.getElementById('rb-col-pos').classList.remove('hidden-mobile');
+                document.getElementById('rb-col-neg').classList.add('hidden-mobile');
+            };
+            btnNeg.onclick = (e) => {
+                e.target.style.background = '#2b1010'; e.target.style.color = '#dc3545'; e.target.style.borderColor = '#dc3545';
+                btnPos.style.background = '#080604'; btnPos.style.color = '#999'; btnPos.style.borderColor = '#333';
+                document.getElementById('rb-col-pos').classList.add('hidden-mobile');
+                document.getElementById('rb-col-neg').classList.remove('hidden-mobile');
+            };
+        }
+
+        const previewToggle = document.getElementById('rb-mobile-toggle-preview');
+        if(previewToggle) {
+            previewToggle.onclick = (e) => {
+                const previewLayer = document.getElementById('rb-mobile-preview');
+                if (previewLayer.style.display === 'none' || previewLayer.style.display === '') {
+                    previewLayer.style.display = 'block';
+                    e.target.textContent = '⬆️ Esconder Resumo ⬆️';
+                } else {
+                    previewLayer.style.display = 'none';
+                    e.target.textContent = '⬇️ Ver Resumo dos Traços ⬇️';
+                }
+            };
+        }
         
         renderRaceBuilder();
     }
@@ -550,8 +601,15 @@ document.addEventListener('DOMContentLoaded', () => {
         listNeg.innerHTML = '';
         
         let defPos = DEFAULT_DATA.racialAbilitiesPos;
-        
         let defNeg = DEFAULT_DATA.racialAbilitiesNeg;
+        
+        const searchPosEl = document.getElementById('rb-search-pos');
+        const qPos = searchPosEl ? searchPosEl.value.toLowerCase() : '';
+        if(qPos) defPos = defPos.filter(x => x.name.toLowerCase().includes(qPos));
+        
+        const searchNegEl = document.getElementById('rb-search-neg');
+        const qNeg = searchNegEl ? searchNegEl.value.toLowerCase() : '';
+        if(qNeg) defNeg = defNeg.filter(x => x.name.toLowerCase().includes(qNeg));
         
 
         function createRow(def, sObj, type) {
@@ -726,7 +784,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let defNeg = DEFAULT_DATA.racialAbilitiesNeg;
         
 
-        builderRace.selections.forEach(s => {
+        let sortedSelections = [...builderRace.selections].sort((a, b) => {
+            if (a.type === 'pos' && b.type === 'neg') return -1;
+            if (a.type === 'neg' && b.type === 'pos') return 1;
+            return 0;
+        });
+
+        sortedSelections.forEach(s => {
             const def = s.type === 'pos' ? defPos.find(x => x.id === s.id) : defNeg.find(x => x.id === s.id);
             if(!def) return;
             
@@ -747,22 +811,47 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
         });
 
-        document.getElementById('rb-pos-sum').textContent = `(${sumPos} pts. gastos)`;
-        document.getElementById('rb-neg-sum').textContent = `(${Math.abs(sumNeg)} pts. ganhos)`;
-        
         builderRace.pool = pool;
         document.getElementById('rb-preview').innerHTML = previewHTML || '<em>Nenhum traço selecionado.</em>';
         
+        const maxPoints = 2 + Math.abs(sumNeg);
         const saldoBtn = document.getElementById('rb-points-val');
-        saldoBtn.textContent = pool > 0 ? '+' + pool : pool;
+        const maxBtn = document.getElementById('rb-points-max');
+        const mSaldoBtn = document.getElementById('rb-mobile-points-val');
+        const mMaxBtn = document.getElementById('rb-mobile-points-max');
         
+        saldoBtn.textContent = pool;
+        if(maxBtn) maxBtn.textContent = maxPoints;
+        if(mSaldoBtn) mSaldoBtn.textContent = pool;
+        if(mMaxBtn) mMaxBtn.textContent = maxPoints;
+        
+        document.getElementById('rb-preview').innerHTML = previewHTML || '<em>Nenhum traço selecionado.</em>';
+        const mPreview = document.getElementById('rb-mobile-preview');
+        if(mPreview) mPreview.innerHTML = previewHTML || '<em>Nenhum traço selecionado.</em>';
+
         const btnSave = document.getElementById('btn-save-race');
+        const mBtnSave = document.getElementById('btn-mobile-save-race');
+        
         if (pool === 0 && builderRace.name.trim().length > 0 && inputsValid) {
+            saldoBtn.parentElement.style.borderColor = '#28a745';
             saldoBtn.style.color = '#28a745';
             btnSave.disabled = false;
+            
+            if(mSaldoBtn) {
+                mSaldoBtn.parentElement.style.borderColor = '#28a745';
+                mSaldoBtn.style.color = '#28a745';
+            }
+            if(mBtnSave) mBtnSave.disabled = false;
         } else {
-            saldoBtn.style.color = '#dc3545';
+            saldoBtn.parentElement.style.borderColor = '#dcb360';
+            saldoBtn.style.color = '#dcb360';
             btnSave.disabled = true;
+            
+            if(mSaldoBtn) {
+                mSaldoBtn.parentElement.style.borderColor = '#555';
+                mSaldoBtn.style.color = '#dcb360';
+            }
+            if(mBtnSave) mBtnSave.disabled = true;
         }
     }
 
@@ -808,7 +897,6 @@ document.addEventListener('DOMContentLoaded', () => {
         state.race = newRaceId;
         
         document.getElementById('race-builder-modal').style.display = 'none';
-        document.getElementById('race-builder-modal').classList.remove('active');
         
         try { AudioEngine.playMagic(); } catch(e) {}
         calculateAll();
@@ -850,8 +938,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('#shop-categories .store-tab-btn').forEach(b => b.classList.remove('active'));
                 e.target.classList.add('active');
                 currentShopCategory = e.target.dataset.cat;
+                
+                const btnMobileOwned = document.getElementById('btn-mobile-owned-items');
+                if (btnMobileOwned) btnMobileOwned.classList.remove('active-owned');
+                
                 updateStoreSortOptions();
                 renderStore();
+                document.getElementById('shop-grid').scrollTop = 0;
+                e.target.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'});
             });
         });
 
@@ -865,12 +959,104 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Inputs
-        ['shop-search', 'shop-price-min', 'shop-price-max', 'shop-minstr', 'shop-sort-by'].forEach(id => {
+        ['shop-search', 'shop-price-min', 'shop-price-max', 'shop-minstr', 'shop-sort-by', 'shop-search-mobile'].forEach(id => {
             const el = document.getElementById(id);
             if(el) el.addEventListener('input', renderStore);
         });
         const noAmmoEl = document.getElementById('shop-no-ammo');
         if(noAmmoEl) noAmmoEl.addEventListener('change', renderStore);
+
+        // Mobile UI Hooks
+        const btnCloseMobile = document.getElementById('btn-close-store-mobile');
+        if (btnCloseMobile) btnCloseMobile.addEventListener('click', () => { document.getElementById('store-modal').classList.remove('active'); });
+
+        const btnToggleFiltersMobile = document.getElementById('btn-toggle-filters-mobile');
+        if (btnToggleFiltersMobile) btnToggleFiltersMobile.addEventListener('click', () => {
+            const row = document.getElementById('shop-filters-row');
+            row.style.display = row.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        // Mobile Carousel & Toggle "Owned" Logic
+        const shopCatList = [
+            { cat: 'all', label: 'Todas as Áreas' },
+            { cat: 'Armas Brancas', label: 'Armas Brancas' },
+            { cat: 'Armas de Fogo/Longa Distância', label: 'Longa Distância' },
+            { cat: 'Armaduras', label: 'Armaduras' },
+            { cat: 'Escudos', label: 'Escudos' },
+            { cat: 'Utilidades', label: 'Utilidades' }
+        ];
+        let mobileCatIndex = 0;
+        
+        function updateMobileCapsule() {
+            const capsuleText = document.getElementById('car-capsule-text');
+            if (capsuleText) capsuleText.textContent = shopCatList[mobileCatIndex].label;
+            
+            currentShopCategory = shopCatList[mobileCatIndex].cat;
+            
+            // Sync with desktop tabs
+            document.querySelectorAll('#shop-categories .store-tab-btn').forEach(b => {
+                const isActive = b.dataset.cat === currentShopCategory;
+                b.classList.toggle('active', isActive);
+            });
+            
+            updateStoreSortOptions();
+            renderStore();
+            const grid = document.getElementById('shop-grid');
+            if (grid) grid.scrollTop = 0;
+        }
+
+        const btnCarLeft = document.getElementById('btn-car-left');
+        if (btnCarLeft) {
+            btnCarLeft.addEventListener('click', () => {
+                const btnMobileOwned = document.getElementById('btn-mobile-owned-items');
+                if (btnMobileOwned) btnMobileOwned.classList.remove('active-owned');
+                mobileCatIndex = (mobileCatIndex - 1 + shopCatList.length) % shopCatList.length;
+                updateMobileCapsule();
+            });
+        }
+        
+        const btnCarRight = document.getElementById('btn-car-right');
+        if (btnCarRight) {
+            btnCarRight.addEventListener('click', () => {
+                const btnMobileOwned = document.getElementById('btn-mobile-owned-items');
+                if (btnMobileOwned) btnMobileOwned.classList.remove('active-owned');
+                mobileCatIndex = (mobileCatIndex + 1) % shopCatList.length;
+                updateMobileCapsule();
+            });
+        }
+
+        const btnMobileOwned = document.getElementById('btn-mobile-owned-items');
+        if (btnMobileOwned) {
+            btnMobileOwned.addEventListener('click', () => {
+                btnMobileOwned.classList.toggle('active-owned');
+                
+                if (btnMobileOwned.classList.contains('active-owned')) {
+                    currentShopCategory = 'owned';
+                    const capsule = document.getElementById('car-capsule-text');
+                    if(capsule) capsule.textContent = '🎒 Meus Itens';
+                    
+                    document.querySelectorAll('#shop-categories .store-tab-btn').forEach(b => b.classList.remove('active'));
+                    updateStoreSortOptions();
+                    renderStore();
+                    const grid = document.getElementById('shop-grid');
+                    if (grid) grid.scrollTop = 0;
+                } else {
+                    // Restore previous carousel category
+                    updateMobileCapsule();
+                }
+            });
+        }
+
+        const btnMobileOpenCart = document.getElementById('btn-mobile-open-cart');
+        const storeSidebarCart = document.getElementById('store-sidebar-cart');
+        if (btnMobileOpenCart && storeSidebarCart) {
+            btnMobileOpenCart.addEventListener('click', () => storeSidebarCart.classList.add('cart-open'));
+        }
+        
+        const btnCloseCartMobile = document.getElementById('btn-close-cart-mobile');
+        if (btnCloseCartMobile && storeSidebarCart) {
+            btnCloseCartMobile.addEventListener('click', () => storeSidebarCart.classList.remove('cart-open'));
+        }
 
         // Cart Actions
         const btnEmptyCart = document.getElementById('btn-empty-cart');
@@ -1037,8 +1223,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('shop-grid');
         grid.innerHTML = '';
         
-        const searchInput = document.getElementById('shop-search');
-        const search = searchInput ? searchInput.value.toLowerCase() : '';
+        const searchInputD = document.getElementById('shop-search');
+        const searchInputM = document.getElementById('shop-search-mobile');
+        const search = window.innerWidth <= 768 && searchInputM ? searchInputM.value.toLowerCase() : (searchInputD ? searchInputD.value.toLowerCase() : '');
         const pMin = parseInt(document.getElementById('shop-price-min').value) || 0;
         const pMax = parseInt(document.getElementById('shop-price-max').value) || 999999;
         const maxMinStr = parseInt(document.getElementById('shop-minstr').value) || 99;
@@ -1052,8 +1239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxFunds = 500 + (state.boughtFunds * 500);
         const availableFunds = maxFunds - moneySpent;
         
-        const fundsValEl = document.getElementById('store-modal-funds-val');
-        if(fundsValEl) fundsValEl.textContent = availableFunds;
+        document.querySelectorAll('.store-modal-funds-val').forEach(el => el.textContent = availableFunds);
     
         let filteredItems = dEq.filter(item => {
             if(currentShopCategory === 'owned') {
@@ -1897,9 +2083,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Escuta comum de movimento do Viewport / Document
         document.addEventListener('mousemove', e => doPan(e.clientX, e.clientY));
         document.addEventListener('mouseup', () => { 
-            if(epicHeaderBg) epicHeaderBg.style.cursor = 'grab'; 
-            const mini = document.getElementById('mini-preview-container');
-            if(mini) mini.style.cursor = 'grab';
+            const eSpacer = document.getElementById('epic-image-spacer');
+            if(eSpacer) eSpacer.style.cursor = 'grab'; 
+            const mSpacer = document.getElementById('mini-image-spacer');
+            if(mSpacer) mSpacer.style.cursor = 'grab';
             endPan(); 
         });
         document.addEventListener('touchmove', e => {
@@ -1911,14 +2098,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('touchend', endPan);
 
         // Disparo via Card Real (Scale Dinamico CSS)
-        if (epicHeaderBg) {
-            epicHeaderBg.style.cursor = 'grab';
-            epicHeaderBg.addEventListener('mousedown', e => { 
-                epicHeaderBg.style.cursor = 'grabbing'; 
+        const epicImageSpacer = document.getElementById('epic-image-spacer');
+        if (epicImageSpacer && epicHeaderBg) {
+            epicImageSpacer.style.cursor = 'grab';
+            epicImageSpacer.addEventListener('mousedown', e => { 
+                epicImageSpacer.style.cursor = 'grabbing'; 
                 const scale = epicHeaderBg.offsetWidth / epicHeaderBg.getBoundingClientRect().width;
                 startPan(e.clientX, e.clientY, 'epic', scale); 
             });
-            epicHeaderBg.addEventListener('touchstart', e => {
+            epicImageSpacer.addEventListener('touchstart', e => {
                 if(e.touches.length === 1) {
                     const scale = epicHeaderBg.offsetWidth / epicHeaderBg.getBoundingClientRect().width;
                     startPan(e.touches[0].clientX, e.touches[0].clientY, 'epic', scale);
@@ -1927,15 +2115,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Disparo via Mini-Preview Simulator (Scale 0.1875 Fixo)
-        const miniPreview = document.getElementById('mini-preview-container');
-        if (miniPreview) {
-             miniPreview.style.cursor = 'grab';
-             miniPreview.addEventListener('mousedown', e => { 
+        const miniImageSpacer = document.getElementById('mini-image-spacer');
+        if (miniImageSpacer) {
+             miniImageSpacer.style.cursor = 'grab';
+             miniImageSpacer.addEventListener('mousedown', e => { 
                  e.preventDefault();
-                 miniPreview.style.cursor = 'grabbing'; 
+                 miniImageSpacer.style.cursor = 'grabbing'; 
                  startPan(e.clientX, e.clientY, 'mini', 1 / 0.1875); 
              });
-             miniPreview.addEventListener('touchstart', e => {
+             miniImageSpacer.addEventListener('touchstart', e => {
                  if(e.touches.length === 1) {
                      e.preventDefault();
                      startPan(e.touches[0].clientX, e.touches[0].clientY, 'mini', 1 / 0.1875);
