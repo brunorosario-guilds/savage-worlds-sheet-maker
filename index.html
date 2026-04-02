@@ -16,13 +16,18 @@
     <div class="top-bar">
         <span>Sistema Savage Worlds</span>
         <div class="mode-switch" id="ui-mode-toggle">
-            <span id="btn-mode-edit" class="active">Edição Fácil</span>
-            <span id="btn-mode-aesthetic">Visualização Estética</span>
+            <span id="btn-mode-edit" class="active">Editor</span>
+            <span id="btn-mode-aesthetic">Card de Personagem</span>
         </div>
-        <div>
-            <a href="admin.html" style="margin-right: 15px;">Mestre (Opções)</a>
-            <button id="btn-export-pdf" class="btn-secondary">Exportar PDF</button>
-            <button id="btn-export-img" class="btn-secondary">Exportar Img</button>
+        <div class="export-actions">
+            <button id="btn-export-pdf" class="btn-export btn-export-pdf">
+                <span class="export-icon">📜</span>
+                <span class="export-label">Exportar PDF</span>
+            </button>
+            <button id="btn-export-img" class="btn-export btn-export-img">
+                <span class="export-icon">🖼️</span>
+                <span class="export-label">Exportar Imagem</span>
+            </button>
         </div>
     </div>
 
@@ -73,12 +78,74 @@
             </div>
             
             <div>
-                <label>Retrato</label>
-                <div class="portrait-box" id="portrait-preview">
-                    <span class="edit-only">Clique para Imagem</span>
-                    <img id="portrait-img" alt="Retrato do Personagem">
+                <label style="display:flex; justify-content:space-between; align-items:center;">
+                    Arte (Mini-Prévia)
+                    <span style="font-size:0.75rem; color:var(--primary-color);">URL ou Arquivo</span>
+                </label>
+                
+                <div class="image-uploader-zone" id="image-uploader-zone">
+                    <div class="uploader-instructions" id="uploader-instructions">
+                        <i class="fas fa-image" style="font-size:2rem; margin-bottom:10px; color:#a89476;"></i>
+                        <p style="margin:0; font-weight:bold; color:#e0d5c1;">Arraste e Solte</p>
+                        <p style="margin:5px 0; font-size:0.8rem; color:#888;">ou clique para Imagem Física</p>
+                        
+                        <div class="url-input-container" style="margin-top:15px; width:80%;">
+                            <span style="font-size:0.75rem; color:#888; margin-bottom:4px; display:block;">Inserir Link da Web</span>
+                            <input type="text" id="portrait-url" placeholder="https://..." style="width:100%; border-radius:4px; border:1px solid #4a3821; padding:5px; background:#111; color:#fff; text-align:center;" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+
+                    <!-- MINICARD PREVIEW (hidden until image is loaded) -->
+                    <div class="mini-preview-container" id="mini-preview-container" style="display:none; position:relative; width:150px; height:318.75px; margin: 0 auto; overflow:hidden; border-radius:4px; box-shadow:0 0 10px rgba(0,0,0,0.8); border: 1px solid #5a421b;">
+                        <!-- Scaled actual dimensions: 800x1700 -->
+                        <div class="mini-card-wrapper" id="mini-card-wrapper" style="width: 800px; height: 1700px; position: absolute; transform-origin: top left; transform: scale(0.1875); background:#0a0500;">
+                            
+                            <!-- Imagem Sincronizada -->
+                            <img id="mini-portrait-img" src="" style="position:absolute; transform-origin: top left; pointer-events: none; object-fit: cover;">
+                            
+                            <!-- Gradient Top para Titulo -->
+                            <div style="position:absolute; top:0; left:0; width:100%; height:200px; background:linear-gradient(to bottom, rgba(10,5,0,0.9) 0%, transparent 100%); z-index:2;"></div>
+                            
+                            <!-- Titulo Ghost -->
+                            <div style="position:absolute; top:20px; left:0; width:100%; display:flex; flex-direction:column; align-items:center; z-index:10;">
+                                <div style="width:500px; height:50px; background:rgba(255,255,255,0.7); border-radius:5px; margin-bottom:10px;"></div>
+                                <div style="width:200px; height:25px; background:rgba(255,255,255,0.5); border-radius:3px;"></div>
+                            </div>
+                            
+                            <!-- Fade Background -->
+                            <div id="mini-content-bg" style="position:absolute; bottom:0; left:0; width:100%; height:1400px; background:linear-gradient(to bottom, rgba(20,15,10,0) 0%, rgba(20,15,10,0.95) 250px, rgba(10,5,0,0.95) 100%); z-index:4;"></div>
+
+                            <!-- Data Ghost Layer (Flexible) -->
+                            <div id="mini-data-layer" style="position:absolute; bottom:0; left:0; width:100%; height:1700px; display:flex; flex-direction:column; justify-content:flex-end; align-items:stretch; padding: 20px 0 30px 0; z-index:5; gap: 15px;">
+                                <div style="display:flex; justify-content:center; gap:30px; margin-bottom:10px;">
+                                    <div style="width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.4);"></div>
+                                    <div style="width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.4);"></div>
+                                    <div style="width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.4);"></div>
+                                    <div style="width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.4);"></div>
+                                </div>
+                                <div style="width:700px; height:130px; background:rgba(255,255,255,0.15); margin: 0 auto; border-radius:8px;"></div>
+                                <div style="width:700px; height:80px; background:rgba(255,255,255,0.15); margin: 0 auto; border-radius:8px;"></div>
+                                <div style="width:700px; height:150px; background:rgba(255,255,255,0.15); margin: 0 auto; border-radius:8px;"></div>
+                                <div style="width:700px; height:120px; background:rgba(255,255,255,0.15); margin: 0 auto; border-radius:8px;"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <input type="file" id="portrait-upload" class="portrait-input edit-only" accept="image/png, image/jpeg, image/jpg">
+                
+                <input type="file" id="portrait-upload" class="portrait-input edit-only" style="display:none;" accept="image/png, image/jpeg, image/jpg, image/webp">
+                
+                <div id="mini-preview-controls" class="edit-only" style="display:none; margin-top:15px; width: 100%; align-items:center; flex-direction:column; gap:10px;">
+                    <div class="custom-group" style="width: 100%; text-align:center;">
+                        <label style="color:#dcb360;">Zoom Prévia (<span id="lbl-mini-zoom">1.0x</span>)</label>
+                        <input type="range" id="mini-img-zoom" min="1" max="3" step="0.01" value="1" style="width:100%;">
+                    </div>
+                    <div class="custom-group" style="width: 100%; text-align:center;">
+                        <label style="color:#dcb360;">Info Box Prévia (<span id="lbl-mini-height">15px</span>)</label>
+                        <input type="range" id="mini-img-height" min="0" max="150" step="2" value="15" style="width:100%;">
+                    </div>
+                </div>
+
+                <button id="btn-clear-image" class="edit-only" style="display:none; width:100%; margin-top:15px; background:#4a2118; color:#fff; border:none; padding:8px 0; border-radius:4px; cursor:pointer; font-weight:bold; letter-spacing:1px;">REMOVER ARTE</button>
             </div>
         </div>
 
@@ -298,6 +365,13 @@
 
     <!-- AESTHETIC CUSTOMIZER SIDEBAR -->
     <aside id="aesthetic-customizer" style="display: none;">
+        <button id="btn-toggle-customizer" class="mobile-customizer-toggle" onclick="
+            const acc = document.querySelector('.customizer-accordion');
+            const isHidden = acc.style.display === 'none';
+            acc.style.display = isHidden ? '' : 'none';
+            this.textContent = isHidden ? '▼ Esconder Editor' : '▲ Mostrar Editor';
+            this.classList.toggle('collapsed', !isHidden);
+        ">▼ Esconder Editor</button>
         <h3 class="customizer-title">🪄 Molderia Épica</h3>
         <p class="customizer-subtitle">Personalize a sua carta</p>
         
@@ -478,26 +552,31 @@
                 </div>
             </div>
 
+            <!-- SEÇÃO: AJUSTE DE IMAGEM DA CARTA -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>C. Enquadramento da Arte</span>
+                </div>
+                <div class="accordion-body" style="display:none;">
+                    <div class="custom-group" style="margin-top: 5px;">
+                        <label>Controle de Zoom (<span id="lbl-img-zoom">1.0x</span>)</label>
+                        <input type="range" id="cust-img-zoom" min="1" max="3" step="0.01" value="1" style="width:100%;">
+                        <small style="color:#aaa; display:block; margin-top:3px;">Você pode arrastar a arte diretamente no card se preferir.</small>
+                    </div>
+                    <div class="custom-group" style="margin-top: 15px;">
+                        <label>Altura do Início da Info Box (<span id="lbl-img-height">15px</span>)</label>
+                        <input type="range" id="cust-img-height" min="0" max="150" step="2" value="15" style="width:100%;">
+                    </div>
+                </div>
+            </div>
+
             <!-- SEÇÃO: AJUSTE DE IMAGEM -->
             <div class="accordion-item">
                 <div class="accordion-header">
-                    <span>B. Imagem e Zoom</span>
+                    <span>B. Fundo & Efeitos</span>
                 </div>
                 <div class="accordion-body" style="display:none;">
-                    <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:4px; border:1px solid #4a3821; font-size:0.8rem; text-align:center; color:#c4b093; margin-bottom:15px;">
-                        💡 <strong>Dica:</strong> Para mover e enquadrar sua imagem livremente, basta clicar e arrastá-la diretamente na carta ao lado!
-                    </div>
                     
-                    <div class="custom-group">
-                        <label>Controle de Zoom (<span id="lbl-img-zoom">1.0x</span>)</label>
-                        <input type="range" id="cust-img-zoom" min="1" max="3" step="0.01" value="1">
-                    </div>
-
-                    <div class="custom-group" style="margin-top: 15px;">
-                        <label>Altura da Imagem Pura (<span id="lbl-img-height">350px</span>)</label>
-                        <input type="range" id="cust-img-height" min="150" max="800" step="10" value="350">
-                    </div>
-
                     <div class="custom-group" style="margin-top: 15px;">
                         <label>Opacidade do Fundo dos Textos (<span id="lbl-bg-opacity">95%</span>)</label>
                         <input type="range" id="cust-bg-opacity" min="0" max="1" step="0.05" value="0.95">
@@ -646,6 +725,25 @@
                         <div style="text-align:center; width:100%; color:#999; margin-top: 50px;">Carregando loja...</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPORT PREVIEW MODAL -->
+    <div id="export-preview-overlay" class="export-preview-overlay">
+        <div class="export-preview-modal">
+            <div class="export-preview-header">
+                <h2 id="export-preview-title">📜 Pré-visualização da Exportação</h2>
+                <button class="btn-close-modal" id="btn-close-export-preview">&times;</button>
+            </div>
+            <div class="export-preview-body" id="export-preview-body">
+                <!-- Canvas/Image will be injected here -->
+            </div>
+            <div class="export-preview-footer">
+                <button id="btn-export-download" class="btn-export btn-export-pdf" style="font-size: 1rem; padding: 12px 30px;">
+                    <span class="export-icon">⬇️</span>
+                    <span class="export-label">Baixar Arquivo</span>
+                </button>
             </div>
         </div>
     </div>

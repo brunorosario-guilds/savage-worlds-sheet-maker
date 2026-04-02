@@ -1101,6 +1101,10 @@ document.addEventListener('DOMContentLoaded', () => {
             imgPanX: 0.5,
             imgPanY: 0.2,
             imgHeight: 15,
+            miniZoom: 1,
+            miniPanX: 0.5,
+            miniPanY: 0.2,
+            miniHeight: 15,
             bgOpacity: 0.95
         };
 
@@ -1124,34 +1128,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const renderImageTransform = () => {
-            if (!epicPortrait || epicPortrait.src === '') return;
             const cW = 800;
             const cH = 1700;
-            
             const baseScale = Math.max(cW / natW, cH / natH);
-            const scaledW = natW * baseScale * state.imgZoom;
-            const scaledH = natH * baseScale * state.imgZoom;
-            
-            const excessX = scaledW - cW;
-            const excessY = scaledH - cH;
-            
-            state.imgPanX = Math.max(0, Math.min(1, state.imgPanX));
-            state.imgPanY = Math.max(0, Math.min(1, state.imgPanY));
-            
-            const leftOffset = -1 * (excessX * state.imgPanX);
-            const topOffset = -1 * (excessY * state.imgPanY);
 
-            epicPortrait.style.width = `${scaledW}px`;
-            epicPortrait.style.height = `${scaledH}px`;
-            epicPortrait.style.left = `${leftOffset}px`;
-            epicPortrait.style.top = `${topOffset}px`;
+            if (epicPortrait && epicPortrait.src !== '') {
+                const scaledW = natW * baseScale * state.imgZoom;
+                const scaledH = natH * baseScale * state.imgZoom;
+                const excessX = scaledW - cW;
+                const excessY = scaledH - cH;
+                state.imgPanX = Math.max(0, Math.min(1, state.imgPanX));
+                state.imgPanY = Math.max(0, Math.min(1, state.imgPanY));
+                const leftOffset = -1 * (excessX * state.imgPanX);
+                const topOffset = -1 * (excessY * state.imgPanY);
+                epicPortrait.style.width = `${scaledW}px`;
+                epicPortrait.style.height = `${scaledH}px`;
+                epicPortrait.style.left = `${leftOffset}px`;
+                epicPortrait.style.top = `${topOffset}px`;
+            }
 
             const miniPortrait = document.getElementById('mini-portrait-img');
             if (miniPortrait && miniPortrait.src !== '') {
-                miniPortrait.style.width = `${scaledW}px`;
-                miniPortrait.style.height = `${scaledH}px`;
-                miniPortrait.style.left = `${leftOffset}px`;
-                miniPortrait.style.top = `${topOffset}px`;
+                const miniScaledW = natW * baseScale * state.miniZoom;
+                const miniScaledH = natH * baseScale * state.miniZoom;
+                const miniExcessX = miniScaledW - cW;
+                const miniExcessY = miniScaledH - cH;
+                state.miniPanX = Math.max(0, Math.min(1, state.miniPanX));
+                state.miniPanY = Math.max(0, Math.min(1, state.miniPanY));
+                const miniLeftOffset = -1 * (miniExcessX * state.miniPanX);
+                const miniTopOffset = -1 * (miniExcessY * state.miniPanY);
+                miniPortrait.style.width = `${miniScaledW}px`;
+                miniPortrait.style.height = `${miniScaledH}px`;
+                miniPortrait.style.left = `${miniLeftOffset}px`;
+                miniPortrait.style.top = `${miniTopOffset}px`;
             }
         };
 
@@ -1162,12 +1171,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const miniLayer = document.getElementById('mini-data-layer');
             
             if (wrapper) wrapper.style.setProperty('--content-gap', `${state.imgHeight}px`);
-            if (miniLayer) miniLayer.style.gap = `${state.imgHeight}px`;
+            if (miniLayer) miniLayer.style.gap = `${state.miniHeight}px`;
             
             if (spacer) spacer.style.display = 'none';
 
             if (bgMask) {
-                // Background mask anchors from bottom to cover text properly
                 bgMask.style.top = 'auto';
                 bgMask.style.bottom = '0px';
                 bgMask.style.height = '1400px';
@@ -1392,48 +1400,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Image Zoom & Pan Events
         const zoomSlider = document.getElementById('cust-img-zoom');
-            if (zoomSlider) {
-                zoomSlider.addEventListener('input', e => {
-                    state.imgZoom = parseFloat(e.target.value);
-                    document.getElementById('lbl-img-zoom').textContent = state.imgZoom.toFixed(2) + 'x';
-                    renderImageTransform();
-                });
-            }
+        if (zoomSlider) {
+            zoomSlider.addEventListener('input', e => {
+                state.imgZoom = parseFloat(e.target.value);
+                document.getElementById('lbl-img-zoom').textContent = state.imgZoom.toFixed(2) + 'x';
+                renderImageTransform();
+            });
+        }
+        const miniZoomSlider = document.getElementById('mini-img-zoom');
+        if (miniZoomSlider) {
+            miniZoomSlider.addEventListener('input', e => {
+                state.miniZoom = parseFloat(e.target.value);
+                document.getElementById('lbl-mini-zoom').textContent = state.miniZoom.toFixed(2) + 'x';
+                renderImageTransform();
+            });
+        }
 
-            let isDraggingImg = false, lastMouseX = 0, lastMouseY = 0, activeDragMultiplier = 1;
+        let draggingTarget = null, lastMouseX = 0, lastMouseY = 0, activeDragMultiplier = 1;
 
-            const startPan = (x, y, scale = 1) => {
-                if (!state.uploadedPortraitSrc) return;
-                isDraggingImg = true;
-                lastMouseX = x;
-                lastMouseY = y;
-                activeDragMultiplier = scale || 1;
-            };
+        const startPan = (x, y, target, scale = 1) => {
+            if (!state.uploadedPortraitSrc) return;
+            draggingTarget = target;
+            lastMouseX = x;
+            lastMouseY = y;
+            activeDragMultiplier = scale || 1;
+        };
 
-            const endPan = () => { isDraggingImg = false; };
+        const endPan = () => { draggingTarget = null; };
 
-            const doPan = (x, y) => {
-                if (!isDraggingImg) return;
-                const dx = (x - lastMouseX) * activeDragMultiplier;
-                const dy = (y - lastMouseY) * activeDragMultiplier;
-                lastMouseX = x; lastMouseY = y;
+        const doPan = (x, y) => {
+            if (!draggingTarget) return;
+            const dx = (x - lastMouseX) * activeDragMultiplier;
+            const dy = (y - lastMouseY) * activeDragMultiplier;
+            lastMouseX = x; lastMouseY = y;
 
-                const cW = 800;
-                const cH = 1700;
-                const baseScale = Math.max(cW / natW, cH / natH);
+            const cW = 800;
+            const cH = 1700;
+            const baseScale = Math.max(cW / natW, cH / natH);
+            
+            if (draggingTarget === 'epic') {
                 const excessX = (natW * baseScale * state.imgZoom) - cW;
                 const excessY = (natH * baseScale * state.imgZoom) - cH;
-                
                 let currentPixelX = -1 * (excessX * state.imgPanX) + dx;
                 let currentPixelY = -1 * (excessY * state.imgPanY) + dy;
                 currentPixelX = Math.min(0, Math.max(-excessX, currentPixelX));
                 currentPixelY = Math.min(0, Math.max(-excessY, currentPixelY));
-
                 state.imgPanX = excessX > 0 ? (currentPixelX / -excessX) : 0.5;
                 state.imgPanY = excessY > 0 ? (currentPixelY / -excessY) : 0.5;
+            } else if (draggingTarget === 'mini') {
+                const excessX = (natW * baseScale * state.miniZoom) - cW;
+                const excessY = (natH * baseScale * state.miniZoom) - cH;
+                let currentPixelX = -1 * (excessX * state.miniPanX) + dx;
+                let currentPixelY = -1 * (excessY * state.miniPanY) + dy;
+                currentPixelX = Math.min(0, Math.max(-excessX, currentPixelX));
+                currentPixelY = Math.min(0, Math.max(-excessY, currentPixelY));
+                state.miniPanX = excessX > 0 ? (currentPixelX / -excessX) : 0.5;
+                state.miniPanY = excessY > 0 ? (currentPixelY / -excessY) : 0.5;
+            }
 
-                renderImageTransform();
-            };
+            renderImageTransform();
+        };
 
         // Escuta comum de movimento do Viewport / Document
         document.addEventListener('mousemove', e => doPan(e.clientX, e.clientY));
@@ -1444,7 +1470,7 @@ document.addEventListener('DOMContentLoaded', () => {
             endPan(); 
         });
         document.addEventListener('touchmove', e => {
-            if(isDraggingImg && e.touches.length === 1) {
+            if(draggingTarget && e.touches.length === 1) {
                 e.preventDefault();
                 doPan(e.touches[0].clientX, e.touches[0].clientY);
             }
@@ -1457,12 +1483,12 @@ document.addEventListener('DOMContentLoaded', () => {
             epicHeaderBg.addEventListener('mousedown', e => { 
                 epicHeaderBg.style.cursor = 'grabbing'; 
                 const scale = epicHeaderBg.offsetWidth / epicHeaderBg.getBoundingClientRect().width;
-                startPan(e.clientX, e.clientY, scale); 
+                startPan(e.clientX, e.clientY, 'epic', scale); 
             });
             epicHeaderBg.addEventListener('touchstart', e => {
                 if(e.touches.length === 1) {
                     const scale = epicHeaderBg.offsetWidth / epicHeaderBg.getBoundingClientRect().width;
-                    startPan(e.touches[0].clientX, e.touches[0].clientY, scale);
+                    startPan(e.touches[0].clientX, e.touches[0].clientY, 'epic', scale);
                 }
             }, {passive: false});
         }
@@ -1474,12 +1500,12 @@ document.addEventListener('DOMContentLoaded', () => {
              miniPreview.addEventListener('mousedown', e => { 
                  e.preventDefault();
                  miniPreview.style.cursor = 'grabbing'; 
-                 startPan(e.clientX, e.clientY, 1 / 0.1875); 
+                 startPan(e.clientX, e.clientY, 'mini', 1 / 0.1875); 
              });
              miniPreview.addEventListener('touchstart', e => {
                  if(e.touches.length === 1) {
                      e.preventDefault();
-                     startPan(e.touches[0].clientX, e.touches[0].clientY, 1 / 0.1875);
+                     startPan(e.touches[0].clientX, e.touches[0].clientY, 'mini', 1 / 0.1875);
                  }
              }, {passive: false});
         }
@@ -1491,7 +1517,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 state.imgHeight = parseInt(e.target.value);
                 document.getElementById('lbl-img-height').textContent = state.imgHeight + 'px';
                 renderLayout();
-                renderImageTransform(); // Heights change bounds calculation
+                renderImageTransform();
+            });
+        }
+        const miniHeightSlider = document.getElementById('mini-img-height');
+        if (miniHeightSlider) {
+            miniHeightSlider.addEventListener('input', e => {
+                state.miniHeight = parseInt(e.target.value);
+                document.getElementById('lbl-mini-height').textContent = state.miniHeight + 'px';
+                renderLayout();
+                renderImageTransform();
             });
         }
 
