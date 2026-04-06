@@ -1,13 +1,68 @@
 const DEFAULT_DATA = {
     races: [
-        { id: 'race_human', name: 'Humano', description: 'Ganha uma Vantagem Bônus Gratuita (Rank: Novato).' },
-        { id: 'race_dwarf', name: 'Anão', description: 'Visão no Escuro (Ignora penalidade Escuridão). Lento (Mov. 5, corrida d4). Robusto (Vigor d6).' },
-        { id: 'race_elf', name: 'Elfo', description: 'Agilidade d6. Visão na Penumbra. Desajeitado (com tecnologia moderna).' },
-        { id: 'race_halfelf', name: 'Meio-Elfo', description: 'Visão na Penumbra. Ignora Herança com humanos/elfos. +1 Ponto Híbrido livre.' },
-        { id: 'race_rakashan', name: 'Rakashano', description: 'Agilidade d6. Arma Natural (For+d4). Visão na Penumbra. Animalesco. Curioso.' },
-        { id: 'race_saurian', name: 'Sauriano', description: 'Visão no Escuro. Vigor d6. Pele Dura (+2 Armadura Nat.). Termossensível. Animalesco.' },
-        { id: 'race_android', name: 'Androide', description: 'Astúcia d6. Construto (+2 Rec., Imune a Veneno/Fadiga). Inábil Socialmente (Sem Noção).' },
-        { id: 'race_atlantean', name: 'Atlante', description: 'Anfíbio. Vigor d6. Desidratação (-1 Fadiga caso 24h sem água).' }
+        { id: 'race_anao', name: 'Anão', description: 'Robusto (Vigor d6), +1 Provocar, -1 Cavalgar. Lento (Mov. 5). Visão no Escuro.' },
+        { id: 'race_elfo', name: 'Elfo', description: 'Ágil (Agilidade d6), +1 Perceber, -1 Intimidar. Visão no Escuro. -1 Passo em terrenos difíceis. -1 Agi em armadura pesada.' },
+        { id: 'race_gnomo', name: 'Gnomo', description: 'Espirito d6. +1 Mod em perícia (escolha). -1 Mod em perícia (escolha). Mov +1. Não usa armas For d10+ ou Armadura Pesada.', 
+            choices: [
+                { id: 'gnome_pos', type: 'skill', name: 'Bônus de Perícia (+1)', options: ['skill_research', 'skill_thievery'] },
+                { id: 'gnome_neg', type: 'skill', name: 'Alvo do Redutor (-1)', options: ['skill_riding', 'skill_athletics'] }
+            ]
+        },
+        { id: 'race_orc', name: 'Orc', description: 'Forte (Força d6). +1 Intimidar, -1 Persuasão, +2 Operar Máquinas. Visão no Escuro.' },
+        { id: 'race_tocado', name: 'Tocado pelo Véu', description: 'Astuto (Astúcia d6). +1 Mod em perícia (livre). -1 Mod em Perícia (livre). Qualidade/Defeito amaldiçoado.',
+            choices: [
+                { id: 'touched_pos', type: 'skill', name: 'Bônus de Perícia (+1)', options: 'all' },
+                { id: 'touched_neg', type: 'skill', name: 'Alvo do Redutor (-1)', options: 'all' },
+                { id: 'touched_quality', type: 'named_text', name: 'Qualidade Amaldiçoada', placeholder: 'Ex: Visão Noturna' },
+                { id: 'touched_defect', type: 'named_text', name: 'Defeito Amaldiçoado', placeholder: 'Ex: Sombra Agressiva' }
+            ]
+        },
+        { id: 'race_metamorfo', name: 'Metamorfo', description: 'Atributo livre d6. +1 Sobrevivência, -1 Atirar. Habilidade de animal. -2 Mov em 4 patas. +2 Perceber em cidades.',
+            choices: [
+                { id: 'shift_attr', type: 'attribute', name: 'Atributo Animal', options: ['attr_agility', 'attr_smarts', 'attr_spirit', 'attr_strength', 'attr_vigor'] },
+                { id: 'shift_nat', type: 'text', name: 'Habilidade Natural', placeholder: 'Mordida, Garras, etc.' }
+            ]
+        },
+        { id: 'race_humano', name: 'Humano', description: 'Uma Vantagem a mais. +2 pts de Perícia.' }
+    ],
+    classes: [
+        { id: 'cls_mago', name: 'Mago', description: 'Ganha Antecedente Arcano (magia) / +1 pericia Conjurar', 
+          edges: ['edge_bg_arcanebg'], bonuses: [{type: 'skill', target: 'skill_magic', amount: 1}] },
+
+        { id: 'cls_feiticeiro', name: 'Feiticeiro', description: 'Ganha Antecedente Arcano (dom) / +1 perícia Foco', 
+          edges: ['edge_bg_arcanebg'], bonuses: [{type: 'skill', target: 'skill_focus', amount: 1}] },
+
+        { id: 'cls_ocultista', name: 'Ocultistas', description: 'Ganha Ameaçador / +1 pericia Ocultismo', 
+          edges: ['edge_soc_menacing'], bonuses: [{type: 'skill', target: 'skill_occult', amount: 1}] },
+
+        { id: 'cls_clerigo', name: 'Clérigo', description: 'Ganha Antecedente Arcano (Milagres) / +1 pericia Curar', 
+          edges: ['edge_bg_arcanebg'], bonuses: [{type: 'skill', target: 'skill_healing', amount: 1}] },
+
+        { id: 'cls_cavaleiro', name: 'Cavaleiro', description: 'Ganha Prontidão / +1 pericia Perceber', 
+          edges: ['edge_bg_alertness'], bonuses: [{type: 'skill', target: 'skill_notice', amount: 1}] },
+
+        { id: 'cls_bardo', name: 'Bardo', description: 'Ganha Carismático / +1 pericia Persuadir OU Performance', 
+          edges: ['edge_soc_charis'], choices: [{id: 'bardo_sk', type: 'skill', name: 'Perícia Bônus', options: ['skill_persuasion', 'skill_performance']}] },
+
+        { id: 'cls_barbaro', name: 'Bárbaro', description: 'Ganha Furioso / +1 pericia Atletismo', 
+          edges: ['edge_bg_berserk'], bonuses: [{type: 'skill', target: 'skill_athletics', amount: 1}] },
+
+        { id: 'cls_guerreiro', name: 'Guerreiro', description: 'Ganha Arma Predileta / +1 pericia Lutar OU Atirar', 
+          edges: ['edge_cbt_trademarkwep'], choices: [{id: 'guer_sk', type: 'skill', name: 'Perícia Bônus', options: ['skill_fighting', 'skill_shooting']}] },
+
+        { id: 'cls_patrulheiro', name: 'Patrulheiro', description: 'Ganha Calculista / +1 Sobrevivência / ganha um companheiro animal', 
+          edges: ['edge_bg_calculating'], bonuses: [{type: 'skill', target: 'skill_survival', amount: 1}], 
+          passives: [{text: "Companheiro animal", color:"#4CAF50"}] },
+
+        { id: 'cls_ladino', name: 'Ladino', description: 'Ganha Rápido / +1 Ladinagem', 
+          edges: ['edge_bg_quick'], bonuses: [{type: 'skill', target: 'skill_thievery', amount: 1}] },
+
+        { id: 'cls_nobre', name: 'Nobre', description: 'Ganha Aristocrata / +1 Provocar ou Persuadir e +1 Conhecimento Acadêmico', 
+          edges: ['edge_bg_aristocrat'], bonuses: [{type: 'skill', target: 'skill_academics', amount: 1}],
+          choices: [{id: 'nobre_sk', type: 'skill', name: 'Perícia Bônus Social', options: ['skill_taunt', 'skill_persuasion']}] },
+
+        { id: 'cls_visionario', name: 'Visionário', description: 'Ganha Mcgyver / +1 Consertar OU Curar OU Sobrevivência OU Ciência', 
+          edges: ['edge_prf_mcgyver'], choices: [{id: 'visio_sk', type: 'skill', name: 'Perícia Bônus Científica', options: ['skill_repair', 'skill_healing', 'skill_survival', 'skill_science']}] }
     ],
     attributes: [
         { id: 'attr_agility', name: 'Agilidade' }, { id: 'attr_smarts', name: 'Astúcia' },
@@ -25,6 +80,7 @@ const DEFAULT_DATA = {
         { id: 'skill_shooting', name: 'Atirar', linked: 'Agilidade', isCore: false },
         { id: 'skill_riding', name: 'Cavalgar', linked: 'Agilidade', isCore: false },
         { id: 'skill_academics', name: 'Acadêmicos', linked: 'Astúcia', isCore: false },
+        { id: 'skill_research', name: 'Pesquisar', linked: 'Astúcia', isCore: false },
         { id: 'skill_battle', name: 'Batalha', linked: 'Astúcia', isCore: false },
         { id: 'skill_science', name: 'Ciência', linked: 'Astúcia', isCore: false },
         { id: 'skill_repair', name: 'Consertar', linked: 'Astúcia', isCore: false },
@@ -38,7 +94,7 @@ const DEFAULT_DATA = {
         { id: 'skill_intimidation', name: 'Intimidar', linked: 'Espírito', isCore: false },
         { id: 'skill_gambling', name: 'Jogar', linked: 'Astúcia', isCore: false },
         { id: 'skill_fighting', name: 'Lutar', linked: 'Agilidade', isCore: false },
-        { id: 'skill_magic', name: 'Arcano / Fé', linked: 'Astúcia', isCore: false },
+        { id: 'skill_magic', name: 'Conjurar (Arcano)', linked: 'Astúcia', isCore: false },
         { id: 'skill_boating', name: 'Navegar', linked: 'Agilidade', isCore: false },
         { id: 'skill_occult', name: 'Ocultismo', linked: 'Astúcia', isCore: false },
         { id: 'skill_operate', name: 'Operar (Máquinas)', linked: 'Agilidade', isCore: false },
@@ -1019,7 +1075,10 @@ const DEFAULT_DATA = {
                     "effects": {
                             "parry": 1
                     }
-            }
+        },
+        { id: 'edge_soc_menacing', type: 'Sociais', name: 'Ameaçador', requirements: 'Novato', description: 'Personagem aparenta ser muito perigoso ou perturbador. Ganha +2 em rolagens de Intimidar.', effects: { intimidate: 2 } },
+        { id: 'edge_bg_calculating', type: 'Antecedentes', name: 'Calculista', requirements: 'Novato, Ast d8+', description: 'A mente fria e detalhista do herói avalia a situação com a máxima precisão de detalhes. Ele pode ignorar até 2 pontos em penalidades contínuas que atrapalhem o que focou.' },
+        { id: 'edge_bg_quick', type: 'Antecedentes', name: 'Rápido', requirements: 'Novato, Agi d8+', description: 'Reflexos rápidos para sacar armas e agir veloz em situações críticas, com chance de agir mais vezes em conflitos táticos.' }
     ],
     equipment: [
         /* -------- ARMAS BRANCAS (MEDIEVAIS) -------- */

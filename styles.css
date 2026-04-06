@@ -532,6 +532,7 @@ button:disabled { background: #333; border-color: #444; color: #666; cursor: not
     background: linear-gradient(180deg, var(--primary-color) 0%, #8a6c2c 100%);
     border-color: #ffe099;
 }
+.die-btn:disabled { transition: none; opacity: 0.5; }
 
 /* Switch Aesthetic Mode */
 .mode-switch {
@@ -844,7 +845,7 @@ body.layout-aggressive .container { border: 2px solid var(--primary-color); box-
     display: flex; align-items: center; justify-content: center; transition: all 0.2s;
 }
 .standalone-controls button:hover:not(:disabled) { background: var(--primary-color); color: #111; box-shadow: 0 0 10px var(--primary-color); transform: scale(1.15);}
-.standalone-controls button:disabled { background: #111; border-color: #333; color: #333; cursor: not-allowed; }
+.standalone-controls button:disabled { background: #111; border-color: #333; color: #333; cursor: not-allowed; transition: none; }
 
 /* ============================================================ */
 /* EPIC PRESENTATION CARD MODE (Trading Card Game Aesthetics)   */
@@ -1059,7 +1060,7 @@ body.layout-aggressive .container { border: 2px solid var(--primary-color); box-
     width: 80%;
     margin: 15px auto;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #b88645, transparent);
+    background: linear-gradient(90deg, rgba(184, 134, 69, 0), #b88645, rgba(184, 134, 69, 0));
     box-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 
@@ -1952,3 +1953,7 @@ body.layout-aggressive .container { border: 2px solid var(--primary-color); box-
         padding: 10px 0;
     }
 }
+
+/* Toast Estilizado */
+#custom-toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: linear-gradient(135deg, #7c622f, #dcb360); color: #fff; padding: 15px 25px; border-radius: 8px; font-weight: bold; font-family: 'Cinzel', serif; z-index: 10000; opacity: 0; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease-in-out; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 2px solid #ecd38c; text-align: center; font-size: 1.1rem; }
+#custom-toast.toast-show { transform: translateX(-50%) translateY(0); opacity: 1; }

@@ -42,11 +42,19 @@
                     <input type="text" id="char-name" placeholder="Fulano, o Caçador de Recompensas">
                 </div>
                 <div class="edit-only">
-                    <div class="input-group">
-                        <label>Raça</label>
-                        <div style="display: flex; gap: 5px;">
-                            <select id="char-race" style="flex: 1;"></select>
-                            <button id="btn-open-race-builder-direct" class="btn-primary" style="padding: 0 15px;" title="Forjar Nova Raça">🧬 Forjar Raça</button>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="input-group" id="race-container">
+                            <label>Raça</label>
+                            <div style="display: flex; gap: 5px;">
+                                <select id="char-race" style="flex: 1;"></select>
+                                <button id="btn-open-race-builder-direct" class="btn-primary" style="padding: 0 15px; display: none !important;" title="Forjar Nova Raça">🧬 Forjar Raça</button>
+                            </div>
+                        </div>
+                        <div class="input-group" id="class-container">
+                            <label>Classe</label>
+                            <div style="display: flex; gap: 5px;">
+                                <select id="char-class" style="flex: 1;"></select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -189,6 +197,12 @@
                         </div>
                     </div>
 
+                    <!-- Botão de Level Up -->
+                    <div class="edit-only" id="level-up-container" style="text-align:center; padding: 10px; margin-bottom: 15px; background: rgba(0,0,0,0.2); border: 1px dashed #dcb360; border-radius: 8px;">
+                        <button id="btn-level-up" class="btn-primary" style="margin-bottom: 5px; width: 100%; transition: all 0.3s ease;">Subir de Nível</button>
+                        <div id="level-up-desc" style="font-size: 0.8rem; color: #aaa; margin-top: 5px;">Requer terminar escolhas classe/raça e gastar pontos base.</div>
+                    </div>
+
                     <!-- CSS do Switch Switch-Mode Menu -->
                     <div class="attr-tabs-switch" id="attr-tabs-menu">
                         <!-- Gerado via JS -->
@@ -202,7 +216,7 @@
 
                 <!-- Estatísticas Derivadas Movidas Para o Topo -->
 
-                <div class="section">
+                <div class="section" style="display: none !important;">
                     <h2>Complicações (+Pts)</h2>
 
                     <!-- Trackers de Complicações e Custo -->
@@ -344,7 +358,7 @@
 
             <!-- Double Column Core -->
             <div class="epic-core-columns" style="position: relative; z-index: 10;">
-                <div class="epic-col">
+                <div class="epic-col" style="display: none !important;">
                     <h3 class="epic-section-title">COMPLICAÇÕES</h3>
                     <ul class="epic-list hindrances-list" id="epic-list-hindrances"></ul>
                 </div>
@@ -717,6 +731,13 @@
                             Filtros
                         </button>
                         <input type="text" id="shop-search" placeholder="Buscar suprimento..." class="shop-search-input">
+                        <label style="display:flex; align-items:center; gap:5px; margin-left: 10px; cursor:pointer;" title="Permite comprar ignorando limite de fundos">
+                            <span class="severity-label" style="color: #c4b093; text-transform: uppercase; font-size: 0.7rem; font-weight: bold;">Compra Livre</span>
+                            <div class="toggle-switch-ui" style="transform: scale(0.8); transform-origin: left center;">
+                                <input type="checkbox" id="shop-infinite-funds">
+                                <span class="slider-switch"></span>
+                            </div>
+                        </label>
                     </div>
                     <button class="btn-close-modal" id="btn-close-store" style="position: static;">&times;</button>
                 </div>
@@ -861,11 +882,16 @@
         </div>
     </div>
 
+    <!-- Custom Toast Notification for Level Up -->
+    <div id="custom-toast" class="toast-hidden">
+        <div class="toast-content" id="custom-toast-content">Você ganhou +1 Ponto!</div>
+    </div>
+
     <!-- Scripts -->
-    <script src="js/data.js?v=14_powers"></script>
-    <script src="js/effects.js?v=14_powers"></script>
-    <script src="js/character.js?v=14_powers"></script>
-    <script src="js/pdfgen.js?v=14_powers"></script>
+    <script src="js/data.js?v=20_races"></script>
+    <script src="js/effects.js?v=20_races"></script>
+    <script src="js/character.js?v=20_races"></script>
+    <script src="js/pdfgen.js?v=20_races"></script>
 </body>
 </html>
 

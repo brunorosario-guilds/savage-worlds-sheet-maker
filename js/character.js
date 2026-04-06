@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const DICE = ['-', 'd4', 'd6', 'd8', 'd10', 'd12'];
+    const DICE = ['-', 'd4', 'd6', 'd8', 'd10', 'd12', 'd12+1', 'd12+2', 'd12+3'];
     
     // Áudio Gamificação Sincero
     const AudioEngine = {
@@ -75,6 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let state = {
         name: '',
         race: null,
+        raceChoices: {}, // Escolhas raciais (ex: atributo do metamorfo)
+        charClass: null,
+        classChoices: {}, 
+        level: 0, // Nivelamento Custom (0 = novato)
+        raceSkillMods: {}, // Bônus e penalidades automatizadas (-1/+1) nas perícias
+        classSkillMods: {}, // Bônus baseados na classe escolhida
+        raceAttrMods: {}, // Bônus automatizados nos atributos
         attributes: {}, // { id: 1(d4)..5(d12) }
         skills: {},     // { id: step }
         elderlySkills: {}, // Pontos extras exclusivos de Idoso
@@ -95,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // DOM Caching
     const els = {
         raceSelect: document.getElementById('char-race'),
+        classSelect: document.getElementById('char-class'),
         attrTabsMenu: document.getElementById('attr-tabs-menu'),
         attrTabContent: document.getElementById('attr-tab-content'),
         hindranceSelect: document.getElementById('select-hindrance'),
@@ -125,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Data Load
     const dRaces = DEFAULT_DATA.races;
+    const dClasses = DEFAULT_DATA.classes || [];
     const dAttrs = DEFAULT_DATA.attributes;
     const dSkills = DEFAULT_DATA.skills;
     const dHinds = DEFAULT_DATA.hindrances;
@@ -178,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function init() {
         populateSelect(els.raceSelect, dRaces);
+        populateSelect(els.classSelect, dClasses);
         populateSelect(els.hindranceSelect, dHinds);
         populateEdgesSelect(els.edgeSelect, dEdges);
         populatePowersSelect(els.powerSelect, dPowers);
@@ -185,10 +195,13 @@ document.addEventListener('DOMContentLoaded', () => {
         dAttrs.forEach(a => state.attributes[a.id] = 1);
         activeAttrTabId = dAttrs[0].id;
         
-        dSkills.filter(s => s.isCore).forEach(s => state.skills[s.id] = 1);
+        // dSkills.filter(s => s.isCore).forEach(s => state.skills[s.id] = 1);
 
         if (dRaces.length > 0) state.race = dRaces[0].id;
-
+        if (dClasses.length > 0) state.charClass = dClasses[0].id;
+        
+        renderRaceOptions();
+        renderClassOptions();
 
         setupModeToggle();
         setupStoreListeners();
@@ -196,6 +209,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderAttrSkillCard();
         calculateAll();
+        
+        const btnLevelUp = document.getElementById('btn-level-up');
+        if(btnLevelUp) {
+            btnLevelUp.addEventListener('click', () => {
+                if (state.level === 0) window.showCustomToast("Você adquiriu +1 Ponto de Atributo Livre!");
+                else if (state.level === 1) window.showCustomToast("Você adquiriu +1 Ponto de Vantagem!");
+                else if (state.level === 2) window.showCustomToast("Nível Extra! Você ganha 2pts para progredir Perícia!");
+                else if (state.level === 3) window.showCustomToast("Último Nível! Você ganha 2pts para progredir Perícia!");
+                
+                if (state.level < 4) {
+                    state.level++;
+                    calculateAll();
+                }
+            });
+        }
 
         els.hindranceSelect.addEventListener('change', (e) => {
             const h = dHinds.find(d => d.id === e.target.value);
@@ -483,10 +511,189 @@ document.addEventListener('DOMContentLoaded', () => {
                 openRaceBuilder();
             });
         }
-        
         els.raceSelect.addEventListener('change', (e) => { 
             state.race = e.target.value; 
+            state.raceChoices = {};
+            renderRaceOptions();
             calculateAll(); 
+            renderAttrSkillCard();
+        });
+
+        els.classSelect.addEventListener('change', (e) => { 
+            state.charClass = e.target.value; 
+            state.classChoices = {};
+            renderClassOptions();
+            calculateAll(); 
+            renderAttrSkillCard();
+        });
+    }
+
+    function renderRaceOptions() {
+        let container = document.getElementById('race-dynamic-opts');
+        if(!container) { 
+            container = document.createElement('div'); 
+            container.id = 'race-dynamic-opts'; 
+            container.style.marginTop = '15px';
+            container.style.display = 'grid';
+            container.style.gridTemplateColumns = '1fr 1fr';
+            container.style.gap = '15px';
+            container.style.border = '1px solid var(--primary-color)';
+            container.style.borderRadius = '8px';
+            container.style.padding = '15px';
+            container.style.background = 'rgba(0,0,0,0.2)';
+            els.raceSelect.parentNode.parentNode.appendChild(container); 
+        }
+        
+        container.innerHTML = '';
+        
+        const myRace = dRaces.find(r => r.id === state.race);
+        if(!myRace || !myRace.choices) {
+            container.style.display = 'none';
+            return;
+        }
+        
+        container.style.display = 'grid';
+        
+        myRace.choices.forEach(ch => {
+            const block = document.createElement('div');
+            block.style.display = 'flex';
+            block.style.flexDirection = 'column';
+            // Se for compósto ou single-text livre, ocupa as 2 colunas para não encolher a digitação
+            if(ch.type === 'named_text' || ch.type === 'text') block.style.gridColumn = '1 / -1';
+            
+            block.innerHTML = `<label style="font-size:0.85rem; color:var(--secondary-color); margin-bottom: 5px;">${ch.name}</label>`;
+            
+            if(ch.type === 'text') {
+                const inp = document.createElement('input');
+                inp.type = 'text';
+                inp.className = 'app-input';
+                inp.placeholder = ch.placeholder || '';
+                inp.value = state.raceChoices[ch.id] || '';
+                inp.addEventListener('input', e => { 
+                    state.raceChoices[ch.id] = e.target.value; 
+                    calculateAll();
+                });
+                block.appendChild(inp);
+            } else if(ch.type === 'named_text') {
+                const w = document.createElement('div');
+                w.style.display = 'flex';
+                w.style.gap = '10px';
+                
+                const currentObj = state.raceChoices[ch.id] || { name: '', desc: '' };
+                
+                const inpNm = document.createElement('input');
+                inpNm.type = 'text';
+                inpNm.className = 'app-input';
+                inpNm.placeholder = 'Nome';
+                inpNm.style.flex = '0 0 35%';
+                inpNm.value = currentObj.name || '';
+                
+                const inpDesc = document.createElement('input');
+                inpDesc.type = 'text';
+                inpDesc.className = 'app-input';
+                inpDesc.placeholder = ch.placeholder || 'Descrição';
+                inpDesc.style.flex = '1';
+                inpDesc.value = currentObj.desc || '';
+                
+                const updater = () => {
+                    state.raceChoices[ch.id] = { name: inpNm.value, desc: inpDesc.value };
+                    calculateAll();
+                };
+                
+                inpNm.addEventListener('input', updater);
+                inpDesc.addEventListener('input', updater);
+                
+                w.appendChild(inpNm);
+                w.appendChild(inpDesc);
+                block.appendChild(w);
+
+            } else if(ch.type === 'skill' || ch.type === 'attribute') {
+                const sel = document.createElement('select');
+                sel.className = 'app-input';
+                sel.innerHTML = `<option value="">-- Selecione --</option>`;
+                
+                let optsList = [];
+                if(ch.options === 'all' && ch.type === 'skill') {
+                    optsList = DEFAULT_DATA.skills;
+                } else if(Array.isArray(ch.options)) {
+                    optsList = (ch.type === 'skill' ? DEFAULT_DATA.skills : DEFAULT_DATA.attributes).filter(i => ch.options.includes(i.id));
+                }
+                
+                optsList.forEach(item => {
+                    const opt = document.createElement('option');
+                    opt.value = item.id;
+                    opt.textContent = item.name;
+                    sel.appendChild(opt);
+                });
+                
+                sel.value = state.raceChoices[ch.id] || '';
+                sel.addEventListener('change', e => { 
+                    state.raceChoices[ch.id] = e.target.value; 
+                    calculateAll();
+                    renderAttrSkillCard();
+                });
+                block.appendChild(sel);
+            }
+            container.appendChild(block);
+        });
+    }
+
+    function renderClassOptions() {
+        let container = document.getElementById('class-dynamic-opts');
+        if(!container) { 
+            container = document.createElement('div'); 
+            container.id = 'class-dynamic-opts'; 
+            container.style.marginTop = '15px';
+            container.style.display = 'grid';
+            container.style.gridTemplateColumns = '1fr 1fr';
+            container.style.gap = '15px';
+            container.style.border = '1px solid #7c622f'; // Distinct border color for class
+            container.style.borderRadius = '8px';
+            container.style.padding = '15px';
+            container.style.background = 'rgba(0,0,0,0.2)';
+            els.classSelect.parentNode.parentNode.appendChild(container); 
+        }
+        
+        container.innerHTML = '';
+        
+        const myClass = dClasses.find(r => r.id === state.charClass);
+        if(!myClass || !myClass.choices) {
+            container.style.display = 'none';
+            return;
+        }
+        container.style.display = 'grid';
+        
+        myClass.choices.forEach(ch => {
+            const block = document.createElement('div');
+            block.style.display = 'flex';
+            block.style.flexDirection = 'column';
+            
+            block.innerHTML = `<label style="font-size:0.85rem; color:#dcb360; margin-bottom: 5px;">${ch.name}</label>`;
+            
+            const sel = document.createElement('select');
+            sel.className = 'app-input';
+            sel.innerHTML = `<option value="">-- Selecione --</option>`;
+            
+            let optsList = [];
+            if(Array.isArray(ch.options)) {
+                optsList = (ch.type === 'skill' ? DEFAULT_DATA.skills : DEFAULT_DATA.attributes).filter(i => ch.options.includes(i.id));
+            }
+            
+            optsList.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.id;
+                opt.textContent = item.name;
+                sel.appendChild(opt);
+            });
+            
+            sel.value = state.classChoices[ch.id] || '';
+            sel.addEventListener('change', e => { 
+                state.classChoices[ch.id] = e.target.value; 
+                calculateAll();
+                renderAttrSkillCard();
+            });
+            block.appendChild(sel);
+            container.appendChild(block);
         });
     }
 
@@ -965,6 +1172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const noAmmoEl = document.getElementById('shop-no-ammo');
         if(noAmmoEl) noAmmoEl.addEventListener('change', renderStore);
+        
+        const infFundsEl = document.getElementById('shop-infinite-funds');
+        if(infFundsEl) infFundsEl.addEventListener('change', () => { calculateAll(); renderStore(); renderCart(); });
 
         // Mobile UI Hooks
         const btnCloseMobile = document.getElementById('btn-close-store-mobile');
@@ -1090,8 +1300,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 let moneySpent = 0;
                 state.equipment.forEach(eqId => { const d = dEq.find(x => x.id === eqId); if(d) moneySpent += d.cost; });
                 const availableFunds = (500 + (state.boughtFunds * 500)) - moneySpent;
+                const isInfinite = document.getElementById('shop-infinite-funds')?.checked;
 
-                if (cartTotal > availableFunds) {
+                if (!isInfinite && cartTotal > availableFunds) {
                     alert(`Fundos insuficientes! O carrinho custa $${cartTotal}, mas você só tem $${availableFunds}.`);
                     return;
                 }
@@ -1180,8 +1391,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let moneySpent = 0;
         state.equipment.forEach(eqId => { const def = dEq.find(x => x.id === eqId); if(def) moneySpent += def.cost; });
         const availableFunds = (500 + (state.boughtFunds * 500)) - moneySpent;
+        const isInfinite = document.getElementById('shop-infinite-funds')?.checked;
 
-        btnCheckout.disabled = (total > availableFunds || storeCart.length === 0);
+        btnCheckout.disabled = (!isInfinite && total > availableFunds) || storeCart.length === 0;
 
         list.querySelectorAll('.btn-remove-cart').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -1238,8 +1450,9 @@ document.addEventListener('DOMContentLoaded', () => {
         state.equipment.forEach(eqId => { const def = dEq.find(d => d.id === eqId); if(def) moneySpent += def.cost; });
         const maxFunds = 500 + (state.boughtFunds * 500);
         const availableFunds = maxFunds - moneySpent;
+        const isInfinite = document.getElementById('shop-infinite-funds')?.checked;
         
-        document.querySelectorAll('.store-modal-funds-val').forEach(el => el.textContent = availableFunds);
+        document.querySelectorAll('.store-modal-funds-val').forEach(el => el.textContent = isInfinite ? '∞' : availableFunds);
     
         let filteredItems = dEq.filter(item => {
             if(currentShopCategory === 'owned') {
@@ -1286,7 +1499,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if(item.requiresAmmo) statsHtml += `<span>🏹 <strong>Exige Munição</strong></span>`;
             if(item.extraBenefits) statsHtml += `<div class="item-p-desc">${item.extraBenefits}</div>`;
     
-            const canAfford = item.cost <= availableFunds;
+            const isInfinite = document.getElementById('shop-infinite-funds')?.checked;
+            const canAfford = isInfinite || item.cost <= availableFunds;
             const ownedCount = state.equipment.filter(eq => eq === item.id).length;
             
             let qtyRefundHtml = '';
@@ -1360,8 +1574,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 state.equipment.forEach(eqId => { const def = dEq.find(x => x.id === eqId); if(def) cMoneySpent += def.cost; });
                 const cMaxFunds = 500 + (state.boughtFunds * 500);
                 const cAvailableFunds = cMaxFunds - cMoneySpent;
+                const isInfinite = document.getElementById('shop-infinite-funds')?.checked;
 
-                if ((v + 1) * cost <= cAvailableFunds) {
+                if (isInfinite || (v + 1) * cost <= cAvailableFunds) {
                     span.textContent = v + 1;
                 } else {
                     showToast(`Fundos insuficientes para mais unidades!`, "warning");
@@ -1380,8 +1595,9 @@ document.addEventListener('DOMContentLoaded', () => {
                state.equipment.forEach(eqId => { const def = dEq.find(x => x.id === eqId); if(def) cMoneySpent += def.cost; });
                const cMaxFunds = 500 + (state.boughtFunds * 500);
                const cAvailableFunds = cMaxFunds - cMoneySpent;
+               const isInfinite = document.getElementById('shop-infinite-funds')?.checked;
                
-               if(cost * qty > cAvailableFunds) {
+               if(!isInfinite && cost * qty > cAvailableFunds) {
                    showToast(`Fundos insuficientes!`, "error");
                    return;
                }
@@ -1456,6 +1672,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     calculateAll(); // rebuilds UI and saves
                     renderStore();
                     renderCart();
+                    renderEquipmentList(); // Updates the character sheet visual list
                 }
             });
         });
@@ -1488,12 +1705,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderEpicCard() {
-        const charName = document.getElementById('char-name').value || 'Desconhecido';
-        document.getElementById('epic-char-name').textContent = charName.toUpperCase();
-        
+        const charName = document.getElementById('char-name');
+        const cName = charName ? charName.value : state.name || 'Herói Desconhecido';
+        const clOpts = dClasses.find(c => c.id === state.charClass);
+        const clName = clOpts ? clOpts.name : '';
         const myRace = dRaces.find(r => r.id === state.race);
         const raceStr = myRace ? myRace.name : 'Desconhecida';
-        document.getElementById('epic-char-race').textContent = raceStr.toUpperCase();
+        
+        let titleBadge = raceStr;
+        if(clName) titleBadge = titleBadge ? `${titleBadge} ${clName}` : clName;
+
+        const epicCharName = document.getElementById('epic-char-name');
+        if (epicCharName) epicCharName.textContent = cName.toUpperCase();
+        
+        const epicCharRace = document.getElementById('epic-char-race');
+        if (epicCharRace) epicCharRace.textContent = titleBadge.toUpperCase();
         
         const imgEl = document.getElementById('epic-portrait');
         const miniPortrait = document.getElementById('mini-portrait-img');
@@ -1549,7 +1775,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const listE = document.getElementById('epic-list-edges');
         listE.innerHTML = '';
-        state.edges.forEach(eId => {
+        
+        let epicActiveEdges = [...state.edges];
+        const edgeClOpts = dClasses.find(c => c.id === state.charClass);
+        if(edgeClOpts && edgeClOpts.edges) {
+            epicActiveEdges.push(...edgeClOpts.edges);
+        }
+        
+        epicActiveEdges.forEach(eId => {
              const idStr = typeof eId === 'object' ? eId.id : eId;
              const def = dEdges.find(de => de.id === idStr);
              if(def) {
@@ -1588,11 +1821,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Attributes Caps
         let attrsHTML = '';
         dAttrs.forEach(a => {
-            const val = state.attributes[a.id];
-            if(val) {
+            const baseVal = state.attributes[a.id];
+            if(baseVal) {
+                const raceMod = state.raceAttrMods && state.raceAttrMods[a.id] ? state.raceAttrMods[a.id] : 0;
+                let finalVal = baseVal + raceMod;
+                if(finalVal < 1) finalVal = 1;
+                if(finalVal >= DICE.length) finalVal = DICE.length - 1; // safe bounds
+                
                 attrsHTML += `<div class="attr-capsule">
                     <div class="attr-name">${getAbbr(a.name)}</div>
-                    <div class="attr-dice-circle">${DICE[val]}</div>
+                    <div class="attr-dice-circle">${DICE[finalVal]}</div>
                 </div>`;
             }
         });
@@ -1632,7 +1870,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let maxFunds = baseFunds + ((state.boughtFunds || 0) * baseFunds);
         let availableFunds = maxFunds - totalCost;
         
-        document.getElementById('epic-funds').textContent = '$' + availableFunds;
+        const isInfinite = document.getElementById('shop-infinite-funds')?.checked;
+        document.getElementById('epic-funds').textContent = isInfinite ? '∞ Livre' : ('$' + availableFunds);
         
         Object.keys(cats).forEach(catName => {
             // Count quantities
@@ -2200,11 +2439,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const containerId = id === 'attr_strength' ? 'attr-standalone-4' : 'attr-standalone-5';
             const container = document.getElementById(containerId);
             if(container && attrDef) {
-                const attrVal = state.attributes[id];
+                const baseVal = state.attributes[id];
+                const raceMod = (state.raceAttrMods[id] || 0) + (state.classAttrMods?.[id] || 0);
+                const attrVal = baseVal + raceMod;
+                const minVal = Math.max(1, 1 + raceMod);
+                const clampedVal = attrVal < minVal ? minVal : (attrVal >= DICE.length ? DICE.length - 1 : attrVal);
+
                 container.innerHTML = `
                     <div class="standalone-attr-circle">
                         <strong>${attrDef.name}</strong>
-                        <span class="dice-value">${DICE[attrVal]}</span>
+                        <span class="dice-value" ${raceMod > 0 ? 'style="color:#27ae60;"' : ''}>${DICE[clampedVal]}</span>
                         <div class="standalone-controls edit-only">
                             <button class="dec-attr" data-id="${id}">-</button>
                             <button class="inc-attr" data-id="${id}">+</button>
@@ -2215,7 +2459,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(attrVal >= 5) container.querySelector('.standalone-attr-circle').classList.add('max-level');
                 
                 container.querySelector('.dec-attr').addEventListener('click', (e) => {
-                    if(state.attributes[id] > 1) { 
+                    const rMod = (state.raceAttrMods[id] || 0) + (state.classAttrMods?.[id] || 0);
+                    const minLimit = Math.max(1, 1 + rMod);
+                    if((state.attributes[id] + rMod) > minLimit) { 
                         AudioEngine.playThud();
                         state.attributes[id]--; renderAttrSkillCard(); calculateAll(); 
                     } else {
@@ -2247,6 +2493,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 AudioEngine.playClick();
                 activeAttrTabId = attr.id;
                 renderAttrSkillCard(); 
+                calculateAll();
             });
             els.attrTabsMenu.appendChild(btn);
         });
@@ -2256,7 +2503,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentAttr = dAttrs.find(a => a.id === activeAttrTabId);
         if(!currentAttr) return;
 
-        const attrVal = state.attributes[currentAttr.id];
+        const baseVal = state.attributes[currentAttr.id];
+        const raceMod = (state.raceAttrMods[currentAttr.id] || 0) + (state.classAttrMods?.[currentAttr.id] || 0);
+        const attrVal = baseVal + raceMod;
+        const minVal = Math.max(1, 1 + raceMod);
+        const clampedVal = attrVal < minVal ? minVal : (attrVal >= DICE.length ? DICE.length - 1 : attrVal);
         
         // HTML do Atributo
         const attrDiv = document.createElement('div');
@@ -2268,14 +2519,16 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="die-controls" style="background: rgba(0,0,0,0.03); padding: 5px 10px; border-radius: 8px;">
                 <button class="die-btn dec-attr edit-only" data-id="${currentAttr.id}" style="width: 30px; height: 30px;">-</button>
-                <span class="die-value" style="font-size: 1.3rem; margin: 0 10px; min-width: 45px; text-align: center; color: var(--primary-color);">${DICE[attrVal]}</span>
+                <span class="die-value" style="font-size: 1.3rem; margin: 0 10px; min-width: 45px; text-align: center; color: ${raceMod > 0 ? '#27ae60' : 'var(--primary-color)'};">${DICE[clampedVal]}</span>
                 <button class="die-btn inc-attr edit-only" data-id="${currentAttr.id}" style="width: 30px; height: 30px;">+</button>
             </div>
         `;
         els.attrTabContent.appendChild(attrDiv);
 
         attrDiv.querySelector('.dec-attr').addEventListener('click', (e) => {
-            if(state.attributes[currentAttr.id] > 1) { 
+            const rMod = (state.raceAttrMods[currentAttr.id] || 0) + (state.classAttrMods?.[currentAttr.id] || 0);
+            const minLimit = Math.max(1, 1 + rMod);
+            if((state.attributes[currentAttr.id] + rMod) > minLimit) { 
                 AudioEngine.playThud();
                 state.attributes[currentAttr.id]--; renderAttrSkillCard(); calculateAll(); 
             } else {
@@ -2306,14 +2559,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filteredSkills.forEach(skillDef => {
             const hasSkill = state.skills[skillDef.id] !== undefined;
-            const baseVal = hasSkill ? state.skills[skillDef.id] : 1;
+            const baseSkillVal = hasSkill ? state.skills[skillDef.id] : 1;
             const eldVal = state.elderlySkills[skillDef.id] || 0;
-            const totalVal = baseVal + eldVal;
+            const coreBase = skillDef.isCore ? 1 : 0;
+            const raceSMod = (state.raceSkillMods[skillDef.id] || 0) + (state.classSkillMods?.[skillDef.id] || 0);
+            const startVal = coreBase + raceSMod;
             
+            const totalVal = baseSkillVal + eldVal;
+            const raceModVisual = raceSMod > 0 ? `+${raceSMod}` : (raceSMod < 0 ? `${raceSMod}` : ``);
+            const raceModStyle = raceSMod > 0 ? `color: #27ae60;font-size:0.85rem;margin-left:4px;font-weight:bold;` : `color: #e74c3c;font-size:0.85rem;margin-left:4px;font-weight:bold;`;
+            const raceModHtml = raceSMod !== 0 ? `<sup style="${raceModStyle}">${raceModVisual}</sup>` : '';
+
+            const forceChecked = startVal >= 1;
+            const isChecked = hasSkill || forceChecked;
+            const checkedAttr = isChecked ? 'checked' : '';
+            const disabledCheckbox = forceChecked ? 'disabled' : '';
+
             const skItem = document.createElement('div');
             skItem.className = 'skill-check-item';
 
-            if(hasSkill) {
+            if(isChecked) {
+                const currentPurchased = (hasSkill && state.skills[skillDef.id] >= startVal) ? state.skills[skillDef.id] : Math.max(1, startVal);
+                const totalVal = currentPurchased + eldVal;
+
                 let eldControls = '';
                 if(hasIdoso && currentAttr.name === 'Astúcia') {
                     eldControls = `
@@ -2325,7 +2593,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>`;
                 }
 
-                const decBtn = (skillDef.isCore && baseVal === 1) 
+                const minVal = Math.max(1, startVal);
+                const decBtn = (currentPurchased <= minVal) 
                     ? '<span class="edit-only" style="width: 26px; height: 26px; display: inline-block;"></span>'
                     : `<button class="die-btn dec-skill edit-only" data-id="${skillDef.id}" style="width: 26px; height: 26px; display: inline-flex; justify-content: center; align-items: center;">-</button>`;
                 
@@ -2334,10 +2603,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 skItem.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                         <label class="skill-check-label edit-only" style="flex:1;">
-                            <input type="checkbox" checked ${skillDef.isCore ? 'disabled' : ''} data-id="${skillDef.id}" class="skill-toggler">
-                            ${skillDef.name}
+                            <input type="checkbox" ${checkedAttr} ${disabledCheckbox} data-id="${skillDef.id}" class="skill-toggler">
+                            ${skillDef.name} ${raceModHtml}
                         </label>
-                        <span class="aesthetic-only" style="display:none; font-weight:bold; flex:1;">${skillDef.name}</span>
+                        <span class="aesthetic-only" style="display:none; font-weight:bold; flex:1;">${skillDef.name} ${raceModHtml}</span>
                         <div class="die-controls" style="justify-content: flex-end; align-items: center;">
                             ${decBtn}
                             <span class="die-value" style="width: 32px; text-align: center; display: inline-block; font-size: 1.1rem; color: var(--primary-color)">${DICE[totalVal > 5 ? 5 : totalVal]}</span>
@@ -2350,7 +2619,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 skItem.innerHTML = `
                     <label class="skill-check-label edit-only" style="width: 100%;">
                         <input type="checkbox" data-id="${skillDef.id}" class="skill-toggler">
-                        ${skillDef.name}
+                        ${skillDef.name} ${raceModHtml}
                     </label>
                 `;
             }
@@ -2379,7 +2648,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sId = e.target.dataset.id;
                 if(e.target.checked) {
                     AudioEngine.playClick();
-                    state.skills[sId] = 1;
+                    const sDef = dSkills.find(s => s.id === sId);
+                    const coreBase = sDef.isCore ? 1 : 0;
+                    const rSMod = (state.raceSkillMods[sId] || 0) + (state.classSkillMods?.[sId] || 0);
+                    state.skills[sId] = Math.max(1, coreBase + rSMod);
                 }
                 else {
                     AudioEngine.playClick();
@@ -2392,7 +2664,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         els.attrTabContent.querySelectorAll('.dec-skill').forEach(btn => btn.addEventListener('click', (e) => {
             const id = e.target.dataset.id;
-            if(state.skills[id] > 1) { 
+            const skillDef = dSkills.find(s => s.id === id);
+            const coreBase = skillDef.isCore ? 1 : 0;
+            const raceSMod = (state.raceSkillMods[id] || 0) + (state.classSkillMods?.[id] || 0);
+            const minLimit = Math.max(1, coreBase + raceSMod);
+            
+            if(state.skills[id] > minLimit) { 
                 AudioEngine.playThud();
                 state.skills[id]--; renderAttrSkillCard(); calculateAll(); 
             } else {
@@ -2405,6 +2682,14 @@ document.addEventListener('DOMContentLoaded', () => {
         els.attrTabContent.querySelectorAll('.inc-skill').forEach(btn => btn.addEventListener('click', (e) => {
             const id = e.target.dataset.id;
             const eldVal = state.elderlySkills[id] || 0;
+            
+            if(!state.skills[id]) {
+                const skillDef = dSkills.find(s => s.id === id);
+                const coreBase = skillDef.isCore ? 1 : 0;
+                const raceSMod = (state.raceSkillMods[id] || 0) + (state.classSkillMods?.[id] || 0);
+                state.skills[id] = Math.max(1, coreBase + raceSMod);
+            }
+            
             if(state.skills[id] + eldVal < 5) { 
                 AudioEngine.playThud();
                 state.skills[id]++; renderAttrSkillCard(); calculateAll(); 
@@ -2559,10 +2844,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderEdges() {
-        renderSimpleList(state.edges, dEdges, els.edgeList, (idx) => {
-            state.edges.splice(idx, 1);
-            calculateAll();
-            renderEdges(); // Re-render so the list reflects the removal
+        els.edgeList.innerHTML = '';
+        (state.grantedEdges || []).forEach(eId => {
+            const idStr = typeof eId === 'object' ? eId.id : eId;
+            const def = dEdges.find(d => d.id === idStr);
+            if(!def) return;
+            const div = document.createElement('div');
+            div.className = 'item-row';
+            div.innerHTML = `<span><strong style="color:var(--primary-color);">${def.name}</strong> <small><span style="padding: 2px 6px; border-radius: 4px; background: rgba(220,180,90, 0.2); border: 1px dashed var(--primary-color); font-size: 0.7em;">Inato</span></small></span>`;
+            els.edgeList.appendChild(div);
+        });
+
+        state.edges.forEach((item, index) => {
+            const id = typeof item === 'object' ? item.id : item;
+            const def = dEdges.find(d => d.id === id);
+            if(!def) return;
+            const div = document.createElement('div');
+            div.className = 'item-row';
+            div.innerHTML = `<span><strong style="color:var(--primary-color);">${def.name}</strong></span> <button class="remove-btn btn-danger edit-only" data-idx="${index}">X</button>`;
+            div.querySelector('button').addEventListener('click', () => {
+                state.edges.splice(index, 1);
+                calculateAll();
+                renderEdges();
+            });
+            els.edgeList.appendChild(div);
         });
     }
 
@@ -2715,6 +3020,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let bonusAttrPoints = 0;
         let bonusSkillPoints = 0;
         
+        if (state.level >= 1) bonusAttrPoints += 1;
+        if (state.level >= 2) freeEdges += 1;
+        if (state.level >= 3) bonusSkillPoints += 2;
+        if (state.level >= 4) bonusSkillPoints += 2;
+        
+        state.raceAttrMods = {};
+        state.raceSkillMods = {};
+        state.classSkillMods = {};
+
         // --- RACE PARSING LOGIC ---
         let racePassives = [];
         const myRace = dRaces.find(r => r.id === state.race);
@@ -2786,17 +3100,101 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } else {
-                // Standard Races parsing
-                if (myRace.id === 'race_human') { freeEdges++; }
-                else if (myRace.id === 'race_dwarf') { basePacePenalty -= 1; racePassives.push({text: 'Visão no Escuro'}); }
-                else if (myRace.id === 'race_elf') { racePassives.push({text: 'Visão na Penumbra'}); }
-                else if (myRace.id === 'race_rakashan') { racePassives.push({text: 'Arma Nat. (For+d4)'}); }
-                else if (myRace.id === 'race_saurian') { toughnessModifier += 2; racePassives.push({text: 'Pele Dura (+2)'}); }
-                else if (myRace.id === 'race_android') { racePassives.push({text: 'Construto (+2 Rec.)'}); }
-                else if (myRace.id === 'race_atlantean') { racePassives.push({text: 'Anfíbio'}); }
+                // Homebrew Races parsing
+                if (myRace.id === 'race_humano') { 
+                    freeEdges++; 
+                    bonusSkillPoints += 2;
+                }
+                else if (myRace.id === 'race_anao') { 
+                    state.raceAttrMods['attr_vigor'] = 1;
+                    state.raceSkillMods['skill_taunt'] = 1;
+                    state.raceSkillMods['skill_riding'] = -1;
+                    basePacePenalty += 1;
+                    racePassives.push({text: 'Visão no Escuro'});
+                }
+                else if (myRace.id === 'race_elfo') { 
+                    state.raceAttrMods['attr_agility'] = 1;
+                    state.raceSkillMods['skill_notice'] = 1;
+                    state.raceSkillMods['skill_intimidation'] = -1;
+                    basePacePenalty -= 1;
+                    racePassives.push({text: 'Visão no Escuro'});
+                    racePassives.push({text: '-1 Agi c/ Armadura Pesada', color: '#e74c3c'});
+                }
+                else if (myRace.id === 'race_gnomo') { 
+                    state.raceAttrMods['attr_spirit'] = 1;
+                    if(state.raceChoices['gnome_pos']) state.raceSkillMods[state.raceChoices['gnome_pos']] = 1;
+                    if(state.raceChoices['gnome_neg']) state.raceSkillMods[state.raceChoices['gnome_neg']] = -1;
+                    basePacePenalty += 1;
+                    racePassives.push({text: 'Máx Força d10, Sem Arm. Pesada', color: '#e74c3c'});
+                }
+                else if (myRace.id === 'race_orc') { 
+                    state.raceAttrMods['attr_strength'] = 1;
+                    state.raceSkillMods['skill_intimidation'] = 1;
+                    state.raceSkillMods['skill_persuasion'] = -1;
+                    state.raceSkillMods['skill_operate'] = 2; // "+2 para operar mecanismos"
+                    racePassives.push({text: 'Visão no Escuro'});
+                }
+                else if (myRace.id === 'race_tocado') { 
+                    state.raceAttrMods['attr_smarts'] = 1;
+                    if(state.raceChoices['touched_pos']) state.raceSkillMods[state.raceChoices['touched_pos']] = 1;
+                    if(state.raceChoices['touched_neg']) state.raceSkillMods[state.raceChoices['touched_neg']] = -1;
+                    const qObj = state.raceChoices['touched_quality'] || {};
+                    let qualText = qObj.name ? qObj.name : 'Qualidade Amaldiçoada';
+                    if (qObj.desc) qualText += ` - ${qObj.desc}`;
+                    racePassives.push({text: qualText, color: '#004085'});
+                    
+                    const dObj = state.raceChoices['touched_defect'] || {};
+                    let defText = dObj.name ? dObj.name : 'Defeito Amaldiçoado';
+                    if (dObj.desc) defText += ` - ${dObj.desc}`;
+                    racePassives.push({text: defText, color: '#e74c3c'});
+                }
+                else if (myRace.id === 'race_metamorfo') { 
+                    if(state.raceChoices['shift_attr']) state.raceAttrMods[state.raceChoices['shift_attr']] = 1;
+                    state.raceSkillMods['skill_survival'] = 1;
+                    state.raceSkillMods['skill_shooting'] = -1;
+                    basePacePenalty -= 2; // -2 pts de correr (em 4 patas)
+                    racePassives.push({text: 'Hab. Natural: ' + (state.raceChoices['shift_nat'] || 'Nenhuma')});
+                    racePassives.push({text: '+2 Perceber (Cidades)'});
+                }
             }
         }
         // -----------------------
+
+        // --- CLASS PARSING LOGIC ---
+        let activeEdges = [...state.edges];
+        let classPassives = [];
+        state.grantedEdges = [];
+        
+        const myClass = dClasses.find(c => c.id === state.charClass);
+        if (myClass) {
+            // Apply Class auto edges
+            if (myClass.edges) {
+                activeEdges.push(...myClass.edges);
+                state.grantedEdges.push(...myClass.edges);
+            }
+            
+            // Apply Class direct skill bonuses
+            if (myClass.bonuses) {
+                myClass.bonuses.forEach(b => {
+                    if(b.type === 'skill') state.classSkillMods[b.target] = (state.classSkillMods[b.target] || 0) + b.amount;
+                });
+            }
+            
+            // Apply Class choices skill bonuses
+            if (myClass.choices) {
+                myClass.choices.forEach(ch => {
+                    if (state.classChoices[ch.id]) {
+                        state.classSkillMods[state.classChoices[ch.id]] = (state.classSkillMods[state.classChoices[ch.id]] || 0) + 1;
+                    }
+                });
+            }
+            
+            // Custom passives added explicitly for class (like companions)
+            if (myClass.passives) {
+                myClass.passives.forEach(p => classPassives.push({text: p.text, color: p.color || '#dcb360'}));
+            }
+        }
+        
         state.hindrances.forEach(h => {
              const hid = typeof h === 'object' ? h.id : h;
              const def = dHinds.find(d => d.id === hid);
@@ -2838,16 +3236,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(epicBadgeContainer) {
                     const spEpic = document.createElement('span');
                     spEpic.textContent = text;
-                    spEpic.style.cssText = `background: ${color}; color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 3px 5px rgba(0,0,0,0.5);`;
+                    spEpic.style.cssText = `display: inline-block; background: ${color}; color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 3px 5px rgba(0,0,0,0.5); margin: 2px;`;
                     epicBadgeContainer.appendChild(spEpic);
                 }
             };
 
             if(hasIdoso) createBadge('-1 rolar Agi/For/Vig', 'var(--accent-red, #ff4d4d)');
-            if(freeEdges > 0) createBadge(`+${freeEdges} Vantagem`, '#28a745');
-            if(hasPobreza) createBadge('Metade Inicial $', 'var(--accent-red, #ff4d4d)');
+            if(hasJovemMaior) createBadge('Jovem (M) [-1 pts]', '#e74c3c');
+            else if(hasJovemMenor) createBadge('Jovem (m)', '#e74c3c');
+            if(hasPobreza) createBadge('Pobreza (-$250)', '#e74c3c');
             
-            racePassives.forEach(rp => createBadge(rp.text, rp.color || '#9b59b6'));
+            racePassives.forEach(p => createBadge(p.text, p.color || '#dcb360'));
+            classPassives.forEach(p => createBadge(p.text, p.color || '#4CAF50'));
+            
+            if(freeEdges > 0) createBadge(`+${freeEdges} Vantagem`, '#28a745');
             
             state.hindrances.forEach(h => {
                  const def = dHinds.find(d => d.id === (typeof h === 'object' ? h.id : h));
@@ -2871,7 +3273,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  }
             });
             
-            state.edges.forEach(eId => {
+            activeEdges.forEach(eId => {
                 const idStr = typeof eId === 'object' ? eId.id : eId;
                 const def = dEdges.find(d => d.id === idStr);
                 if(def) {
@@ -2933,7 +3335,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.querySelectorAll('.inc-attr').forEach(btn => {
             const attrId = btn.dataset.id;
-            btn.disabled = (attrCost >= maxAttr || state.attributes[attrId] === 5);
+            const rMod = (state.raceAttrMods[attrId] || 0) + (state.classAttrMods?.[attrId] || 0);
+            const limitVal = state.attributes[attrId] + rMod;
+            btn.disabled = (attrCost >= maxAttr || limitVal >= 5);
         });
 
         let skillCost = 0;
@@ -2942,12 +3346,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!skillDef) return;
             const linkAttrId = dAttrs.find(a => a.name === skillDef.linked)?.id;
             const attrVal = linkAttrId ? state.attributes[linkAttrId] : 1;
-            const curVal = state.skills[sId];
-
-            if(!skillDef.isCore) skillCost += 1;
-            for(let step = 2; step <= curVal; step++) {
-                if(step <= attrVal) skillCost += 1;
-                else skillCost += 2;
+            const finalAttrVal = attrVal + (state.raceAttrMods[linkAttrId] || 0) + (state.classAttrMods?.[linkAttrId] || 0);
+            const targetVal = state.skills[sId];
+            
+            const coreBase = skillDef.isCore ? 1 : 0;
+            const mods = (state.raceSkillMods[sId] || 0) + (state.classSkillMods?.[sId] || 0);
+            const startVal = coreBase + mods;
+            
+            if (targetVal <= startVal) {
+                delete state.skills[sId];
+                return;
+            }
+            if (targetVal > startVal) {
+                let cur = startVal;
+                while (cur < targetVal) {
+                    cur++;
+                    if (cur <= 1) skillCost += 1;
+                    else {
+                        if (cur <= finalAttrVal) skillCost += 1;
+                        else skillCost += 2;
+                    }
+                }
             }
         });
 
@@ -2963,11 +3382,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const sDef = dSkills.find(s => s.id === cId);
             const lkAttr = dAttrs.find(a => a.name === sDef.linked)?.id;
             const aV = lkAttr ? state.attributes[lkAttr] : 1;
+            const finalAV = aV + (state.raceAttrMods[lkAttr] || 0) + (state.classAttrMods?.[lkAttr] || 0);
             const cV = state.skills[cId];
             const eldVal = state.elderlySkills[cId] || 0;
             
-            const nextStepCost = (cV >= aV) ? 2 : 1;
-            btn.disabled = (skillCost + nextStepCost > maxSkill || (cV + eldVal) === 5);
+            const nextStepCost = ((cV + 1) <= 1) ? 1 : (((cV + 1) <= finalAV) ? 1 : 2);
+            btn.disabled = (skillCost + nextStepCost > maxSkill || (cV + eldVal) >= 5);
         });
         
         document.querySelectorAll('.inc-eld').forEach(btn => {
@@ -2980,7 +3400,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(els.btnAddSkill) els.btnAddSkill.disabled = (skillCost + 1 > maxSkill);
 
         const selectedRace = dRaces.find(r => r.id === state.race);
-        let maxEdges = state.boughtEdges + freeEdges + (selectedRace && selectedRace.name === 'Humano' ? 1 : 0);
+        let maxEdges = state.boughtEdges + freeEdges;
         state.maxEdges = maxEdges;
         els.btnAddEdge.disabled = (state.edges.length >= maxEdges);
         els.btnAddEdge.textContent = `Adicionar (${state.edges.length}/${maxEdges})`;
@@ -2994,12 +3414,20 @@ document.addEventListener('DOMContentLoaded', () => {
         let baseFunds = hasPobreza ? 250 : 500;
         const maxFunds = baseFunds + (state.boughtFunds * baseFunds) + (boughtFundsMod * baseFunds);
         
-        document.getElementById('val-funds-used').textContent = moneySpent;
-        document.getElementById('val-funds-max').textContent = maxFunds;
+        const isInfinite = document.getElementById('shop-infinite-funds')?.checked;
+
+        if (isInfinite) {
+            document.getElementById('val-funds-used').textContent = "---";
+            document.getElementById('val-funds-max').textContent = "∞";
+            document.getElementById('tracker-funds').className = "points-tracker edit-only tracker-green";
+        } else {
+            document.getElementById('val-funds-used').textContent = moneySpent;
+            document.getElementById('val-funds-max').textContent = maxFunds;
+            document.getElementById('tracker-funds').className = `points-tracker edit-only ${moneySpent === maxFunds ? 'tracker-green' : (moneySpent > maxFunds ? 'tracker-red' : '')}`;
+        }
         
         document.getElementById('tracker-attributes').className = `points-tracker edit-only ${attrCost === maxAttr ? 'tracker-green' : (attrCost > maxAttr ? 'tracker-red' : '')}`;
         document.getElementById('tracker-skills').className = `points-tracker edit-only ${skillCost === maxSkill ? 'tracker-green' : (skillCost > maxSkill ? 'tracker-red' : '')}`;
-        document.getElementById('tracker-funds').className = `points-tracker edit-only ${moneySpent === maxFunds ? 'tracker-green' : (moneySpent > maxFunds ? 'tracker-red' : '')}`;
 
         let pace = (selectedRace && selectedRace.name === 'Anão') ? 5 : 6;
         pace += basePacePenalty;
@@ -3030,6 +3458,64 @@ document.addEventListener('DOMContentLoaded', () => {
         state.arcaneMaxPowers = arcaneMaxPowers;
         state.arcaneMaxPP = arcaneMaxPP;
         state.hasArcane = hasArcane;
+        
+        // --- LEVEL UP VALIDATION ---
+        const btnLevelUp = document.getElementById('btn-level-up');
+        const descLevelUp = document.getElementById('level-up-desc');
+        if (btnLevelUp && descLevelUp) {
+            let canLevelUp = true;
+            let warnMsg = "";
+
+            if (!state.race || !state.charClass) {
+                canLevelUp = false;
+                warnMsg = "Requer seleção de Raça e Classe.";
+            } else {
+                const myRace = dRaces.find(r => r.id === state.race);
+                if (myRace && myRace.choices && myRace.choices.some(c => !state.raceChoices[c.id])) {
+                    canLevelUp = false;
+                    warnMsg = "Requer escolhas de opções da Raça pendentes.";
+                }
+                const myClass = dClasses.find(c => c.id === state.charClass);
+                if (myClass && myClass.choices && myClass.choices.some(c => !state.classChoices[c.id])) {
+                    canLevelUp = false;
+                    warnMsg = "Requer escolhas de opções da Classe pendentes.";
+                }
+            }
+
+            if (canLevelUp) {
+                if (attrCost < maxAttr) {
+                    canLevelUp = false;
+                    warnMsg = "Requer que gaste todos os seus Pontos de Atributo.";
+                } else if (skillCost < maxSkill) {
+                    canLevelUp = false;
+                    warnMsg = "Requer que gaste todos os seus Pontos de Perícia.";
+                } else if (state.edges.length < state.maxEdges) {
+                    canLevelUp = false;
+                    warnMsg = "Requer que gaste todas as Vantagens limitadas.";
+                }
+            }
+
+            if (state.level >= 4) {
+                canLevelUp = false;
+                warnMsg = "Nível Máximo Alcançado.";
+            }
+
+            btnLevelUp.disabled = !canLevelUp;
+            if (!canLevelUp && state.level < 4) {
+                btnLevelUp.textContent = "Subir de Nível";
+                descLevelUp.textContent = warnMsg;
+            } else if (state.level >= 4) {
+                btnLevelUp.textContent = "Nível Máximo";
+                descLevelUp.textContent = warnMsg;
+            } else {
+                btnLevelUp.textContent = "⭐️ Subir de Nível";
+                if (state.level === 0) descLevelUp.textContent = "Você ganhará: +1 Ponto de Atributo.";
+                else if (state.level === 1) descLevelUp.textContent = "Você ganhará: +1 Vantagem Livre.";
+                else if (state.level === 2) descLevelUp.textContent = "Você ganhará: +1 Avanço em Perícia (2pts).";
+                else if (state.level === 3) descLevelUp.textContent = "Você ganhará: +1 Avanço em Perícia (2pts).";
+            }
+        }
+
         if(typeof renderArcaneTracker === 'function') renderArcaneTracker();
         updateRefundBoxes();
     }
@@ -3104,10 +3590,9 @@ document.addEventListener('DOMContentLoaded', () => {
         override(epicSheet, 'boxShadow', 'none');
         override(epicSheet, 'height', '1700px');
 
-        // 4. Add solid dark background to card wrapper and RESET transform scaling
+        // 4. RESET transform scaling
         const wrapper = epicSheet.querySelector('.epic-card-wrapper');
         if (wrapper) {
-            override(wrapper, 'backgroundColor', '#0a0500');
             override(wrapper, 'transform', 'none');
         }
 
@@ -3121,6 +3606,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 override(el, 'webkitTextFillColor', 'initial');
                 override(el, 'color', '#f9e596');
                 override(el, 'background', 'transparent');
+                override(el, 'textShadow', '2px 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(220,179,96,0.6)');
             }
         });
 
@@ -3276,7 +3762,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const canvas = await html2canvas(sheet, { 
                 scale: 2, 
                 useCORS: true, 
-                backgroundColor: null,
+                backgroundColor: '#0a0500',
                 logging: false
             });
             const imgDataUrl = canvas.toDataURL('image/png');
@@ -3297,7 +3783,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const canvas = await html2canvas(sheet, { 
                 scale: 2, 
                 useCORS: true, 
-                backgroundColor: null,
+                backgroundColor: '#0a0500',
                 logging: false
             });
             const imgDataUrl = canvas.toDataURL('image/png');
@@ -3313,5 +3799,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
+window.showCustomToast = function(msg) {
+    const toast = document.getElementById('custom-toast');
+    const content = document.getElementById('custom-toast-content');
+    if(toast && content) {
+        content.textContent = msg;
+        toast.classList.remove('toast-hidden');
+        toast.classList.add('toast-show');
+        setTimeout(() => {
+            toast.classList.remove('toast-show');
+            toast.classList.add('toast-hidden');
+        }, 4000);
+    }
+};
 
 
